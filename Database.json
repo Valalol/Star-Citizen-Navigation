@@ -1,0 +1,259 @@
+{
+    "Containers": {
+        "Crusader": {
+            "Name": "Crusader",
+            "X": -18962176000,
+            "Y": -2664959999.99999,
+            "Z": 0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjustment": 0.0,
+            "OM Radius": 11733750,
+            "Body Radius": 7450000,
+            "POI": {}
+        },
+        "Cellin": {
+            "Name": "Cellin",
+            "X": -18987611119,
+            "Y": -2709009661,
+            "Z": 0,
+            "Rotation Speed": 4.4499998,
+            "Rotation Adjustment": 253.43259,
+            "OM Radius": 380530,
+            "Body Radius": 260000,
+            "POI": {}
+        },
+        "Daymar": {
+            "Name": "Daymar",
+            "X": -18930539540,
+            "Y": -2610158765,
+            "Z": 0,
+            "Rotation Speed": 2.48,
+            "Rotation Adjustment": 29.86531,
+            "OM Radius": 430028,
+            "Body Radius": 295000,
+            "POI": {
+                "ArcCorp Mining Area 141": {
+                    "Name": "ArcCorp Mining Area 141",
+                    "Container": "Daymar",
+                    "X": -18167,
+                    "Y": 180362,
+                    "Z": -232760
+                },
+                "Javelin Wreck": {
+                    "Name": "Javelin Wreck",
+                    "Container": "Daymar",
+                    "X": 102055,
+                    "Y": 267619,
+                    "Z": -70856
+                },
+                "Starfarer Wreck A": {
+                    "Name": "Starfarer Wreck A",
+                    "Container": "Daymar",
+                    "X": -65409,
+                    "Y": 231094,
+                    "Z": 172039
+                },
+                "Cool Cave": {
+                    "Name": "Cool Cave",
+                    "Container": "Daymar",
+                    "X": -272652,
+                    "Y": 102062,
+                    "Z": 48645
+                }
+            }
+        },
+        "Yela": {
+            "Name": "Yela",
+            "X": -19022916799,
+            "Y": -2613996152,
+            "Z": 0,
+            "Rotation Speed": 1.81999997,
+            "Rotation Adjustment": 217.57101,
+            "OM Radius": 455483,
+            "Body Radius": 313000,
+            "POI": {
+                "BennyHenge": {
+                    "Name": "BennyHenge",
+                    "Container": "Yela",
+                    "X": -626649,
+                    "Y": 135683,
+                    "Z": -1819
+                },
+                "Jumptown": {
+                    "Name": "Jumptown",
+                    "Container": "Yela",
+                    "X": -240325,
+                    "Y": 15776,
+                    "Z": -200406
+                }
+            }
+        },
+        "Hurston": {
+            "Name": "Hurston",
+            "X": 12850457093,
+            "Y": 0,
+            "Z": 0,
+            "Rotation Speed": 2.48,
+            "Rotation Adjustment": 19.08971,
+            "OM Radius": 1427047,
+            "Body Radius": 1000000,
+            "POI": {}
+        },
+        "Arial": {
+            "Name": "Arial",
+            "X": 12892673309,
+            "Y": -31476129,
+            "Z": 0,
+            "Rotation Speed": 5.5100002,
+            "Rotation Adjustment": 38.39172,
+            "OM Radius": 500030,
+            "Body Radius": 344500,
+            "POI": {}
+        },
+        "Aberdeen": {
+            "Name": "Aberdeen",
+            "X": 12905757636,
+            "Y": 40955551,
+            "Z": 0,
+            "Rotation Speed": 2.5999999,
+            "Rotation Adjustment": 116.69573,
+            "OM Radius": 400328,
+            "Body Radius": 274000,
+            "POI": {}
+        },
+        "Magda": {
+            "Name": "Magda",
+            "X": 12792686359,
+            "Y": -74464581,
+            "Z": 0,
+            "Rotation Speed": 1.9400001,
+            "Rotation Adjustment": 242.31675,
+            "OM Radius": 494840,
+            "Body Radius": 340830,
+            "POI": {
+                "Starfarer Wreck A": {
+                    "Name": "Starfarer Wreck A",
+                    "Container": "Magda",
+                    "X": -272897,
+                    "Y": -203445,
+                    "Z": -23478
+                },
+                "Caterpillar Wreck A": {
+                    "Name": "Caterpillar Wreck A",
+                    "Container": "Magda",
+                    "X": 320169,
+                    "Y": 98727,
+                    "Z": 64420
+                }
+            }
+        },
+        "Ita": {
+            "Name": "Ita",
+            "X": 12830194716,
+            "Y": 114913609,
+            "Z": 0,
+            "Rotation Speed": 4.8499999,
+            "Rotation Adjustment": 243.04919,
+            "OM Radius": 472454,
+            "Body Radius": 325000,
+            "POI": {}
+        },
+        "ArcCorp": {
+            "Name": "ArcCorp",
+            "X": 18587664739.856,
+            "Y": -22151916920.3125,
+            "Z": 0,
+            "Rotation Speed": 3.1099999,
+            "Rotation Adjustment": 230.66548,
+            "OM Radius": 1144204,
+            "Body Radius": 800000,
+            "POI": {}
+        },
+        "Lyria": {
+            "Name": "Lyria",
+            "X": 18703607172,
+            "Y": -22121650134,
+            "Z": 0,
+            "Rotation Speed": 6.4299998,
+            "Rotation Adjustment": 359.31701,
+            "OM Radius": 328203,
+            "Body Radius": 223000,
+            "POI": {}
+        },
+        "Wala": {
+            "Name": "Wala",
+            "X": 18379649310,
+            "Y": -22000466768,
+            "Z": 0,
+            "Rotation Speed": 6.3200002,
+            "Rotation Adjustment": 135.44779,
+            "OM Radius": 413056,
+            "Body Radius": 283000,
+            "POI": {}
+        },
+        "Microtech": {
+            "Name": "Microtech",
+            "X": 22462016306.0103,
+            "Y": 37185625645.8346,
+            "Z": 0,
+            "Rotation Speed": 4.1199999,
+            "Rotation Adjustment": 217.03922,
+            "OM Radius": 1427047,
+            "Body Radius": 1000000,
+            "POI": {}
+        },
+        "Calliope": {
+            "Name": "Calliope",
+            "X": 22398369308,
+            "Y": 37168840.679,
+            "Z": 0,
+            "Rotation Speed": 4.5900002,
+            "Rotation Adjustment": 212.27548,
+            "OM Radius": 352245,
+            "Body Radius": 240000,
+            "POI": {}
+        },
+        "Clio": {
+            "Name": "Clio",
+            "X": 22476728221,
+            "Y": 37091020074,
+            "Z": 0,
+            "Rotation Speed": 3.25,
+            "Rotation Adjustment": 311.54775,
+            "OM Radius": 489664,
+            "Body Radius": 337170,
+            "POI": {}
+        },
+        "Euterpe": {
+            "Name": "Euterpe",
+            "X": 22488109736,
+            "Y": 37081123565,
+            "Z": 0,
+            "Rotation Speed": 4.2800002,
+            "Rotation Adjustment": 268.98801,
+            "OM Radius": 314061,
+            "Body Radius": 213000,
+            "POI": {}
+        },
+        "Delamar": {
+            "Name": "Delamar",
+            "X": -10531703478.4293,
+            "Y": 18241438663.8409,
+            "Z": 0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjustment": 0.0,
+            "OM Radius": 118890,
+            "Body Radius": 75000,
+            "POI": {}
+        }
+    },
+    "Space_POI": {
+        "Jericho Station": {
+            "Name": "Jericho Station",
+            "Container": 0,
+            "X": 20196776410.415634,
+            "Y": 33456387485.680557,
+            "Z": 2896115.502795
+        }
+    }
+}
