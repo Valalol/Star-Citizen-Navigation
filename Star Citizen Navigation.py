@@ -4,6 +4,8 @@ from math import sqrt, degrees, radians, cos, acos, sin
 import pyperclip
 import time
 from datetime import datetime
+import tkinter as tk
+import tkinter.ttk as ttk
 import json
 import os
 
@@ -20,21 +22,223 @@ class colors:
     White = "\u001b[37m"
     Reset = "\u001b[0m"
 
+Program_mode_list = ["Planetary Navigation", "Space Navigation", "Companion", "Racing Tool"]
 
 with open('Database.json') as f:
     Database = json.load(f) 
 
 
+Container_list = []
+for i in Database["Containers"]:
+    Container_list.append(Database["Containers"][i]["Name"])
+
+
+Space_POI_list = []
+Planetary_POI_list = {}
+for i in Database["Containers"]:
+    Planetary_POI_list[i] = []
+    for j in Database["POI"]:
+        if Database["POI"][j]["Container"] == 0:
+            Space_POI_list.append(i)
+        elif Database["POI"][j]["Container"] == i:
+            Planetary_POI_list[i].append(j)
+
+
+Target = ""
+Mode = ""
+
+
+def Program_mode_selected(event):
+    
+    if Program_mode_selection_Combobox.get() == "Planetary Navigation" :
+        Planetary_Navigation_Frame.grid(column='1', row='0')
+        Space_Navigation_Frame.grid_forget()
+        Companion_Tool_Frame.grid_forget()
+        Racing_Tool_Frame.grid_forget()
+    
+    
+    
+    elif Program_mode_selection_Combobox.get() == "Space Navigation" :
+        Planetary_Navigation_Frame.grid_forget()
+        Space_Navigation_Frame.grid(column='1', row='0')
+        Companion_Tool_Frame.grid_forget()
+        Racing_Tool_Frame.grid_forget()
+    
+    
+    
+    elif Program_mode_selection_Combobox.get() == "Companion" :
+        Planetary_Navigation_Frame.grid_forget()
+        Space_Navigation_Frame.grid_forget()
+        Companion_Tool_Frame.grid(column='1', row='0')
+        Racing_Tool_Frame.grid_forget()
+    
+    
+    
+    elif Program_mode_selection_Combobox.get() == "Racing Tool" :
+        Planetary_Navigation_Frame.grid_forget()
+        Space_Navigation_Frame.grid_forget()
+        Companion_Tool_Frame.grid_forget()
+        Racing_Tool_Frame.grid(column='1', row='0')
+
+
+
+
+def Container_Selected(event):
+    POI_Selection_Combobox["values"] = Planetary_POI_list[Container_Selection_Combobox.get()]
+
+
+
+def Planetary_Known_or_custom_selected(event):
+    if Planetary_Known_or_custom_POI_Combobox.get() == "Known POI" :
+        Planetary_Known_POI_Frame.grid(column='2', row='0')
+        Planetary_Custom_POI_Frame.grid_forget()
+    
+    
+    elif Planetary_Known_or_custom_POI_Combobox.get() == "Custom POI" :
+        Planetary_Known_POI_Frame.grid_forget()
+        Planetary_Custom_POI_Frame.grid(column='2', row='0')
+
+
+
+def Planetary_Known_Target_Selected(event):
+    Planetary_Known_POI_Frame_Start_Navigation_Button.grid(column='1', padx='8', pady='8', row='0')
+
+
+
+def Start_Planetary_Navigation_Known_POI():
+    global Target, Mode
+    Mode = Program_mode_selection_Combobox.get()
+    Target = Database["POI"][f'{POI_Selection_Combobox.get()}']
+    
+    root.destroy()
+
+
+
+def Start_Planetary_Navigation_Custom_POI():
+    global Target, Mode
+    Mode = Program_mode_selection_Combobox.get()
+    Target = {'Name': 'Custom POI', 'Container': f'{Container_Selection_Combobox.get()}', 'X': float(Planetary_X_Custom_POI_Entry.get()), 'Y': float(Planetary_Y_Custom_POI_Entry.get()), 'Z': float(Planetary_Z_Custom_POI_Entry.get())}
+    
+    root.destroy()
+
+
+#-------------------------------------------------------------GUI-----------------------------------------------------------------------
+
+#root
+root = tk.Tk()
+
+
+#Man Frame
+MainWindow = ttk.Frame(root)
+MainWindow.configure(borderwidth='0', height='200', relief='flat', width='200')
+MainWindow.pack(expand='true', fill='both', side='left')
+
+#Program mode selection combobox always here
+Program_mode_selection_Combobox = ttk.Combobox(MainWindow, state='readonly', values = Program_mode_list)
+Program_mode_selection_Combobox.bind("<<ComboboxSelected>>", Program_mode_selected)
+Program_mode_selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
+
+
+
+#Planetary Navigation Frame 
+Planetary_Navigation_Frame = ttk.Frame(MainWindow)
+Planetary_Navigation_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+
+Container_Selection_Combobox = ttk.Combobox(Planetary_Navigation_Frame, state='readonly', values = Container_list)
+Container_Selection_Combobox.bind("<<ComboboxSelected>>", Container_Selected)
+Container_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
+
+
+Planetary_Known_or_custom_POI_Combobox = ttk.Combobox(Planetary_Navigation_Frame, state='readonly', values = ["Known POI", "Custom POI"])
+Planetary_Known_or_custom_POI_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_or_custom_selected)
+Planetary_Known_or_custom_POI_Combobox.grid(column='1', padx='8', pady='8', row='0')
+
+
+
+#Known Poi Selection
+Planetary_Known_POI_Frame = ttk.Frame(Planetary_Navigation_Frame)
+Planetary_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+
+POI_Selection_Combobox = ttk.Combobox(Planetary_Known_POI_Frame, state='readonly', values = "")
+POI_Selection_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_Target_Selected)
+POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
+
+
+Planetary_Known_POI_Frame_Start_Navigation_Button = tk.Button(Planetary_Known_POI_Frame, text="Start Navigation", command=Start_Planetary_Navigation_Known_POI)
+
+
+
+#Custom Poi Selection
+Planetary_Custom_POI_Frame = ttk.Frame(Planetary_Navigation_Frame)
+Planetary_Custom_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+
+Planetary_X_Custom_POI_Small_X = tk.Label(Planetary_Custom_POI_Frame, text="X =")
+Planetary_X_Custom_POI_Small_Y = tk.Label(Planetary_Custom_POI_Frame, text="Y =")
+Planetary_X_Custom_POI_Small_Z = tk.Label(Planetary_Custom_POI_Frame, text="Z =")
+
+Planetary_X_Custom_POI_Small_X.grid(column='0', padx='1', pady='3', row='0')
+Planetary_X_Custom_POI_Small_Y.grid(column='0', padx='1', pady='3', row='1')
+Planetary_X_Custom_POI_Small_Z.grid(column='0', padx='1', pady='3', row='2')
+
+
+Planetary_X_Custom_POI_Entry = tk.Entry(Planetary_Custom_POI_Frame)
+Planetary_Y_Custom_POI_Entry = tk.Entry(Planetary_Custom_POI_Frame)
+Planetary_Z_Custom_POI_Entry = tk.Entry(Planetary_Custom_POI_Frame)
+
+Planetary_X_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='0')
+Planetary_Y_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='1')
+Planetary_Z_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='2')
+
+
+Planetary_Custom_POI_Frame_Start_Navigation_Button = tk.Button(Planetary_Custom_POI_Frame, text="Start Navigation", command=Start_Planetary_Navigation_Custom_POI)
+Planetary_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pady='2', row='1')
+
+
+
+
+#Space Navigation frame
+Space_Navigation_Frame = ttk.Frame(MainWindow)
+Space_Navigation_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+Space_Navigation_WIP_Label = tk.Label(Space_Navigation_Frame, text="Work in progress")
+Space_Navigation_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
+
+
+
+#Companion Tool Frame
+Companion_Tool_Frame = ttk.Frame(MainWindow)
+Companion_Tool_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+Companion_Tool_WIP_Label = tk.Label(Companion_Tool_Frame, text="Work in progress")
+Companion_Tool_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
+
+
+
+#Racing Tool Frame
+Racing_Tool_Frame = ttk.Frame(MainWindow)
+Racing_Tool_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+Racing_Tool_WIP_Label = tk.Label(Racing_Tool_Frame, text="Work in progress")
+Racing_Tool_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
+
+
+
+
+root.mainloop()
+
+
+print(f'Mode : {Mode}')
+print(f'Target : {Target}')
+
+#-------------------------------------------------------------GUI-----------------------------------------------------------------------
+
+
+
 def angle_between_vectors(a, b):
-    """Function that return an angle in degrees between 2 vectors
-
-    Args:
-        a (dict): Dictionnory representing a vector with X, Y and Z keys
-        b (dict): Dictionnory representing a vector with X, Y and Z keys
-
-    Returns:
-        float: Angle in degrees between the 2 vectors
-    """
+    """Function that return an angle in degrees between 2 vectors"""
 
     try :
         angle = degrees(acos((a["X"]*b["X"] + a["Y"]*b["Y"] + a["Z"]*b["Z"]) / (vector_norm(a) * vector_norm(b))))
@@ -44,14 +248,7 @@ def angle_between_vectors(a, b):
 
 
 def vector_norm(a):
-    """Return the norm of a vector 
-
-    Args:
-        a (dict): Dictionnory representing a vector with X, Y and Z keys
-
-    Returns:
-        [float]: Value of the norm of the given vector 
-    """
+    """Return the norm of a vector """
     return sqrt(a["X"]**2 + a["Y"]**2 + a["Z"]**2)
 
 
@@ -81,12 +278,6 @@ for i in ["X", "Y", "Z"]:
 
 
 Old_time = time.time()
-
-
-
-#Sets the target
-Target = Database["POI"][f'{input("What is your target ?")}']
-
 
 
 #Reset the clipboard content
