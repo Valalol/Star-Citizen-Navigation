@@ -4,6 +4,7 @@ from math import sqrt, degrees, radians, cos, acos, sin
 import pyperclip
 import time
 from datetime import datetime
+import json
 
 class colors:
     Black = "\u001b[30m"
@@ -17,73 +18,32 @@ class colors:
     Reset = "\u001b[0m"
 
 
-Database = {
-    "Containers": {
-        "Hurston": {
-            "Name": "Hurston",
-            "X" : 12850457093,
-            "Y" : 0,
-            "Z" : 0
-        },
-        "Crusader" : {
-            "Name": "Crusader",
-            "X" : -18962176000,
-            "Y" : -2664959999.99999,
-            "Z" : 0
-        },
-        "ArcCorp": {
-            "Name": "ArcCorp",
-            "X" : 18587664739.856,
-            "Y" : -22151916920.3125,
-            "Z" : 0
-        },
-        "Microtech": {
-            "Name": "Microtech",
-            "X" : 22462016306.0103,
-            "Y" : 37185625645.8346,
-            "Z" : 0
-        },
-        "Delamar": {
-            "Name": "Delamar",
-            "X" : -10531703478.4293,
-            "Y" : 18241438663.8409,
-            "Z" : 0
-        },
-        "Daymar": {
-            "Name": "Daymar",
-            "X": -18930439.540,
-            "Y": -2610058.765,
-            "Z": 0,
-            "Rotation Speed": 2.4800000,
-            "Rotation Adjustment": 29.86531,
-            "OM Radius": 430.028,
-            "Body Radius": 295.000
-        }
-    },
-    "POI": {
-        "Javelin_Wreck": {
-            "Name": "Javelin_Wreck",
-            "Container": "Daymar",
-            "X": 102.055,
-            "Y": 267.619,
-            "Z": 70.856
-        },
-        "Jericho_Station": {
-            "Name": "Jericho_Station",
-            "Container": None,
-            "X": 20196776410.415634,
-            "Y": 33456387485.680557,
-            "Z": 2896115.502795
-        },
-    }
-}
+with open('Database.json') as f:
+    Database = json.load(f) 
 
 
 def angle_between_vectors(a, b):
-    return degrees(acos((a["X"]*b["X"] + a["Y"]*b["Y"] + a["Z"]*b["Z"]) / (vector_norm(a) * vector_norm(b))))
+    """Function that return an angle in degrees between 2 vectors
+
+    Args:
+        a (dict): Dictionnory representing a vector with X, Y and Z keys
+        b (dict): Dictionnory representing a vector with X, Y and Z keys
+
+    Returns:
+        float: Angle in degrees between the 2 vectors
+    """
+    
+    
+    try :
+        angle = degrees(acos((a["X"]*b["X"] + a["Y"]*b["Y"] + a["Z"]*b["Z"]) / (vector_norm(a) * vector_norm(b))))
+    except :
+        angle = 0.0
+    return angle
+
 
 def vector_norm(a):
     return sqrt(a["X"]**2 + a["Y"]**2 + a["Z"]**2)
+
 
 def rotate_point_2D(Unrotated_coordinates, angle):
     Rotated_coordinates = {}
@@ -93,17 +53,12 @@ def rotate_point_2D(Unrotated_coordinates, angle):
     return (Rotated_coordinates)
 
 
-#Sets the target
-Planetary_navigation = input("Planetary Navigation ?")
-
-if Planetary_navigation == 'no':
-    Target = Database["Containers"][f'{input("What is your target ?")}']
-elif Planetary_navigation == 'yes':
-    Target = Database["POI"][f'{input("What is your target ?")}']
-
-
-
 #Sets some variables
+Reference_time_UTC = datetime(2020, 1, 1)
+Epoch = datetime(1970, 1, 1)
+Reference_time = (Reference_time_UTC - Epoch).total_seconds()
+
+
 Old_clipboard = ""
 
 Old_player_coordinates = {}
@@ -112,6 +67,11 @@ for i in ["X", "Y", "Z"]:
     Old_player_coordinates[i] = 0.0
 
 Old_time = time.time()
+
+
+
+#Sets the target
+Target = Database["POI"][f'{input("What is your target ?")}']
 
 
 
@@ -133,7 +93,7 @@ while True:
 
         #Wait some time
         time.sleep(1/5)
-    
+
 
     #If clipboard content has changed
     else :
@@ -161,6 +121,30 @@ while True:
             New_player_coordinates['X'] = float(new_clipboard_splitted[3])
             New_player_coordinates['Y'] = float(new_clipboard_splitted[5])
             New_player_coordinates['Z'] = float(new_clipboard_splitted[7])
+
+
+
+            #If the target is within the attraction of a planet
+            if Target["Container"] != 0:
+                
+                #Time passed since the start of game simulation
+                Time_passed_since_reference_in_seconds = New_time - Reference_time
+                
+                #Grab the rotation speed of the container in the Database and convert it in degrees/s
+                Rotation_speed_in_hours_per_rotation = Database["Containers"][Target["Container"]]["Rotation Speed"]
+                Rotation_speed_in_degrees_per_second = 0.1 * (1/Rotation_speed_in_hours_per_rotation)
+                
+                #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
+                Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjustment"]) % 360
+
+                #get the 
+                New_player_local_unrotated_coordinates = {}
+                for i in ['X', 'Y', 'Z']:
+                    New_player_local_unrotated_coordinates[i] = New_player_coordinates[i] - Database["Containers"][Target["Container"]][i]
+
+                New_player_coordinates = rotate_point_2D(New_player_local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
+
+
 
 
 
@@ -199,37 +183,28 @@ while True:
 
 
             #get the time it would take to reach destination using the same speed
-            Estimated_time_of_arrival = (Delta_time*New_Distance_Total)/abs(Delta_Distance_Total)
+            try :
+                Estimated_time_of_arrival = (Delta_time*New_Distance_Total)/abs(Delta_Distance_Total)
+            except :
+                Estimated_time_of_arrival = 0.00
+
 
 
             #get the vector between current_pos and previous_pos
-            Previous_current_pos_vector = [New_player_coordinates['X'] - Old_player_coordinates['X'], New_player_coordinates['Y'] - Old_player_coordinates['Y'], New_player_coordinates['Z'] - Old_player_coordinates['Z']]
+            Previous_current_pos_vector = {}
+            for i in ['X', 'Y', 'Z']:
+                Previous_current_pos_vector[i] = New_player_coordinates[i] - Old_player_coordinates[i]
+
 
             #get the vector between current_pos and target_pos
-            Current_target_pos_vector = [Target['X'] - New_player_coordinates['X'], Target['Y'] - New_player_coordinates['Y'], Target['Z'] - New_player_coordinates['Z']]
+            Current_target_pos_vector = {}
+            for i in ['X', 'Y', 'Z']:
+                Current_target_pos_vector[i] = Target[i] - New_player_coordinates[i]
+
 
             #get the angle between the current-target_pos vector and the previous-current_pos vector
-            Course_Deviation = degrees(acos((Previous_current_pos_vector[0] * Current_target_pos_vector[0] + Previous_current_pos_vector[1] * Current_target_pos_vector[1] + Previous_current_pos_vector[2] * Current_target_pos_vector[2]) / (sqrt(Previous_current_pos_vector[0]**2 + Previous_current_pos_vector[1]**2 + Previous_current_pos_vector[2]**2) * sqrt(Current_target_pos_vector[0]**2 + Current_target_pos_vector[1]**2 + Current_target_pos_vector[2]**2))))
+            Course_Deviation = angle_between_vectors(Previous_current_pos_vector, Current_target_pos_vector)
 
-            if Planetary_navigation == 1:
-                Reference_time_UTC = datetime(2020, 1, 1)
-                Epoch = datetime(1970, 1, 1)
-                Reference_time = (Reference_time_UTC - Epoch).total_seconds()
-
-                Time_passed_since_reference_in_seconds = New_time - Reference_time
-
-                Rotation_speed_in_hours_per_rotation = Database["Containers"][Target["Container"]]["Rotation Speed"]
-                Rotation_speed_in_degrees_per_second = 0.1 * (1/Rotation_speed_in_hours_per_rotation)
-                
-                Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjustment"]) % 360
-
-
-                Player_local_unrotated_coordinates = {}
-                for i in ['X', 'Y', 'Z']:
-                    Player_local_unrotated_coordinates[i] = New_player_coordinates[i] - Database["Containers"][Target["Container"]][i]
-
-
-                Player_local_rotated_coordinates = rotate_point_2D(Player_local_unrotated_coordinates, radians(Rotation_state_in_degrees))
 
 
 
@@ -239,54 +214,50 @@ while True:
             for i in ["X", "Y", "Z"]:
                 Old_player_coordinates[i] = New_player_coordinates[i]
 
-
             Old_time = New_time
 
 
 
             #display data
-            print(f"X = {New_player_coordinates['X']}")
-            print(f"Y = {New_player_coordinates['Y']}")
-            print(f"Z = {New_player_coordinates['Z']}")
+            print(f"---------------------------------------------------------------------------")
+            print(f"Destination : {Target['Name']}   Updated : {time.strftime('%H:%M:%S', time.localtime(New_time))} ")
             print(f"")
-
-            print(f"Distance X = {New_Distance_to_POI['X']}")
-            print(f"Distance Y = {New_Distance_to_POI['Y']}")
-            print(f"Distance Z = {New_Distance_to_POI['Z']}")
-            print(f"Distance to target = {New_Distance_Total}")
-            print(f"")
-
+            print(f"         Player Coordinates        Distance to the POI       Delta distance to the POI ")
+            
             if Delta_Distance_to_POI['X'] <= 0 :
-                print(f"Delta Distance X = {colors.Green}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
+                print(f"    X :  {New_player_coordinates['X']}{(25-len(str(New_player_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
             else :
-                print(f"Delta Distance X = {colors.Red}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
+                print(f"    X :  {New_player_coordinates['X']}{(25-len(str(New_player_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
 
             if Delta_Distance_to_POI['Y'] <= 0 :
-                print(f"Delta Distance Y = {colors.Green}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
+                print(f"    Y :  {New_player_coordinates['Y']}{(25-len(str(New_player_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
             else :
-                print(f"Delta Distance Y = {colors.Red}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
-
+                print(f"    Y :  {New_player_coordinates['Y']}{(25-len(str(New_player_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
+            
             if Delta_Distance_to_POI['Z'] <= 0 :
-                print(f"Delta Distance Z = {colors.Green}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+                print(f"    Z :  {New_player_coordinates['Z']}{(25-len(str(New_player_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
             else :
-                print(f"Delta Distance Z = {colors.Red}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
-
+                print(f"    Z :  {New_player_coordinates['Z']}{(25-len(str(New_player_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+            
             if Delta_Distance_Total <= 0 :
-                print(f"Delta Distance to target = {colors.Green}{abs(Delta_Distance_Total)}{colors.Reset}")
+                print(f"Total :                            {New_Distance_Total}{(25-len(str(New_Distance_Total)))*' '} {colors.Green}{abs(Delta_Distance_Total)}{colors.Reset}")
             else :
-                print(f"Delta Distance to target = {colors.Red}{abs(Delta_Distance_Total)}{colors.Reset}")
-
+                print(f"Total :                            {New_Distance_Total}{(25-len(str(New_Distance_Total)))*' '} {colors.Red}{abs(Delta_Distance_Total)}{colors.Reset}")
+            
             print(f"")
+
 
             print(f"Estimated time of arrival = {Estimated_time_of_arrival} secondes")
             print(f"")
 
             print(f"Course deviation = {Course_Deviation}\N{DEGREE SIGN}")
 
-#
+            print(f"---------------------------------------------------------------------------")
+
+
+
+# Jericho_Station
 # Hurston : Coordinates: x:12850457093 y:0 z:0
 # Microtech : Coordinates: x:22462016306.0103 y:37185625645.8346 z:0
-#
-#
-#
-#
+# Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
+# 
