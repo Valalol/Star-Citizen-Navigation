@@ -5,6 +5,9 @@ import pyperclip
 import time
 from datetime import datetime
 import json
+import os
+
+os.system("")
 
 class colors:
     Black = "\u001b[30m"
@@ -32,8 +35,7 @@ def angle_between_vectors(a, b):
     Returns:
         float: Angle in degrees between the 2 vectors
     """
-    
-    
+
     try :
         angle = degrees(acos((a["X"]*b["X"] + a["Y"]*b["Y"] + a["Z"]*b["Z"]) / (vector_norm(a) * vector_norm(b))))
     except :
@@ -42,6 +44,14 @@ def angle_between_vectors(a, b):
 
 
 def vector_norm(a):
+    """Return the norm of a vector 
+
+    Args:
+        a (dict): Dictionnory representing a vector with X, Y and Z keys
+
+    Returns:
+        [float]: Value of the norm of the given vector 
+    """
     return sqrt(a["X"]**2 + a["Y"]**2 + a["Z"]**2)
 
 
@@ -61,10 +71,14 @@ Reference_time = (Reference_time_UTC - Epoch).total_seconds()
 
 Old_clipboard = ""
 
-Old_player_coordinates = {}
-
+Old_player_Global_coordinates = {}
 for i in ["X", "Y", "Z"]:
-    Old_player_coordinates[i] = 0.0
+    Old_player_Global_coordinates[i] = 0.0
+
+Old_player_local_rotated_coordinates = {}
+for i in ["X", "Y", "Z"]:
+    Old_player_local_rotated_coordinates[i] = 0.0
+
 
 Old_time = time.time()
 
@@ -117,16 +131,168 @@ while True:
 
 
             #get the 3 new XYZ coordinates
-            New_player_coordinates = {}
-            New_player_coordinates['X'] = float(new_clipboard_splitted[3])
-            New_player_coordinates['Y'] = float(new_clipboard_splitted[5])
-            New_player_coordinates['Z'] = float(new_clipboard_splitted[7])
+            New_Player_Global_coordinates = {}
+            New_Player_Global_coordinates['X'] = float(new_clipboard_splitted[3])
+            New_Player_Global_coordinates['Y'] = float(new_clipboard_splitted[5])
+            New_Player_Global_coordinates['Z'] = float(new_clipboard_splitted[7])
 
 
 
+
+
+    #-----------------------------------------------------Space Navigation------------------------------------------------------------------
+            #If the target is within the attraction of a planet
+            if Target["Container"] == 0:
+
+        #-----------------------------------------------------Distance to POI---------------------------------------------------------------
+                New_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    New_Distance_to_POI[i] = abs(Target[i] - New_Player_Global_coordinates[i])
+
+                #get the real new distance between the player and the target
+                New_Distance_to_POI_Total = vector_norm(New_Distance_to_POI)
+
+
+
+        #---------------------------------------------------Delta Distance to POI-----------------------------------------------------------
+                #get the 3 old XYZ distances between the player and the target
+                Old_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    Old_Distance_to_POI[i] = abs(Target[i] - Old_player_Global_coordinates[i])
+
+                #get the real old distance between the player and the target
+                Old_Distance_to_POI_Total = vector_norm(Old_Distance_to_POI)
+
+
+
+                #get the 3 XYZ distance travelled since last update
+                Delta_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    Delta_Distance_to_POI[i] = New_Distance_to_POI[i] - Old_Distance_to_POI[i]
+
+                #get the real distance travelled since last update
+                Delta_Distance_to_POI_Total = New_Distance_to_POI_Total - Old_Distance_to_POI_Total
+
+
+
+        #-----------------------------------------------Estimated time of arrival-----------------------------------------------------------
+                #get the time between the last update and this update
+                Delta_time = New_time - Old_time
+
+
+                #get the time it would take to reach destination using the same speed
+                try :
+                    Estimated_time_of_arrival = (Delta_time*New_Distance_to_POI)/abs(Delta_Distance_to_POI_Total)
+                except :
+                    Estimated_time_of_arrival = 0.00
+
+
+
+        #----------------------------------------------------Course Deviation---------------------------------------------------------------
+                #get the vector between current_pos and previous_pos
+                Previous_current_pos_vector = {}
+                for i in ['X', 'Y', 'Z']:
+                    Previous_current_pos_vector[i] = New_Player_Global_coordinates[i] - Old_player_Global_coordinates[i]
+
+
+                #get the vector between current_pos and target_pos
+                Current_target_pos_vector = {}
+                for i in ['X', 'Y', 'Z']:
+                    Current_target_pos_vector[i] = Target[i] - New_Player_Global_coordinates[i]
+
+
+                #get the angle between the current-target_pos vector and the previous-current_pos vector
+                Course_Deviation = angle_between_vectors(Previous_current_pos_vector, Current_target_pos_vector)
+
+
+
+        #----------------------------------------------------Display cool data--------------------------------------------------------------
+
+
+                print(f"-------------------------------------------------------------------------------------------")
+                print(f"Destination : {Target['Name']}   Updated : {time.strftime('%H:%M:%S', time.localtime(New_time))}")
+                print(f"")
+                print(f"         Player Global Coordinates       Distance to the POI       Delta distance to the POI ")
+                
+                if Delta_Distance_to_POI['X'] <= 0 :
+                    print(f"    X :  {New_Player_Global_coordinates['X']}{(31-len(str(New_Player_Global_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
+                else :
+                    print(f"    X :  {New_Player_Global_coordinates['X']}{(31-len(str(New_Player_Global_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
+
+                if Delta_Distance_to_POI['Y'] <= 0 :
+                    print(f"    Y :  {New_Player_Global_coordinates['Y']}{(31-len(str(New_Player_Global_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
+                else :
+                    print(f"    Y :  {New_Player_Global_coordinates['Y']}{(31-len(str(New_Player_Global_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
+                
+                if Delta_Distance_to_POI['Z'] <= 0 :
+                    print(f"    Z :  {New_Player_Global_coordinates['Z']}{(31-len(str(New_Player_Global_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+                else :
+                    print(f"    Z :  {New_Player_Global_coordinates['Z']}{(31-len(str(New_Player_Global_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+                
+                if Delta_Distance_to_POI_Total <= 0 :
+                    print(f"Total :                                  {New_Distance_to_POI_Total}{(25-len(str(New_Distance_to_POI_Total)))*' '} {colors.Green}{abs(Delta_Distance_to_POI_Total)}{colors.Reset}")
+                else :
+                    print(f"Total :                                  {New_Distance_to_POI_Total}{(25-len(str(New_Distance_to_POI_Total)))*' '} {colors.Red}{abs(Delta_Distance_to_POI_Total)}{colors.Reset}")
+                
+                print(f"")
+
+
+                print(f"Estimated time of arrival = {Estimated_time_of_arrival} secondes")
+                print(f"")
+
+                print(f"Course deviation = {Course_Deviation}\N{DEGREE SIGN}")
+
+                print(f"-------------------------------------------------------------------------------------------")
+
+
+
+        #-------------------------------------------Update coordinates for the next update--------------------------------------------------
+                for i in ["X", "Y", "Z"]:
+                    Old_player_Global_coordinates[i] = New_Player_Global_coordinates[i]
+
+                Old_time = New_time
+
+    #---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+    #-----------------------------------------------------Planetary Navigation--------------------------------------------------------------
             #If the target is within the attraction of a planet
             if Target["Container"] != 0:
-                
+
+        #---------------------------------------------------Distance to Container-----------------------------------------------------------
+                New_Distance_to_Container = {}
+                for i in ["X", "Y", "Z"]:
+                    New_Distance_to_Container[i] = abs(Database["Containers"][Target["Container"]][i] - New_Player_Global_coordinates[i])
+
+                #get the real new distance between the player and the target
+                New_Distance_to_Container_Total = vector_norm(New_Distance_to_Container)
+
+
+
+        #---------------------------------------------------Delta Distance to Container-----------------------------------------------------
+                #get the 3 old XYZ distances between the player and the target
+                Old_Distance_to_Container = {}
+                for i in ["X", "Y", "Z"]:
+                    Old_Distance_to_Container[i] = abs(Database["Containers"][Target["Container"]][i] - Old_player_Global_coordinates[i])
+
+                #get the real old distance between the player and the target
+                Old_Distance_to_Container_Total = vector_norm(Old_Distance_to_Container)
+
+
+
+                #get the 3 XYZ distance travelled since last update
+                Delta_Distance_to_Container = {}
+                for i in ["X", "Y", "Z"]:
+                    Delta_Distance_to_Container[i] = New_Distance_to_Container[i] - Old_Distance_to_Container[i]
+
+                #get the real distance travelled since last update
+                Delta_Distance_to_Container_Total = New_Distance_to_Container_Total - Old_Distance_to_Container_Total
+
+
+
+        #---------------------------------------------------New player local coordinates----------------------------------------------------
                 #Time passed since the start of game simulation
                 Time_passed_since_reference_in_seconds = New_time - Reference_time
                 
@@ -137,122 +303,175 @@ while True:
                 #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
                 Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjustment"]) % 360
 
-                #get the 
+                #get the new player unrotated coordinates
                 New_player_local_unrotated_coordinates = {}
                 for i in ['X', 'Y', 'Z']:
-                    New_player_local_unrotated_coordinates[i] = New_player_coordinates[i] - Database["Containers"][Target["Container"]][i]
+                    New_player_local_unrotated_coordinates[i] = New_Player_Global_coordinates[i] - Database["Containers"][Target["Container"]][i]
 
-                New_player_coordinates = rotate_point_2D(New_player_local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
-
-
-
-
-
-            #get the 3 new XYZ distances between the player and the target
-            New_Distance_to_POI = {}
-            for i in ["X", "Y", "Z"]:
-                New_Distance_to_POI[i] = abs(Target[i] - New_player_coordinates[i])
-
-            #get the real new distance between the player and the target
-            New_Distance_Total = vector_norm(New_Distance_to_POI)
+                #get the new player rotated coordinates
+                New_player_local_rotated_coordinates = rotate_point_2D(New_player_local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
 
 
 
-            #get the 3 old XYZ distances between the player and the target
-            Old_Distance_to_POI = {}
-            for i in ["X", "Y", "Z"]:
-                Old_Distance_to_POI[i] = abs(Target[i] - Old_player_coordinates[i])
-
-            #get the real old distance between the player and the target
-            Old_Distance_Total = vector_norm(Old_Distance_to_POI)
-
-
-
-            #get the 3 XYZ distance travelled since last update
-            Delta_Distance_to_POI = {}
-            for i in ["X", "Y", "Z"]:
-                Delta_Distance_to_POI[i] = New_Distance_to_POI[i] - Old_Distance_to_POI[i]
-
-            #get the real distance travelled since last update
-            Delta_Distance_Total = New_Distance_Total - Old_Distance_Total
+        #---------------------------------------------------Actual Container----------------------------------------------------------------
+                #search in the Databse to see if the player is ina Container
+                Actual_Container = 0
+                for i in Database["Containers"] :
+                    Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
+                    if vector_norm(Player_Container_vector) <= 1.5 * Database["Containers"][i]["OM Radius"]:
+                        Actual_Container = Database["Containers"][i]
 
 
 
-            #get the time between the last update and this update
-            Delta_time = New_time - Old_time
+        #---------------------------------------------------Distance to POI-----------------------------------------------------------------
+                New_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    New_Distance_to_POI[i] = abs(Target[i] - New_player_local_rotated_coordinates[i])
 
-
-            #get the time it would take to reach destination using the same speed
-            try :
-                Estimated_time_of_arrival = (Delta_time*New_Distance_Total)/abs(Delta_Distance_Total)
-            except :
-                Estimated_time_of_arrival = 0.00
-
-
-
-            #get the vector between current_pos and previous_pos
-            Previous_current_pos_vector = {}
-            for i in ['X', 'Y', 'Z']:
-                Previous_current_pos_vector[i] = New_player_coordinates[i] - Old_player_coordinates[i]
-
-
-            #get the vector between current_pos and target_pos
-            Current_target_pos_vector = {}
-            for i in ['X', 'Y', 'Z']:
-                Current_target_pos_vector[i] = Target[i] - New_player_coordinates[i]
-
-
-            #get the angle between the current-target_pos vector and the previous-current_pos vector
-            Course_Deviation = angle_between_vectors(Previous_current_pos_vector, Current_target_pos_vector)
+                #get the real new distance between the player and the target
+                New_Distance_to_POI_Total = vector_norm(New_Distance_to_POI)
 
 
 
+        #---------------------------------------------------Delta Distance to POI-----------------------------------------------------------
+                #get the 3 old XYZ distances between the player and the target
+                Old_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    Old_Distance_to_POI[i] = abs(Target[i] - Old_player_local_rotated_coordinates[i])
+
+                #get the real old distance between the player and the target
+                Old_Distance_to_POI_Total = vector_norm(Old_Distance_to_POI)
 
 
 
-            #update coordinates for the next update
-            for i in ["X", "Y", "Z"]:
-                Old_player_coordinates[i] = New_player_coordinates[i]
+                #get the 3 XYZ distance travelled since last update
+                Delta_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    Delta_Distance_to_POI[i] = New_Distance_to_POI[i] - Old_Distance_to_POI[i]
 
-            Old_time = New_time
-
-
-
-            #display data
-            print(f"---------------------------------------------------------------------------")
-            print(f"Destination : {Target['Name']}   Updated : {time.strftime('%H:%M:%S', time.localtime(New_time))} ")
-            print(f"")
-            print(f"         Player Coordinates        Distance to the POI       Delta distance to the POI ")
-            
-            if Delta_Distance_to_POI['X'] <= 0 :
-                print(f"    X :  {New_player_coordinates['X']}{(25-len(str(New_player_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
-            else :
-                print(f"    X :  {New_player_coordinates['X']}{(25-len(str(New_player_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
-
-            if Delta_Distance_to_POI['Y'] <= 0 :
-                print(f"    Y :  {New_player_coordinates['Y']}{(25-len(str(New_player_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
-            else :
-                print(f"    Y :  {New_player_coordinates['Y']}{(25-len(str(New_player_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
-            
-            if Delta_Distance_to_POI['Z'] <= 0 :
-                print(f"    Z :  {New_player_coordinates['Z']}{(25-len(str(New_player_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
-            else :
-                print(f"    Z :  {New_player_coordinates['Z']}{(25-len(str(New_player_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
-            
-            if Delta_Distance_Total <= 0 :
-                print(f"Total :                            {New_Distance_Total}{(25-len(str(New_Distance_Total)))*' '} {colors.Green}{abs(Delta_Distance_Total)}{colors.Reset}")
-            else :
-                print(f"Total :                            {New_Distance_Total}{(25-len(str(New_Distance_Total)))*' '} {colors.Red}{abs(Delta_Distance_Total)}{colors.Reset}")
-            
-            print(f"")
+                #get the real distance travelled since last update
+                Delta_Distance_to_POI_Total = New_Distance_to_POI_Total - Old_Distance_to_POI_Total
 
 
-            print(f"Estimated time of arrival = {Estimated_time_of_arrival} secondes")
-            print(f"")
 
-            print(f"Course deviation = {Course_Deviation}\N{DEGREE SIGN}")
+        #---------------------------------------------------Estimated time of arrival to POI------------------------------------------------
+                #get the time between the last update and this update
+                Delta_time = New_time - Old_time
 
-            print(f"---------------------------------------------------------------------------")
+
+                #get the time it would take to reach destination using the same speed
+                try :
+                    Estimated_time_of_arrival = (Delta_time*New_Distance_to_POI_Total)/abs(Delta_Distance_to_POI_Total)
+                except :
+                    Estimated_time_of_arrival = 0.00
+
+
+
+        #----------------------------------------------------Course Deviation to POI--------------------------------------------------------
+                #get the vector between current_pos and previous_pos
+                Previous_current_pos_vector = {}
+                for i in ['X', 'Y', 'Z']:
+                    Previous_current_pos_vector[i] = New_player_local_rotated_coordinates[i] - Old_player_local_rotated_coordinates[i]
+
+
+                #get the vector between current_pos and target_pos
+                Current_target_pos_vector = {}
+                for i in ['X', 'Y', 'Z']:
+                    Current_target_pos_vector[i] = Target[i] - New_player_local_rotated_coordinates[i]
+
+
+                #get the angle between the current-target_pos vector and the previous-current_pos vector
+                Course_Deviation = angle_between_vectors(Previous_current_pos_vector, Current_target_pos_vector)
+
+
+
+        #---------------------------------------------------Display cool data---------------------------------------------------------------
+
+
+                print(f"--------------------------------------------------------------------------------------------------")
+                print(f"Destination : {Target['Name']}   Updated : {time.strftime('%H:%M:%S', time.localtime(New_time))}")
+                print(f"--------------------------------------------------------------------------------------------------")
+                
+                print(f"Global Coordinates")
+                
+                print(f"")
+                print(f"         Player Global Coordinates       Distance to Container     Delta distance to Container ")
+                
+                if Delta_Distance_to_Container['X'] <= 0 :
+                    print(f"    X :  {New_Player_Global_coordinates['X']}{(31-len(str(New_Player_Global_coordinates['X'])))*' '} {New_Distance_to_Container['X']}{(25-len(str(New_Distance_to_Container['X'])))*' '} {colors.Green}{abs(Delta_Distance_to_Container['X'])}{colors.Reset}")
+                else :
+                    print(f"    X :  {New_Player_Global_coordinates['X']}{(31-len(str(New_Player_Global_coordinates['X'])))*' '} {New_Distance_to_Container['X']}{(25-len(str(New_Distance_to_Container['X'])))*' '} {colors.Red}{abs(Delta_Distance_to_Container['X'])}{colors.Reset}")
+
+                if Delta_Distance_to_Container['Y'] <= 0 :
+                    print(f"    Y :  {New_Player_Global_coordinates['Y']}{(31-len(str(New_Player_Global_coordinates['Y'])))*' '} {New_Distance_to_Container['Y']}{(25-len(str(New_Distance_to_Container['Y'])))*' '} {colors.Green}{abs(Delta_Distance_to_Container['Y'])}{colors.Reset}")
+                else :
+                    print(f"    Y :  {New_Player_Global_coordinates['Y']}{(31-len(str(New_Player_Global_coordinates['Y'])))*' '} {New_Distance_to_Container['Y']}{(25-len(str(New_Distance_to_Container['Y'])))*' '} {colors.Red}{abs(Delta_Distance_to_Container['Y'])}{colors.Reset}")
+                
+                if Delta_Distance_to_Container['Z'] <= 0 :
+                    print(f"    Z :  {New_Player_Global_coordinates['Z']}{(31-len(str(New_Player_Global_coordinates['Z'])))*' '} {New_Distance_to_Container['Z']}{(25-len(str(New_Distance_to_Container['Z'])))*' '} {colors.Green}{abs(Delta_Distance_to_Container['Z'])}{colors.Reset}")
+                else :
+                    print(f"    Z :  {New_Player_Global_coordinates['Z']}{(31-len(str(New_Player_Global_coordinates['Z'])))*' '} {New_Distance_to_Container['Z']}{(25-len(str(New_Distance_to_Container['Z'])))*' '} {colors.Red}{abs(Delta_Distance_to_Container['Z'])}{colors.Reset}")
+                
+                if Delta_Distance_to_Container_Total <= 0 :
+                    print(f"Total :                                  {New_Distance_to_Container_Total}{(25-len(str(New_Distance_to_Container_Total)))*' '} {colors.Green}{abs(Delta_Distance_to_Container_Total)}{colors.Reset}")
+                else :
+                    print(f"Total :                                  {New_Distance_to_Container_Total}{(25-len(str(New_Distance_to_Container_Total)))*' '} {colors.Red}{abs(Delta_Distance_to_Container_Total)}{colors.Reset}")
+                
+                print(f"--------------------------------------------------------------------------------------------------")
+                
+                if Actual_Container != 0:
+                    print(f"Local Coordinates           Actual Container : {Actual_Container['Name']} ")
+                else :
+                    print(f"Local Coordinates           Actual Container : - ")
+                
+                print(f"")
+                
+                print(f"         Player Local Coordinates        Distance to POI            Delta distance to POI ")
+                
+                if Delta_Distance_to_POI['X'] <= 0 :
+                    print(f"    X :  {New_player_local_rotated_coordinates['X']}{(31-len(str(New_player_local_rotated_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
+                else :
+                    print(f"    X :  {New_player_local_rotated_coordinates['X']}{(31-len(str(New_player_local_rotated_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
+
+                if Delta_Distance_to_POI['Y'] <= 0 :
+                    print(f"    Y :  {New_player_local_rotated_coordinates['Y']}{(31-len(str(New_player_local_rotated_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
+                else :
+                    print(f"    Y :  {New_player_local_rotated_coordinates['Y']}{(31-len(str(New_player_local_rotated_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
+                
+                if Delta_Distance_to_POI['Z'] <= 0 :
+                    print(f"    Z :  {New_player_local_rotated_coordinates['Z']}{(31-len(str(New_player_local_rotated_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+                else :
+                    print(f"    Z :  {New_player_local_rotated_coordinates['Z']}{(31-len(str(New_player_local_rotated_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+                
+                if Delta_Distance_to_POI_Total <= 0 :
+                    print(f"Total :                                  {New_Distance_to_POI_Total}{(25-len(str(New_Distance_to_POI_Total)))*' '} {colors.Green}{abs(Delta_Distance_to_POI_Total)}{colors.Reset}")
+                else :
+                    print(f"Total :                                  {New_Distance_to_POI_Total}{(25-len(str(New_Distance_to_POI_Total)))*' '} {colors.Red}{abs(Delta_Distance_to_POI_Total)}{colors.Reset}")
+                
+                print(f"--------------------------------------------------------------------------------------------------")
+
+                print(f"Estimated time of arrival = {Estimated_time_of_arrival} secondes")
+                print(f"--------------------------------------------------------------------------------------------------")
+
+                print(f"Course deviation = {Course_Deviation}\N{DEGREE SIGN}")
+
+                print(f"--------------------------------------------------------------------------------------------------")
+
+
+
+        #---------------------------------------------------Update coordinates for the next update------------------------------------------
+                for i in ["X", "Y", "Z"]:
+                    Old_player_Global_coordinates[i] = New_Player_Global_coordinates[i]
+                
+                for i in ["X", "Y", "Z"]:
+                    Old_player_local_rotated_coordinates[i] = New_player_local_rotated_coordinates[i]
+
+                Old_time = New_time
+
+#-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
@@ -260,4 +479,3 @@ while True:
 # Hurston : Coordinates: x:12850457093 y:0 z:0
 # Microtech : Coordinates: x:22462016306.0103 y:37185625645.8346 z:0
 # Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
-# 
