@@ -35,18 +35,16 @@ Container_list = []
 for i in Database["Containers"]:
     Container_list.append(Database["Containers"][i]["Name"])
 
-
-Space_POI_list = Database["POI"]["None"]
+Space_POI_list = []
+for poi in Database["Space_POI"]:
+    Space_POI_list.append(poi)
 
 Planetary_POI_list = {}
 for container_name in Database["Containers"]:
     Planetary_POI_list[container_name] = []
-    for poi in Database["POI"][container_name]:
+    for poi in Database["Containers"][container_name]["POI"]:
         Planetary_POI_list[container_name].append(poi)
 
-
-print(Space_POI_list)
-print(Planetary_POI_list)
 
 
 Target = ""
@@ -116,7 +114,7 @@ def Planetary_Known_Target_Selected(event):
 def Start_Planetary_Navigation_Known_POI():
     global Target, Mode
     Mode = Program_mode_selection_Combobox.get()
-    Target = Database["POI"][Container_Selection_Combobox.get()][f'{POI_Selection_Combobox.get()}']
+    Target = Database["Containers"][Container_Selection_Combobox.get()]["POI"][f'{POI_Selection_Combobox.get()}']
     
     root.destroy()
 
@@ -449,7 +447,7 @@ while True:
                 else :
                     print(f"Actual Container          : {colors.Red}{Actual_Container['Name']}{colors.Reset}")
                 if Actual_Container['Name'] == Target['Container']:
-                    print(f"Local coordinates         : {colors.Cyan}{New_player_local_rotated_coordinates['X']}{colors.Reset}; {colors.Cyan}{New_player_local_rotated_coordinates['Y']}{colors.Reset}; {colors.Cyan}{New_player_local_rotated_coordinates['Z']}{colors.Reset}")
+                    print(f"Local coordinates         : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
                     
                     if Delta_Distance_to_POI_Total <= 0 :
                         print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
@@ -464,7 +462,7 @@ while True:
                     print(f"Course Deviation          : {colors.Red}{round(Course_Deviation, 1)}°{colors.Reset}")
                 
                 
-                print(f"Estimated time of arrival : {colors.Cyan}{int(Estimated_time_of_arrival)} secondes{colors.Reset}")
+                print(f"Estimated time of arrival : {colors.Cyan}{int(Estimated_time_of_arrival)//60} Min {int(Estimated_time_of_arrival)%60} Sec{colors.Reset}")
                 
                 
                 
