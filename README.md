@@ -1,5 +1,5 @@
 # Star Citizen Navigation
-***
+
 Short Description about the project.
 
 # Headline H1
@@ -12,10 +12,8 @@ Short Description about the project.
 
 ## Table of Contents
 1. [General Info](#general-info)
-2. [Technologies](#technologies)
 3. [Installation](#installation)
-4. [Collaboration](#collaboration)
-5. [FAQs](#faqs)
+4. [LICENSE](#license)
 
 
 ## General Info
@@ -27,7 +25,7 @@ Write down the general informations of your project. It is worth to always put a
 
 
 ## Installation
-***
+
 This program requires [Python](https://www.python.org/downloads/) to run.
 
 ```
@@ -39,6 +37,6 @@ python "Star Citizen Navigation.py"
 
 
 ## Lisence
-***
+
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
