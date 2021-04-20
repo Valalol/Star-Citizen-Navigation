@@ -37,10 +37,10 @@ A list of technologies used within the project:
 ***
 A little intro about the installation.
 ```
-$ git clone https://github.com/Valalol/Star-Citizen-Navigation.git
-$ cd ../path/to/the/file
-$ pip install -r requirement.txt 
-$ python Star Citizen Navigation.py
+git clone https://github.com/Valalol/Star-Citizen-Navigation.git
+cd Star-Citizen-Navigation
+pip install -r requirements.txt 
+python "Star Citizen Navigation.py"
 ```
 Side information: To use the application in a special environment use ```lorem ipsum``` to start
 
