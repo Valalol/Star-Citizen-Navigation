@@ -446,13 +446,15 @@ while True:
                     print(f"Actual Container          : {colors.Green}{Actual_Container['Name']}{colors.Reset}")
                 else :
                     print(f"Actual Container          : {colors.Red}{Actual_Container['Name']}{colors.Reset}")
-                if Actual_Container['Name'] == Target['Container']:
-                    print(f"Local coordinates         : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
-                    
-                    if Delta_Distance_to_POI_Total <= 0 :
-                        print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
-                    else :
-                        print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
+                
+                if Actual_Container != 0:
+                    if Actual_Container['Name'] == Target['Container']:
+                        print(f"Local coordinates         : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
+                        
+                        if Delta_Distance_to_POI_Total <= 0 :
+                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
+                        else :
+                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
                 
                 if Course_Deviation <= 5:
                     print(f"Course Deviation          : {colors.Green}{round(Course_Deviation, 1)}°{colors.Reset}")
