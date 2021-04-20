@@ -378,27 +378,34 @@ while True:
                         x = New_player_local_rotated_coordinates["X"]
                         y = New_player_local_rotated_coordinates["Y"]
                         z = New_player_local_rotated_coordinates["Z"]
+                        
                         #Radius of the container
                         Radius = Actual_Container["Body Radius"]
                         
                         #Radial_Distance
+                        Radial_Distance = sqrt(x**2 + y**2 + z**2)
+                        
+                        #Height
+                        Height = Radial_Distance - Radius
+                        
+                        #Longitude
+                        Longitude = degrees(atan2(x/1000, y/1000))
                         
                         #Latitude
-                        Lat = degrees(asin(New_player_local_rotated_coordinates["Z"]/Radius))
-                        #Longitude
-                        Long = degrees(atan2(New_player_local_rotated_coordinates["Y"]/1000, New_player_local_rotated_coordinates["X"]/1000))
-                
-                
+                        Latitude = degrees(asin(z/Radius))
+                        
+                        
+
 
 
 
         #---------------------------------------------------Distance to POI-----------------------------------------------------------------
-                        New_Distance_to_POI = {}
-                        for i in ["X", "Y", "Z"]:
-                            New_Distance_to_POI[i] = abs(Target[i] - New_player_local_rotated_coordinates[i])
+                New_Distance_to_POI = {}
+                for i in ["X", "Y", "Z"]:
+                    New_Distance_to_POI[i] = abs(Target[i] - New_player_local_rotated_coordinates[i])
 
-                        #get the real new distance between the player and the target
-                        New_Distance_to_POI_Total = vector_norm(New_Distance_to_POI)
+                #get the real new distance between the player and the target
+                New_Distance_to_POI_Total = vector_norm(New_Distance_to_POI)
 
 
 
@@ -459,7 +466,7 @@ while True:
                 print(f"-------------------------------------------------------------------------")
                 print(f"Updated                   : {colors.Cyan}{time.strftime('%H:%M:%S', time.localtime(New_time))}{colors.Reset},  Destination : {colors.Cyan}{Target['Name']}{colors.Reset}")
                 
-                print(f"Global coordinates        : {colors.Cyan}{New_Player_Global_coordinates['X']}{colors.Reset}; {colors.Cyan}{New_Player_Global_coordinates['Y']}{colors.Reset}; {colors.Cyan}{New_Player_Global_coordinates['Z']}{colors.Reset}")
+                print(f"Global coordinates        : {colors.Cyan}{round(New_Player_Global_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Z'], 3)}{colors.Reset}")
                 
                 if Actual_Container == 0:
                     print(f"Actual Container          : {colors.Yellow}None{colors.Reset}")
