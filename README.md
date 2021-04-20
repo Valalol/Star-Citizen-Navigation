@@ -10,7 +10,6 @@ This project is a tool designed to help the navigation in Star Citizen.
 
 
 ## General Info
-***
 This program relies almost entirely on the in-game `/showlocation` command. This command copies the global coordinates (relative to the center of the system) to the clipboard. This program continuously retrieves the contents of this clipboard and, if coordinates are found, interprets them in order to guide the user to his target.
 
 The program itself is called [Star Citizen Navigation.py](Star_Citizen_Navigation.py). When launched, a terminal and another window should open. The window allows you to select the navigation mode and the desired target. Once the target is selected, the window should close and a `Program has started` should appear in the terminal.
