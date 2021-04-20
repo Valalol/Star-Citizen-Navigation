@@ -373,24 +373,32 @@ while True:
 
         #-------------------------------------------------New player local Long Lat Height--------------------------------------------------
                 if Actual_Container != 0:
-                    #Radius of the container
-                    Radius = Actual_Container["Body Radius"]
-                    #Latitude
-                    Lat = degrees(asin(New_player_local_rotated_coordinates["Z"]/Radius))
-                    #Longitude
-                    Long = degrees(atan2(New_player_local_rotated_coordinates["Y"]/1000, New_player_local_rotated_coordinates["X"]/1000))
+                    if Actual_Container['Name'] == Target['Container']:
+                        #Cartesian Coordinates
+                        x = New_player_local_rotated_coordinates["X"]
+                        y = New_player_local_rotated_coordinates["Y"]
+                        z = New_player_local_rotated_coordinates["Z"]
+                        #Radius of the container
+                        Radius = Actual_Container["Body Radius"]
+                        
+                        #Radial_Distance
+                        
+                        #Latitude
+                        Lat = degrees(asin(New_player_local_rotated_coordinates["Z"]/Radius))
+                        #Longitude
+                        Long = degrees(atan2(New_player_local_rotated_coordinates["Y"]/1000, New_player_local_rotated_coordinates["X"]/1000))
                 
                 
 
 
 
         #---------------------------------------------------Distance to POI-----------------------------------------------------------------
-                New_Distance_to_POI = {}
-                for i in ["X", "Y", "Z"]:
-                    New_Distance_to_POI[i] = abs(Target[i] - New_player_local_rotated_coordinates[i])
+                        New_Distance_to_POI = {}
+                        for i in ["X", "Y", "Z"]:
+                            New_Distance_to_POI[i] = abs(Target[i] - New_player_local_rotated_coordinates[i])
 
-                #get the real new distance between the player and the target
-                New_Distance_to_POI_Total = vector_norm(New_Distance_to_POI)
+                        #get the real new distance between the player and the target
+                        New_Distance_to_POI_Total = vector_norm(New_Distance_to_POI)
 
 
 
@@ -459,13 +467,15 @@ while True:
                     print(f"Actual Container          : {colors.Green}{Actual_Container['Name']}{colors.Reset}")
                 else :
                     print(f"Actual Container          : {colors.Red}{Actual_Container['Name']}{colors.Reset}")
-                if Actual_Container['Name'] == Target['Container']:
-                    print(f"Local coordinates         : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
-                    
-                    if Delta_Distance_to_POI_Total <= 0 :
-                        print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
-                    else :
-                        print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
+                
+                if Actual_Container != 0:
+                    if Actual_Container['Name'] == Target['Container']:
+                        print(f"Local coordinates         : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
+                        
+                        if Delta_Distance_to_POI_Total <= 0 :
+                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
+                        else :
+                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
                 
                 if Course_Deviation <= 5:
                     print(f"Course Deviation          : {colors.Green}{round(Course_Deviation, 1)}°{colors.Reset}")
