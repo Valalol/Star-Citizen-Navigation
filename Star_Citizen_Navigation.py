@@ -3,7 +3,7 @@
 
 #Imports
 import math
-from math import sqrt, degrees, radians, cos, acos, sin
+from math import sqrt, degrees, radians, cos, acos, sin, asin, atan2
 import pyperclip
 import time
 from datetime import datetime
@@ -368,6 +368,19 @@ while True:
                     Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
                     if vector_norm(Player_Container_vector) <= 1.5 * Database["Containers"][i]["OM Radius"]:
                         Actual_Container = Database["Containers"][i]
+
+
+
+        #-------------------------------------------------New player local Long Lat Height--------------------------------------------------
+                if Actual_Container != 0:
+                    #Radius of the container
+                    Radius = Actual_Container["Body Radius"]
+                    #Latitude
+                    Lat = degrees(asin(New_player_local_rotated_coordinates["Z"]/Radius))
+                    #Longitude
+                    Long = degrees(atan2(New_player_local_rotated_coordinates["Y"]/1000, New_player_local_rotated_coordinates["X"]/1000))
+                
+                
 
 
 
