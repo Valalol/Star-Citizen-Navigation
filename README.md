@@ -40,7 +40,7 @@ If you are around your target's container, two other pieces of information are d
        (green if you get closer, red if you move away)
 
 ### Screenshot
-![Screenshot of the tool](Screenshot_1.png)
+![Screenshot of the tool](Images/Screenshot_1.png)
 
 
 
