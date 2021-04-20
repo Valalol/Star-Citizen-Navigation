@@ -327,9 +327,9 @@ while True:
 
             #get the 3 new XYZ coordinates
             New_Player_Global_coordinates = {}
-            New_Player_Global_coordinates['X'] = float(new_clipboard_splitted[3])
-            New_Player_Global_coordinates['Y'] = float(new_clipboard_splitted[5])
-            New_Player_Global_coordinates['Z'] = float(new_clipboard_splitted[7])
+            New_Player_Global_coordinates['X'] = float(new_clipboard_splitted[3])/1000
+            New_Player_Global_coordinates['Y'] = float(new_clipboard_splitted[5])/1000
+            New_Player_Global_coordinates['Z'] = float(new_clipboard_splitted[7])/1000
 
 
 
@@ -389,7 +389,7 @@ while True:
                         Height = Radial_Distance - Radius
                         
                         #Longitude
-                        Longitude = degrees(atan2(x/1000, y/1000))
+                        Longitude = degrees(atan2(x, y))
                         
                         #Latitude
                         Latitude = degrees(asin(z/Radius))
@@ -480,9 +480,9 @@ while True:
                         print(f"Local coordinates         : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
                         
                         if Delta_Distance_to_POI_Total <= 0 :
-                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
+                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
                         else :
-                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total/1000, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total)/1000, 3)} km{colors.Reset})")
+                            print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
                 
                 if Course_Deviation <= 5:
                     print(f"Course Deviation          : {colors.Green}{round(Course_Deviation, 1)}°{colors.Reset}")
