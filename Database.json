@@ -127,17 +127,10 @@
             "Y": -74464.581,
             "Z": 0.0,
             "Rotation Speed": 1.9400001,
-            "Rotation Adjustment": 242.31675,
-            "OM Radius": 494.84,
-            "Body Radius": 340.83,
+            "Rotation Adjustment": 242.38341,
+            "OM Radius": 494.841,
+            "Body Radius": 340.830,
             "POI": {
-                "Starfarer Wreck A": {
-                    "Name": "Starfarer Wreck A",
-                    "Container": "Magda",
-                    "X": -272.897,
-                    "Y": -203.445,
-                    "Z": -23.478
-                },
                 "Caterpillar Wreck A": {
                     "Name": "Caterpillar Wreck A",
                     "Container": "Magda",
