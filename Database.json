@@ -17,7 +17,7 @@
             "Y": -2709009.661,
             "Z": 0.0,
             "Rotation Speed": 4.4499998,
-            "Rotation Adjustment": 253.43259,
+            "Rotation Adjustment": 253.44325,
             "OM Radius": 380.53,
             "Body Radius": 260.0,
             "POI": {}
@@ -28,8 +28,8 @@
             "Y": -2610158.765,
             "Z": 0.0,
             "Rotation Speed": 2.48,
-            "Rotation Adjustment": 29.86531,
-            "OM Radius": 430.028,
+            "Rotation Adjustment": 29.89851,
+            "OM Radius": 430.027,
             "Body Radius": 295.0,
             "POI": {
                 "ArcCorp Mining Area 141": {
@@ -49,9 +49,9 @@
                 "Starfarer Wreck A": {
                     "Name": "Starfarer Wreck A",
                     "Container": "Daymar",
-                    "X": -65.409,
-                    "Y": 231.094,
-                    "Z": 172.039
+                    "X": -65.419,
+                    "Y": 231.089,
+                    "Z": 172.041
                 },
                 "Cool Cave": {
                     "Name": "Cool Cave",
@@ -67,8 +67,8 @@
             "X": -19022916.799,
             "Y": -2613996.152,
             "Z": 0.0,
-            "Rotation Speed": 1.81999997,
-            "Rotation Adjustment": 217.57101,
+            "Rotation Speed": 1.8200001,
+            "Rotation Adjustment": 217.58011,
             "OM Radius": 455.483,
             "Body Radius": 313.0,
             "POI": {
@@ -94,7 +94,7 @@
             "Y": 0.0,
             "Z": 0.0,
             "Rotation Speed": 2.48,
-            "Rotation Adjustment": 19.08971,
+            "Rotation Adjustment": 18.93035,
             "OM Radius": 1427.047,
             "Body Radius": 1000.0,
             "POI": {}
@@ -105,7 +105,7 @@
             "Y": -31476.129,
             "Z": 0.0,
             "Rotation Speed": 5.5100002,
-            "Rotation Adjustment": 38.39172,
+            "Rotation Adjustment": 38.37781,
             "OM Radius": 500.03,
             "Body Radius": 344.5,
             "POI": {}
@@ -116,8 +116,8 @@
             "Y": 40955.551,
             "Z": 0.0,
             "Rotation Speed": 2.5999999,
-            "Rotation Adjustment": 116.69573,
-            "OM Radius": 400.328,
+            "Rotation Adjustment": 116.67735,
+            "OM Radius": 400.329,
             "Body Radius": 274.0,
             "POI": {}
         },
@@ -146,7 +146,7 @@
             "Y": 114913.609,
             "Z": 0.0,
             "Rotation Speed": 4.8499999,
-            "Rotation Adjustment": 243.04919,
+            "Rotation Adjustment": 243.04561,
             "OM Radius": 472.454,
             "Body Radius": 325.0,
             "POI": {}
@@ -157,8 +157,8 @@
             "Y": -22151916.92,
             "Z": 0.0,
             "Rotation Speed": 3.1099999,
-            "Rotation Adjustment": 230.66548,
-            "OM Radius": 1144.204,
+            "Rotation Adjustment": 230.65793,
+            "OM Radius": 1144.205,
             "Body Radius": 800.0,
             "POI": {}
         },
@@ -168,8 +168,8 @@
             "Y": -22121650.134,
             "Z": 0.0,
             "Rotation Speed": 6.4299998,
-            "Rotation Adjustment": 359.31701,
-            "OM Radius": 328.203,
+            "Rotation Adjustment": 359.32018,
+            "OM Radius": 328.204,
             "Body Radius": 223.0,
             "POI": {}
         },
@@ -179,18 +179,18 @@
             "Y": -22000466.768,
             "Z": 0.0,
             "Rotation Speed": 6.3200002,
-            "Rotation Adjustment": 135.44779,
+            "Rotation Adjustment": 135.45321,
             "OM Radius": 413.056,
             "Body Radius": 283.0,
             "POI": {}
         },
         "Microtech": {
             "Name": "Microtech",
-            "X": 22462016.3060103,
-            "Y": 37185625.6458346,
+            "X": 22462016.306,
+            "Y": 37185625.646,
             "Z": 0.0,
             "Rotation Speed": 4.1199999,
-            "Rotation Adjustment": 217.03922,
+            "Rotation Adjustment": 217.04881,
             "OM Radius": 1427.047,
             "Body Radius": 1000.0,
             "POI": {}
@@ -201,8 +201,8 @@
             "Y": 37168840.679,
             "Z": 0.0,
             "Rotation Speed": 4.5900002,
-            "Rotation Adjustment": 212.27548,
-            "OM Radius": 352.245,
+            "Rotation Adjustment": 212.31019,
+            "OM Radius": 352.246,
             "Body Radius": 240.0,
             "POI": {}
         },
@@ -212,7 +212,7 @@
             "Y": 37091020.074,
             "Z": 0.0,
             "Rotation Speed": 3.25,
-            "Rotation Adjustment": 311.54775,
+            "Rotation Adjustment": 311.54212,
             "OM Radius": 489.664,
             "Body Radius": 337.17,
             "POI": {}
@@ -223,20 +223,9 @@
             "Y": 37081123.565,
             "Z": 0.0,
             "Rotation Speed": 4.2800002,
-            "Rotation Adjustment": 268.98801,
+            "Rotation Adjustment": 268.99094,
             "OM Radius": 314.061,
             "Body Radius": 213.0,
-            "POI": {}
-        },
-        "Delamar": {
-            "Name": "Delamar",
-            "X": -10531703.478,
-            "Y": 18241438.664,
-            "Z": 0.0,
-            "Rotation Speed": 0.0,
-            "Rotation Adjustment": 0.0,
-            "OM Radius": 118.89,
-            "Body Radius": 75.0,
             "POI": {}
         }
     },
