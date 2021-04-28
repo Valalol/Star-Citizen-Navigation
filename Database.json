@@ -6,7 +6,7 @@
             "Y": -2664960.0,
             "Z": 0.0,
             "Rotation Speed": 0.0,
-            "Rotation Adjustment": 0.0,
+            "Rotation Adjust": 0.0,
             "OM Radius": 11733.75,
             "Body Radius": 7450.0,
             "POI": {}
@@ -17,7 +17,7 @@
             "Y": -2709009.661,
             "Z": 0.0,
             "Rotation Speed": 4.4499998,
-            "Rotation Adjustment": 253.44325,
+            "Rotation Adjust": 253.44325,
             "OM Radius": 380.53,
             "Body Radius": 260.0,
             "POI": {}
@@ -28,7 +28,7 @@
             "Y": -2610158.765,
             "Z": 0.0,
             "Rotation Speed": 2.48,
-            "Rotation Adjustment": 29.89851,
+            "Rotation Adjust": 29.89851,
             "OM Radius": 430.027,
             "Body Radius": 295.0,
             "POI": {
@@ -68,7 +68,7 @@
             "Y": -2613996.152,
             "Z": 0.0,
             "Rotation Speed": 1.8200001,
-            "Rotation Adjustment": 217.58011,
+            "Rotation Adjust": 217.58011,
             "OM Radius": 455.483,
             "Body Radius": 313.0,
             "POI": {
@@ -94,7 +94,7 @@
             "Y": 0.0,
             "Z": 0.0,
             "Rotation Speed": 2.48,
-            "Rotation Adjustment": 18.93035,
+            "Rotation Adjust": 18.93035,
             "OM Radius": 1427.047,
             "Body Radius": 1000.0,
             "POI": {}
@@ -105,7 +105,7 @@
             "Y": -31476.129,
             "Z": 0.0,
             "Rotation Speed": 5.5100002,
-            "Rotation Adjustment": 38.37781,
+            "Rotation Adjust": 38.37781,
             "OM Radius": 500.03,
             "Body Radius": 344.5,
             "POI": {}
@@ -116,7 +116,7 @@
             "Y": 40955.551,
             "Z": 0.0,
             "Rotation Speed": 2.5999999,
-            "Rotation Adjustment": 116.67735,
+            "Rotation Adjust": 116.67735,
             "OM Radius": 400.329,
             "Body Radius": 274.0,
             "POI": {}
@@ -127,7 +127,7 @@
             "Y": -74464.581,
             "Z": 0.0,
             "Rotation Speed": 1.9400001,
-            "Rotation Adjustment": 242.38341,
+            "Rotation Adjust": 242.38341,
             "OM Radius": 494.841,
             "Body Radius": 340.830,
             "POI": {
@@ -146,7 +146,7 @@
             "Y": 114913.609,
             "Z": 0.0,
             "Rotation Speed": 4.8499999,
-            "Rotation Adjustment": 243.04561,
+            "Rotation Adjust": 243.04561,
             "OM Radius": 472.454,
             "Body Radius": 325.0,
             "POI": {}
@@ -157,7 +157,7 @@
             "Y": -22151916.92,
             "Z": 0.0,
             "Rotation Speed": 3.1099999,
-            "Rotation Adjustment": 230.65793,
+            "Rotation Adjust": 230.65793,
             "OM Radius": 1144.205,
             "Body Radius": 800.0,
             "POI": {}
@@ -168,7 +168,7 @@
             "Y": -22121650.134,
             "Z": 0.0,
             "Rotation Speed": 6.4299998,
-            "Rotation Adjustment": 359.32018,
+            "Rotation Adjust": 359.32018,
             "OM Radius": 328.204,
             "Body Radius": 223.0,
             "POI": {}
@@ -179,7 +179,7 @@
             "Y": -22000466.768,
             "Z": 0.0,
             "Rotation Speed": 6.3200002,
-            "Rotation Adjustment": 135.45321,
+            "Rotation Adjust": 135.45321,
             "OM Radius": 413.056,
             "Body Radius": 283.0,
             "POI": {}
@@ -190,7 +190,7 @@
             "Y": 37185625.646,
             "Z": 0.0,
             "Rotation Speed": 4.1199999,
-            "Rotation Adjustment": 217.04881,
+            "Rotation Adjust": 217.04881,
             "OM Radius": 1427.047,
             "Body Radius": 1000.0,
             "POI": {}
@@ -201,7 +201,7 @@
             "Y": 37168840.679,
             "Z": 0.0,
             "Rotation Speed": 4.5900002,
-            "Rotation Adjustment": 212.31019,
+            "Rotation Adjust": 212.31019,
             "OM Radius": 352.246,
             "Body Radius": 240.0,
             "POI": {}
@@ -212,7 +212,7 @@
             "Y": 37091020.074,
             "Z": 0.0,
             "Rotation Speed": 3.25,
-            "Rotation Adjustment": 311.54212,
+            "Rotation Adjust": 311.54212,
             "OM Radius": 489.664,
             "Body Radius": 337.17,
             "POI": {}
@@ -223,7 +223,7 @@
             "Y": 37081123.565,
             "Z": 0.0,
             "Rotation Speed": 4.2800002,
-            "Rotation Adjustment": 268.99094,
+            "Rotation Adjust": 268.99094,
             "OM Radius": 314.061,
             "Body Radius": 213.0,
             "POI": {}
