@@ -11,7 +11,7 @@
             "Body Radius": 7450.0,
             "POI": {
                 "Port Olisar": {
-                    "name": "Port Olisar",
+                    "Name": "Port Olisar",
                     "Container": "Crusader",
                     "X": -3.511,
                     "Y": 16219.209,
@@ -31,7 +31,7 @@
             "Body Radius": 260.0,
             "POI": {
                 "Gallete Family Farms": {
-                    "name": "Gallete Family Farms",
+                    "Name": "Gallete Family Farms",
                     "Container": "Cellin",
                     "X": -89.471,
                     "Y": 106.717,
@@ -39,7 +39,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Hickes Research Outpost": {
-                    "name": "Hickes Research Outpost",
+                    "Name": "Hickes Research Outpost",
                     "Container": "Cellin",
                     "X": 3.27,
                     "Y": 13.091,
@@ -47,7 +47,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Terra Mills HydroFarm": {
-                    "name": "Terra Mills HydroFarm",
+                    "Name": "Terra Mills HydroFarm",
                     "Container": "Cellin",
                     "X": 100.137,
                     "Y": 27.701,
@@ -55,7 +55,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Tram & Myers Mining": {
-                    "name": "Tram & Myers Mining",
+                    "Name": "Tram & Myers Mining",
                     "Container": "Cellin",
                     "X": -241.164,
                     "Y": 2.396,
@@ -63,7 +63,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Security Post Kareah": {
-                    "name": "Security Post Kareah",
+                    "Name": "Security Post Kareah",
                     "Container": "Cellin",
                     "X": 11.62,
                     "Y": -419.839,
@@ -71,7 +71,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Ashburn Channel Aid Shelter": {
-                    "name": "Ashburn Channel Aid Shelter",
+                    "Name": "Ashburn Channel Aid Shelter",
                     "Container": "Cellin",
                     "X": 3.024,
                     "Y": -257.942,
@@ -79,7 +79,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Flanagan's Ravine Aid Shelter": {
-                    "name": "Flanagan's Ravine Aid Shelter",
+                    "Name": "Flanagan's Ravine Aid Shelter",
                     "Container": "Cellin",
                     "X": -194.282,
                     "Y": 151.722,
@@ -87,7 +87,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Julep Ravine Aid Shelter": {
-                    "name": "Julep Ravine Aid Shelter",
+                    "Name": "Julep Ravine Aid Shelter",
                     "Container": "Cellin",
                     "X": -111.528,
                     "Y": -56.297,
@@ -95,7 +95,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Mogote Aid Shelter": {
-                    "name": "Mogote Aid Shelter",
+                    "Name": "Mogote Aid Shelter",
                     "Container": "Cellin",
                     "X": -198.664,
                     "Y": 50.79,
@@ -103,7 +103,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Cellin Stash House (Private Property)": {
-                    "name": "Cellin Stash House (Private Property)",
+                    "Name": "Cellin Stash House (Private Property)",
                     "Container": "Cellin",
                     "X": 97.749,
                     "Y": -173.764,
@@ -111,7 +111,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Abandoned Outpost": {
-                    "name": "Abandoned Outpost",
+                    "Name": "Abandoned Outpost",
                     "Container": "Cellin",
                     "X": 130.062,
                     "Y": 184.915,
@@ -119,7 +119,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Cellin",
                     "X": 36.776,
                     "Y": -152.501,
@@ -127,7 +127,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation A Wreck": {
-                    "name": "Constellation A Wreck",
+                    "Name": "Constellation A Wreck",
                     "Container": "Cellin",
                     "X": -243.602,
                     "Y": 85.479,
@@ -135,7 +135,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A Wreck": {
-                    "name": "Cutlass A Wreck",
+                    "Name": "Cutlass A Wreck",
                     "Container": "Cellin",
                     "X": -231.142,
                     "Y": 109.975,
@@ -143,7 +143,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer B Wreck": {
-                    "name": "Freelancer B Wreck",
+                    "Name": "Freelancer B Wreck",
                     "Container": "Cellin",
                     "X": 125.553,
                     "Y": 138.117,
@@ -151,7 +151,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Cellin",
                     "X": 38.688,
                     "Y": 166.478,
@@ -171,7 +171,7 @@
             "Body Radius": 295.0,
             "POI": {
                 "ArcCorp Mining Area 141": {
-                    "name": "ArcCorp Mining Area 141",
+                    "Name": "ArcCorp Mining Area 141",
                     "Container": "Daymar",
                     "X": -18.167,
                     "Y": 180.362,
@@ -179,7 +179,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Bountiful Harvest Hydroponics": {
-                    "name": "Bountiful Harvest Hydroponics",
+                    "Name": "Bountiful Harvest Hydroponics",
                     "Container": "Daymar",
                     "X": 57.552,
                     "Y": -92.267,
@@ -187,7 +187,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Kudre Ore": {
-                    "name": "Kudre Ore",
+                    "Name": "Kudre Ore",
                     "Container": "Daymar",
                     "X": 146.617,
                     "Y": -177.093,
@@ -195,7 +195,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SCD-1": {
-                    "name": "Shubin Mining Facility SCD-1",
+                    "Name": "Shubin Mining Facility SCD-1",
                     "Container": "Daymar",
                     "X": 126.025,
                     "Y": -149.581,
@@ -203,7 +203,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Covalex Shipping Hub Gundo": {
-                    "name": "Covalex Shipping Hub Gundo",
+                    "Name": "Covalex Shipping Hub Gundo",
                     "Container": "Daymar",
                     "X": -241.198,
                     "Y": 437.977,
@@ -211,7 +211,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Kudre Ore Mine (Closed) [F]": {
-                    "name": "Kudre Ore Mine (Closed) [F]",
+                    "Name": "Kudre Ore Mine (Closed) [F]",
                     "Container": "Daymar",
                     "X": 81.008,
                     "Y": -280.683,
@@ -219,7 +219,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Dunlow Ridge Aid Shelter": {
-                    "name": "Dunlow Ridge Aid Shelter",
+                    "Name": "Dunlow Ridge Aid Shelter",
                     "Container": "Daymar",
                     "X": -51.85,
                     "Y": 280.932,
@@ -227,7 +227,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Eager Flats Aid Shelter": {
-                    "name": "Eager Flats Aid Shelter",
+                    "Name": "Eager Flats Aid Shelter",
                     "Container": "Daymar",
                     "X": 200.545,
                     "Y": -104.917,
@@ -235,7 +235,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Tamdon Plains Aid Shelter": {
-                    "name": "Tamdon Plains Aid Shelter",
+                    "Name": "Tamdon Plains Aid Shelter",
                     "Container": "Daymar",
                     "X": -138.114,
                     "Y": -24.463,
@@ -243,7 +243,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Wolf Point Aid Shelter": {
-                    "name": "Wolf Point Aid Shelter",
+                    "Name": "Wolf Point Aid Shelter",
                     "Container": "Daymar",
                     "X": -4.42,
                     "Y": 279.067,
@@ -251,7 +251,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Brio's Breaker Yard": {
-                    "name": "Brio's Breaker Yard",
+                    "Name": "Brio's Breaker Yard",
                     "Container": "Daymar",
                     "X": -176.683,
                     "Y": -161.257,
@@ -259,7 +259,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Daymar Stash House (Nuen Waste Management)": {
-                    "name": "Daymar Stash House (Nuen Waste Management)",
+                    "Name": "Daymar Stash House (Nuen Waste Management)",
                     "Container": "Daymar",
                     "X": -18.943,
                     "Y": 293.341,
@@ -267,7 +267,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Abandoned Outpost": {
-                    "name": "Abandoned Outpost",
+                    "Name": "Abandoned Outpost",
                     "Container": "Daymar",
                     "X": 73.139,
                     "Y": 285.904,
@@ -275,7 +275,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Daymar Cave N24 [F]": {
-                    "name": "Daymar Cave N24 [F]",
+                    "Name": "Daymar Cave N24 [F]",
                     "Container": "Daymar",
                     "X": 108.06,
                     "Y": 250.3,
@@ -283,7 +283,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Daymar Cave S24 [F]": {
-                    "name": "Daymar Cave S24 [F]",
+                    "Name": "Daymar Cave S24 [F]",
                     "Container": "Daymar",
                     "X": -259.272,
                     "Y": -68.976,
@@ -291,7 +291,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Daymar Cave S29 [F]": {
-                    "name": "Daymar Cave S29 [F]",
+                    "Name": "Daymar Cave S29 [F]",
                     "Container": "Daymar",
                     "X": 61.883,
                     "Y": -249.125,
@@ -299,7 +299,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Daymar Cave S31 [F]": {
-                    "name": "Daymar Cave S31 [F]",
+                    "Name": "Daymar Cave S31 [F]",
                     "Container": "Daymar",
                     "X": 162.125,
                     "Y": -192.061,
@@ -307,7 +307,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Daymar Cave S38 [S]": {
-                    "name": "Daymar Cave S38 [S]",
+                    "Name": "Daymar Cave S38 [S]",
                     "Container": "Daymar",
                     "X": 146.356,
                     "Y": -177.106,
@@ -315,7 +315,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Daymar Cave N77 [F]": {
-                    "name": "Daymar Cave N77 [F]",
+                    "Name": "Daymar Cave N77 [F]",
                     "Container": "Daymar",
                     "X": 51.412,
                     "Y": 37.15,
@@ -323,7 +323,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Daymar Cave N09 [FVS]": {
-                    "name": "Daymar Cave N09 [FVS]",
+                    "Name": "Daymar Cave N09 [FVS]",
                     "Container": "Daymar",
                     "X": -272.652,
                     "Y": 102.062,
@@ -331,7 +331,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar D Wreck": {
-                    "name": "Caterpillar D Wreck",
+                    "Name": "Caterpillar D Wreck",
                     "Container": "Daymar",
                     "X": -171.449,
                     "Y": -162.799,
@@ -339,7 +339,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation A Wreck": {
-                    "name": "Constellation A Wreck",
+                    "Name": "Constellation A Wreck",
                     "Container": "Daymar",
                     "X": 283.816,
                     "Y": 70.563,
@@ -347,7 +347,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A Wreck": {
-                    "name": "Cutlass A Wreck",
+                    "Name": "Cutlass A Wreck",
                     "Container": "Daymar",
                     "X": 276.18,
                     "Y": 65.714,
@@ -355,7 +355,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer C Wreck": {
-                    "name": "Freelancer C Wreck",
+                    "Name": "Freelancer C Wreck",
                     "Container": "Daymar",
                     "X": 4.771,
                     "Y": -38.41,
@@ -363,7 +363,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Javelin Wreck": {
-                    "name": "Javelin Wreck",
+                    "Name": "Javelin Wreck",
                     "Container": "Daymar",
                     "X": 102.055,
                     "Y": 267.619,
@@ -371,7 +371,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Daymar",
                     "X": -65.419,
                     "Y": 231.089,
@@ -391,7 +391,7 @@
             "Body Radius": 313.0,
             "POI": {
                 "Grim HEX": {
-                    "name": "Grim HEX",
+                    "Name": "Grim HEX",
                     "Container": "Yela",
                     "X": -568.659,
                     "Y": 383.565,
@@ -399,7 +399,7 @@
                     "QTMarker": "TRUE"
                 },
                 "ArcCorp Mining Area 157": {
-                    "name": "ArcCorp Mining Area 157",
+                    "Name": "ArcCorp Mining Area 157",
                     "Container": "Yela",
                     "X": 6.023,
                     "Y": 222.356,
@@ -407,7 +407,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Benson Mining Outpost": {
-                    "name": "Benson Mining Outpost",
+                    "Name": "Benson Mining Outpost",
                     "Container": "Yela",
                     "X": 48.998,
                     "Y": -275.606,
@@ -415,7 +415,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Deakins Research Outpost": {
-                    "name": "Deakins Research Outpost",
+                    "Name": "Deakins Research Outpost",
                     "Container": "Yela",
                     "X": 231.587,
                     "Y": -210.279,
@@ -423,7 +423,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Aston Ridge Aid Shelter": {
-                    "name": "Aston Ridge Aid Shelter",
+                    "Name": "Aston Ridge Aid Shelter",
                     "Container": "Yela",
                     "X": 207.944,
                     "Y": 24.051,
@@ -431,7 +431,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Kosso Basin Aid Shelter": {
-                    "name": "Kosso Basin Aid Shelter",
+                    "Name": "Kosso Basin Aid Shelter",
                     "Container": "Yela",
                     "X": -31.289,
                     "Y": -118.13,
@@ -439,7 +439,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Nakamura Valley Aid Shelter": {
-                    "name": "Nakamura Valley Aid Shelter",
+                    "Name": "Nakamura Valley Aid Shelter",
                     "Container": "Yela",
                     "X": -275.722,
                     "Y": 124.074,
@@ -447,7 +447,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Talarine Divide Aid Shelter": {
-                    "name": "Talarine Divide Aid Shelter",
+                    "Name": "Talarine Divide Aid Shelter",
                     "Container": "Yela",
                     "X": -21.221,
                     "Y": 310.79,
@@ -455,7 +455,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Jumptown": {
-                    "name": "Jumptown",
+                    "Name": "Jumptown",
                     "Container": "Yela",
                     "X": -240.325,
                     "Y": 15.776,
@@ -463,7 +463,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Yela Stash House (NT-999-XX)": {
-                    "name": "Yela Stash House (NT-999-XX)",
+                    "Name": "Yela Stash House (NT-999-XX)",
                     "Container": "Yela",
                     "X": -205.659,
                     "Y": -73.988,
@@ -471,7 +471,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Abandoned Outpost": {
-                    "name": "Abandoned Outpost",
+                    "Name": "Abandoned Outpost",
                     "Container": "Yela",
                     "X": -45.303,
                     "Y": 308.85,
@@ -479,7 +479,7 @@
                     "QTMarker": "TRUE"
                 },
                 "BennyHenge": {
-                    "name": "BennyHenge",
+                    "Name": "BennyHenge",
                     "Container": "Yela",
                     "X": -626.649,
                     "Y": 135.683,
@@ -487,7 +487,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Caterpillar E Wreck": {
-                    "name": "Caterpillar E Wreck",
+                    "Name": "Caterpillar E Wreck",
                     "Container": "Yela",
                     "X": 250.742,
                     "Y": 43.617,
@@ -495,7 +495,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation C Wreck": {
-                    "name": "Constellation C Wreck",
+                    "Name": "Constellation C Wreck",
                     "Container": "Yela",
                     "X": 101.554,
                     "Y": -10.165,
@@ -503,7 +503,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A Wreck": {
-                    "name": "Cutlass A Wreck",
+                    "Name": "Cutlass A Wreck",
                     "Container": "Yela",
                     "X": 211.453,
                     "Y": -183.571,
@@ -511,7 +511,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer B Wreck": {
-                    "name": "Freelancer B Wreck",
+                    "Name": "Freelancer B Wreck",
                     "Container": "Yela",
                     "X": -31.161,
                     "Y": -135.605,
@@ -519,7 +519,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Yela",
                     "X": 161.234,
                     "Y": 185.763,
@@ -539,7 +539,7 @@
             "Body Radius": 1000.0,
             "POI": {
                 "Lorville": {
-                    "name": "Lorville",
+                    "Name": "Lorville",
                     "Container": "Hurston",
                     "X": -328.989,
                     "Y": -752.435,
@@ -547,7 +547,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Everus Harbor": {
-                    "name": "Everus Harbor",
+                    "Name": "Everus Harbor",
                     "Container": "Hurston",
                     "X": -507.742,
                     "Y": -903.464,
@@ -555,7 +555,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Edmond": {
-                    "name": "HDMS Edmond",
+                    "Name": "HDMS Edmond",
                     "Container": "Hurston",
                     "X": -284.48,
                     "Y": -730.502,
@@ -563,7 +563,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Hadley": {
-                    "name": "HDMS Hadley",
+                    "Name": "HDMS Hadley",
                     "Container": "Hurston",
                     "X": 626.167,
                     "Y": -583.971,
@@ -571,7 +571,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Oparei": {
-                    "name": "HDMS Oparei",
+                    "Name": "HDMS Oparei",
                     "Container": "Hurston",
                     "X": -556.126,
                     "Y": -72.591,
@@ -579,7 +579,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Pinewood": {
-                    "name": "HDMS Pinewood",
+                    "Name": "HDMS Pinewood",
                     "Container": "Hurston",
                     "X": 985.564,
                     "Y": 90.029,
@@ -587,7 +587,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Stanhope": {
-                    "name": "HDMS Stanhope",
+                    "Name": "HDMS Stanhope",
                     "Container": "Hurston",
                     "X": -648.608,
                     "Y": 198.313,
@@ -595,7 +595,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Thedus": {
-                    "name": "HDMS Thedus",
+                    "Name": "HDMS Thedus",
                     "Container": "Hurston",
                     "X": 443.322,
                     "Y": 891.525,
@@ -603,7 +603,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMO Calthrope (NA) [F]": {
-                    "name": "HDMO Calthrope (NA) [F]",
+                    "Name": "HDMO Calthrope (NA) [F]",
                     "Container": "Hurston",
                     "X": -203.376,
                     "Y": -806.58,
@@ -611,7 +611,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Security Depot Hurston-1 / HDSRO Bramen": {
-                    "name": "Security Depot Hurston-1 / HDSRO Bramen",
+                    "Name": "Security Depot Hurston-1 / HDSRO Bramen",
                     "Container": "Hurston",
                     "X": 766.55,
                     "Y": -74.234,
@@ -619,7 +619,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Adlai": {
-                    "name": "HDSF Adlai",
+                    "Name": "HDSF Adlai",
                     "Container": "Hurston",
                     "X": -236.846,
                     "Y": -810.89,
@@ -627,7 +627,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Barnabas": {
-                    "name": "HDSF Barnabas",
+                    "Name": "HDSF Barnabas",
                     "Container": "Hurston",
                     "X": -895.863,
                     "Y": 365.602,
@@ -635,7 +635,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Breckenridge": {
-                    "name": "HDSF Breckenridge",
+                    "Name": "HDSF Breckenridge",
                     "Container": "Hurston",
                     "X": -557.599,
                     "Y": 680.528,
@@ -643,7 +643,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Colfax": {
-                    "name": "HDSF Colfax",
+                    "Name": "HDSF Colfax",
                     "Container": "Hurston",
                     "X": 902.272,
                     "Y": 383.795,
@@ -651,7 +651,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Damaris": {
-                    "name": "HDSF Damaris",
+                    "Name": "HDSF Damaris",
                     "Container": "Hurston",
                     "X": -898.695,
                     "Y": 420.101,
@@ -659,7 +659,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Elbridge": {
-                    "name": "HDSF Elbridge",
+                    "Name": "HDSF Elbridge",
                     "Container": "Hurston",
                     "X": 449.413,
                     "Y": 838.666,
@@ -667,7 +667,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Hendricks": {
-                    "name": "HDSF Hendricks",
+                    "Name": "HDSF Hendricks",
                     "Container": "Hurston",
                     "X": 63.555,
                     "Y": -969.07,
@@ -675,7 +675,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Hiram": {
-                    "name": "HDSF Hiram",
+                    "Name": "HDSF Hiram",
                     "Container": "Hurston",
                     "X": -942.48,
                     "Y": -317.031,
@@ -683,7 +683,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Hobart": {
-                    "name": "HDSF Hobart",
+                    "Name": "HDSF Hobart",
                     "Container": "Hurston",
                     "X": -492.22,
                     "Y": 768.371,
@@ -691,7 +691,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Ishmael": {
-                    "name": "HDSF Ishmael",
+                    "Name": "HDSF Ishmael",
                     "Container": "Hurston",
                     "X": -266.171,
                     "Y": -159.479,
@@ -699,7 +699,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Millerand": {
-                    "name": "HDSF Millerand",
+                    "Name": "HDSF Millerand",
                     "Container": "Hurston",
                     "X": -847.551,
                     "Y": 517.597,
@@ -707,7 +707,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Rufus": {
-                    "name": "HDSF Rufus",
+                    "Name": "HDSF Rufus",
                     "Container": "Hurston",
                     "X": -64.794,
                     "Y": 11.531,
@@ -715,7 +715,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Sherman": {
-                    "name": "HDSF Sherman",
+                    "Name": "HDSF Sherman",
                     "Container": "Hurston",
                     "X": 899.38,
                     "Y": -406.057,
@@ -723,7 +723,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Tamar": {
-                    "name": "HDSF Tamar",
+                    "Name": "HDSF Tamar",
                     "Container": "Hurston",
                     "X": 121.122,
                     "Y": -810.963,
@@ -731,7 +731,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Tompkins": {
-                    "name": "HDSF Tompkins",
+                    "Name": "HDSF Tompkins",
                     "Container": "Hurston",
                     "X": 374.762,
                     "Y": 724.551,
@@ -739,7 +739,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDSF Zacharias": {
-                    "name": "HDSF Zacharias",
+                    "Name": "HDSF Zacharias",
                     "Container": "Hurston",
                     "X": 249.567,
                     "Y": 398.572,
@@ -747,7 +747,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Reclamation & Disposal Orinth": {
-                    "name": "Reclamation & Disposal Orinth",
+                    "Name": "Reclamation & Disposal Orinth",
                     "Container": "Hurston",
                     "X": 1.141,
                     "Y": -794.276,
@@ -755,7 +755,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Hurston Cave N31 [F]": {
-                    "name": "Hurston Cave N31 [F]",
+                    "Name": "Hurston Cave N31 [F]",
                     "Container": "Hurston",
                     "X": -303.624,
                     "Y": -801.386,
@@ -763,7 +763,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Hurston Cave N34 [FV]": {
-                    "name": "Hurston Cave N34 [FV]",
+                    "Name": "Hurston Cave N34 [FV]",
                     "Container": "Hurston",
                     "X": -357.903,
                     "Y": -743.787,
@@ -771,7 +771,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Hurston Cave S11 [S]": {
-                    "name": "Hurston Cave S11 [S]",
+                    "Name": "Hurston Cave S11 [S]",
                     "Container": "Hurston",
                     "X": -928.268,
                     "Y": 318.895,
@@ -779,7 +779,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Hurston Cave N80 [FVS]": {
-                    "name": "Hurston Cave N80 [FVS]",
+                    "Name": "Hurston Cave N80 [FVS]",
                     "Container": "Hurston",
                     "X": -160.053,
                     "Y": -65.455,
@@ -787,7 +787,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Hurston Cave S21 [FVS]": {
-                    "name": "Hurston Cave S21 [FVS]",
+                    "Name": "Hurston Cave S21 [FVS]",
                     "Container": "Hurston",
                     "X": -869.988,
                     "Y": 336.529,
@@ -795,7 +795,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Hurston",
                     "X": -653.836,
                     "Y": -717.665,
@@ -803,7 +803,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar B Wreck": {
-                    "name": "Caterpillar B Wreck",
+                    "Name": "Caterpillar B Wreck",
                     "Container": "Hurston",
                     "X": -815.733,
                     "Y": -287.104,
@@ -811,7 +811,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar C Wreck": {
-                    "name": "Caterpillar C Wreck",
+                    "Name": "Caterpillar C Wreck",
                     "Container": "Hurston",
                     "X": 646.062,
                     "Y": 649.617,
@@ -819,7 +819,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar D Wreck": {
-                    "name": "Caterpillar D Wreck",
+                    "Name": "Caterpillar D Wreck",
                     "Container": "Hurston",
                     "X": -44.669,
                     "Y": -971.574,
@@ -827,7 +827,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation A Wreck": {
-                    "name": "Constellation A Wreck",
+                    "Name": "Constellation A Wreck",
                     "Container": "Hurston",
                     "X": -699.893,
                     "Y": 264.864,
@@ -835,7 +835,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation D Wreck": {
-                    "name": "Constellation D Wreck",
+                    "Name": "Constellation D Wreck",
                     "Container": "Hurston",
                     "X": 359.032,
                     "Y": -881.816,
@@ -843,7 +843,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation C Wreck": {
-                    "name": "Constellation C Wreck",
+                    "Name": "Constellation C Wreck",
                     "Container": "Hurston",
                     "X": -63.743,
                     "Y": 873.126,
@@ -851,7 +851,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation B Wreck": {
-                    "name": "Constellation B Wreck",
+                    "Name": "Constellation B Wreck",
                     "Container": "Hurston",
                     "X": -131.882,
                     "Y": -882.095,
@@ -859,7 +859,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A1 Wreck": {
-                    "name": "Cutlass A1 Wreck",
+                    "Name": "Cutlass A1 Wreck",
                     "Container": "Hurston",
                     "X": 261.157,
                     "Y": -269.43,
@@ -867,7 +867,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A2 Wreck": {
-                    "name": "Cutlass A2 Wreck",
+                    "Name": "Cutlass A2 Wreck",
                     "Container": "Hurston",
                     "X": -569.721,
                     "Y": 306.215,
@@ -875,7 +875,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A3 Wreck": {
-                    "name": "Cutlass A3 Wreck",
+                    "Name": "Cutlass A3 Wreck",
                     "Container": "Hurston",
                     "X": -833.061,
                     "Y": -68.424,
@@ -883,7 +883,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A4 Wreck": {
-                    "name": "Cutlass A4 Wreck",
+                    "Name": "Cutlass A4 Wreck",
                     "Container": "Hurston",
                     "X": -667.75,
                     "Y": -271.843,
@@ -891,7 +891,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer D Wreck": {
-                    "name": "Freelancer D Wreck",
+                    "Name": "Freelancer D Wreck",
                     "Container": "Hurston",
                     "X": 977.427,
                     "Y": 90.2,
@@ -899,7 +899,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer A Wreck": {
-                    "name": "Freelancer A Wreck",
+                    "Name": "Freelancer A Wreck",
                     "Container": "Hurston",
                     "X": -831.92,
                     "Y": 292.444,
@@ -907,7 +907,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer C Wreck": {
-                    "name": "Freelancer C Wreck",
+                    "Name": "Freelancer C Wreck",
                     "Container": "Hurston",
                     "X": -550.096,
                     "Y": 706.821,
@@ -915,7 +915,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer B Wreck": {
-                    "name": "Freelancer B Wreck",
+                    "Name": "Freelancer B Wreck",
                     "Container": "Hurston",
                     "X": 674.898,
                     "Y": -737.051,
@@ -923,7 +923,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Satellite Wreck 1": {
-                    "name": "Satellite Wreck 1",
+                    "Name": "Satellite Wreck 1",
                     "Container": "Hurston",
                     "X": -846.765,
                     "Y": 501.396,
@@ -931,7 +931,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Satellite Wreck 2": {
-                    "name": "Satellite Wreck 2",
+                    "Name": "Satellite Wreck 2",
                     "Container": "Hurston",
                     "X": -237.427,
                     "Y": -782.591,
@@ -939,7 +939,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Satellite Wreck 3": {
-                    "name": "Satellite Wreck 3",
+                    "Name": "Satellite Wreck 3",
                     "Container": "Hurston",
                     "X": 457.265,
                     "Y": 876.042,
@@ -947,7 +947,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Satellite Wreck 4": {
-                    "name": "Satellite Wreck 4",
+                    "Name": "Satellite Wreck 4",
                     "Container": "Hurston",
                     "X": 26.263,
                     "Y": -763.129,
@@ -955,7 +955,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer B Wreck": {
-                    "name": "Starfarer B Wreck",
+                    "Name": "Starfarer B Wreck",
                     "Container": "Hurston",
                     "X": 979.864,
                     "Y": -47.469,
@@ -963,7 +963,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Hurston",
                     "X": 774.788,
                     "Y": 8.14,
@@ -971,7 +971,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer D Wreck": {
-                    "name": "Starfarer D Wreck",
+                    "Name": "Starfarer D Wreck",
                     "Container": "Hurston",
                     "X": -950.244,
                     "Y": 276.43,
@@ -979,7 +979,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Hurston",
                     "X": -591.697,
                     "Y": 779.843,
@@ -999,7 +999,7 @@
             "Body Radius": 344.5,
             "POI": {
                 "HDMS Bezdek": {
-                    "name": "HDMS Bezdek",
+                    "Name": "HDMS Bezdek",
                     "Container": "Arial",
                     "X": 26.735,
                     "Y": -234.698,
@@ -1007,7 +1007,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Lathan": {
-                    "name": "HDMS Lathan",
+                    "Name": "HDMS Lathan",
                     "Container": "Arial",
                     "X": 339.193,
                     "Y": 33.686,
@@ -1015,7 +1015,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Arial",
                     "X": -140.054,
                     "Y": -74.604,
@@ -1023,7 +1023,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A Wreck": {
-                    "name": "Cutlass A Wreck",
+                    "Name": "Cutlass A Wreck",
                     "Container": "Arial",
                     "X": 216.54,
                     "Y": -124.124,
@@ -1031,7 +1031,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer D Wreck": {
-                    "name": "Freelancer D Wreck",
+                    "Name": "Freelancer D Wreck",
                     "Container": "Arial",
                     "X": -210.193,
                     "Y": 258.978,
@@ -1039,7 +1039,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Arial",
                     "X": 223.891,
                     "Y": -230.405,
@@ -1059,7 +1059,7 @@
             "Body Radius": 274.0,
             "POI": {
                 "HDMS Anderson": {
-                    "name": "HDMS Anderson",
+                    "Name": "HDMS Anderson",
                     "Container": "Aberdeen",
                     "X": -26.95,
                     "Y": 180.221,
@@ -1067,7 +1067,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Norgaard": {
-                    "name": "HDMS Norgaard",
+                    "Name": "HDMS Norgaard",
                     "Container": "Aberdeen",
                     "X": -141.572,
                     "Y": 195.318,
@@ -1075,7 +1075,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMO Dobbs (NA) [F]": {
-                    "name": "HDMO Dobbs (NA) [F]",
+                    "Name": "HDMO Dobbs (NA) [F]",
                     "Container": "Aberdeen",
                     "X": 270.579,
                     "Y": 47.399,
@@ -1083,7 +1083,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Barton Flats Aid Shelter": {
-                    "name": "Barton Flats Aid Shelter",
+                    "Name": "Barton Flats Aid Shelter",
                     "Container": "Aberdeen",
                     "X": 54.341,
                     "Y": 217.12,
@@ -1091,7 +1091,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Kleschler Rehabilitation Facility": {
-                    "name": "Kleschler Rehabilitation Facility",
+                    "Name": "Kleschler Rehabilitation Facility",
                     "Container": "Aberdeen",
                     "X": 44.975,
                     "Y": 221.563,
@@ -1099,7 +1099,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Aberdeen Cave N60 [F]": {
-                    "name": "Aberdeen Cave N60 [F]",
+                    "Name": "Aberdeen Cave N60 [F]",
                     "Container": "Aberdeen",
                     "X": 56.811,
                     "Y": -124.615,
@@ -1107,7 +1107,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Aberdeen Cave N73 [F]": {
-                    "name": "Aberdeen Cave N73 [F]",
+                    "Name": "Aberdeen Cave N73 [F]",
                     "Container": "Aberdeen",
                     "X": 77.253,
                     "Y": 19.426,
@@ -1115,7 +1115,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Aberdeen Cave S32 [S]": {
-                    "name": "Aberdeen Cave S32 [S]",
+                    "Name": "Aberdeen Cave S32 [S]",
                     "Container": "Aberdeen",
                     "X": 175.926,
                     "Y": -151.288,
@@ -1123,7 +1123,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Aberdeen Cave S11 [F]": {
-                    "name": "Aberdeen Cave S11 [F]",
+                    "Name": "Aberdeen Cave S11 [F]",
                     "Container": "Aberdeen",
                     "X": -177.482,
                     "Y": 203.524,
@@ -1131,7 +1131,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Aberdeen Cave S22 [FVS]": {
-                    "name": "Aberdeen Cave S22 [FVS]",
+                    "Name": "Aberdeen Cave S22 [FVS]",
                     "Container": "Aberdeen",
                     "X": 230.506,
                     "Y": -109.038,
@@ -1139,7 +1139,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar E Wreck": {
-                    "name": "Caterpillar E Wreck",
+                    "Name": "Caterpillar E Wreck",
                     "Container": "Aberdeen",
                     "X": -61.992,
                     "Y": 94.045,
@@ -1147,7 +1147,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation D Wreck": {
-                    "name": "Constellation D Wreck",
+                    "Name": "Constellation D Wreck",
                     "Container": "Aberdeen",
                     "X": -207.122,
                     "Y": 163.655,
@@ -1155,7 +1155,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer D Wreck": {
-                    "name": "Freelancer D Wreck",
+                    "Name": "Freelancer D Wreck",
                     "Container": "Aberdeen",
                     "X": 239.132,
                     "Y": 116.815,
@@ -1163,7 +1163,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Aberdeen",
                     "X": 153.456,
                     "Y": 48.444,
@@ -1183,7 +1183,7 @@
             "Body Radius": 340.83,
             "POI": {
                 "HDMS Hahn": {
-                    "name": "HDMS Hahn",
+                    "Name": "HDMS Hahn",
                     "Container": "Magda",
                     "X": -147.384,
                     "Y": -292.217,
@@ -1191,7 +1191,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Perlman": {
-                    "name": "HDMS Perlman",
+                    "Name": "HDMS Perlman",
                     "Container": "Magda",
                     "X": -140.696,
                     "Y": 287.922,
@@ -1199,7 +1199,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Magda",
                     "X": 320.169,
                     "Y": 98.727,
@@ -1207,7 +1207,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation A Wreck": {
-                    "name": "Constellation A Wreck",
+                    "Name": "Constellation A Wreck",
                     "Container": "Magda",
                     "X": 195.502,
                     "Y": -14.652,
@@ -1215,7 +1215,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A Wreck": {
-                    "name": "Cutlass A Wreck",
+                    "Name": "Cutlass A Wreck",
                     "Container": "Magda",
                     "X": -300.821,
                     "Y": -72.784,
@@ -1235,7 +1235,7 @@
             "Body Radius": 325.0,
             "POI": {
                 "HDMS Ryder": {
-                    "name": "HDMS Ryder",
+                    "Name": "HDMS Ryder",
                     "Container": "Ita",
                     "X": -175.874,
                     "Y": -263.381,
@@ -1243,7 +1243,7 @@
                     "QTMarker": "TRUE"
                 },
                 "HDMS Woodruff": {
-                    "name": "HDMS Woodruff",
+                    "Name": "HDMS Woodruff",
                     "Container": "Ita",
                     "X": 114.792,
                     "Y": 219.661,
@@ -1251,7 +1251,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Caterpillar D Wreck": {
-                    "name": "Caterpillar D Wreck",
+                    "Name": "Caterpillar D Wreck",
                     "Container": "Ita",
                     "X": -306.173,
                     "Y": -9.831,
@@ -1259,7 +1259,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation D Wreck": {
-                    "name": "Constellation D Wreck",
+                    "Name": "Constellation D Wreck",
                     "Container": "Ita",
                     "X": 216.188,
                     "Y": -74.024,
@@ -1267,7 +1267,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer C Wreck": {
-                    "name": "Freelancer C Wreck",
+                    "Name": "Freelancer C Wreck",
                     "Container": "Ita",
                     "X": -311.307,
                     "Y": 0.474,
@@ -1275,7 +1275,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer D Wreck": {
-                    "name": "Starfarer D Wreck",
+                    "Name": "Starfarer D Wreck",
                     "Container": "Ita",
                     "X": 270.672,
                     "Y": -86.652,
@@ -1295,7 +1295,7 @@
             "Body Radius": 800.0,
             "POI": {
                 "Area 04": {
-                    "name": "Area 04",
+                    "Name": "Area 04",
                     "Container": "ArcCorp",
                     "X": -314.306,
                     "Y": -601.435,
@@ -1303,7 +1303,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Area 06": {
-                    "name": "Area 06",
+                    "Name": "Area 06",
                     "Container": "ArcCorp",
                     "X": -745.806,
                     "Y": -111.306,
@@ -1311,7 +1311,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Area 11": {
-                    "name": "Area 11",
+                    "Name": "Area 11",
                     "Container": "ArcCorp",
                     "X": 508.204,
                     "Y": 397.589,
@@ -1319,7 +1319,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Area 17": {
-                    "name": "Area 17",
+                    "Name": "Area 17",
                     "Container": "ArcCorp",
                     "X": -310.29,
                     "Y": -601.811,
@@ -1327,7 +1327,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Area 18": {
-                    "name": "Area 18",
+                    "Name": "Area 18",
                     "Container": "ArcCorp",
                     "X": -747.409,
                     "Y": -116.734,
@@ -1335,7 +1335,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Area 20": {
-                    "name": "Area 20",
+                    "Name": "Area 20",
                     "Container": "ArcCorp",
                     "X": 506.937,
                     "Y": 401.104,
@@ -1343,7 +1343,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Baijini Point": {
-                    "name": "Baijini Point",
+                    "Name": "Baijini Point",
                     "Container": "ArcCorp",
                     "X": -771.961,
                     "Y": -321.347,
@@ -1363,7 +1363,7 @@
             "Body Radius": 223.0,
             "POI": {
                 "Humboldt Mines": {
-                    "name": "Humboldt Mines",
+                    "Name": "Humboldt Mines",
                     "Container": "Lyria",
                     "X": 5.311,
                     "Y": -193.819,
@@ -1371,7 +1371,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Loveridge Mineral Reserve": {
-                    "name": "Loveridge Mineral Reserve",
+                    "Name": "Loveridge Mineral Reserve",
                     "Container": "Lyria",
                     "X": 181.8,
                     "Y": 128.166,
@@ -1379,7 +1379,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SAL-2": {
-                    "name": "Shubin Mining Facility SAL-2",
+                    "Name": "Shubin Mining Facility SAL-2",
                     "Container": "Lyria",
                     "X": 150.636,
                     "Y": -53.619,
@@ -1387,7 +1387,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SAL-5": {
-                    "name": "Shubin Mining Facility SAL-5",
+                    "Name": "Shubin Mining Facility SAL-5",
                     "Container": "Lyria",
                     "X": 98.07,
                     "Y": 78.361,
@@ -1395,7 +1395,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Security Depot Lyria-1": {
-                    "name": "Security Depot Lyria-1",
+                    "Name": "Security Depot Lyria-1",
                     "Container": "Lyria",
                     "X": -147.527,
                     "Y": -17.212,
@@ -1403,7 +1403,7 @@
                     "QTMarker": "TRUE"
                 },
                 "The Orphanage": {
-                    "name": "The Orphanage",
+                    "Name": "The Orphanage",
                     "Container": "Lyria",
                     "X": -91.99,
                     "Y": 92.484,
@@ -1411,7 +1411,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Paradise Cove": {
-                    "name": "Paradise Cove",
+                    "Name": "Paradise Cove",
                     "Container": "Lyria",
                     "X": -87.676,
                     "Y": 198.093,
@@ -1419,7 +1419,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPAL-12": {
-                    "name": "Shubin Processing Facility SPAL-12",
+                    "Name": "Shubin Processing Facility SPAL-12",
                     "Container": "Lyria",
                     "X": -173.535,
                     "Y": 124.408,
@@ -1427,7 +1427,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPAL-3": {
-                    "name": "Shubin Processing Facility SPAL-3",
+                    "Name": "Shubin Processing Facility SPAL-3",
                     "Container": "Lyria",
                     "X": -208.11,
                     "Y": 11.143,
@@ -1435,7 +1435,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPAL-7": {
-                    "name": "Shubin Processing Facility SPAL-7",
+                    "Name": "Shubin Processing Facility SPAL-7",
                     "Container": "Lyria",
                     "X": 38.016,
                     "Y": -125.93,
@@ -1443,7 +1443,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPAL-9": {
-                    "name": "Shubin Processing Facility SPAL-9",
+                    "Name": "Shubin Processing Facility SPAL-9",
                     "Container": "Lyria",
                     "X": 146.841,
                     "Y": -168.909,
@@ -1451,7 +1451,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Elsewhere": {
-                    "name": "Elsewhere",
+                    "Name": "Elsewhere",
                     "Container": "Lyria",
                     "X": 207.814,
                     "Y": -67.758,
@@ -1459,7 +1459,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Teddy's Playhouse": {
-                    "name": "Teddy's Playhouse",
+                    "Name": "Teddy's Playhouse",
                     "Container": "Lyria",
                     "X": 96.033,
                     "Y": 159.442,
@@ -1467,7 +1467,7 @@
                     "QTMarker": "FALSE"
                 },
                 "The Pit": {
-                    "name": "The Pit",
+                    "Name": "The Pit",
                     "Container": "Lyria",
                     "X": 59.23,
                     "Y": 68.198,
@@ -1475,7 +1475,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Wheeler's": {
-                    "name": "Wheeler's",
+                    "Name": "Wheeler's",
                     "Container": "Lyria",
                     "X": -52.959,
                     "Y": -209.881,
@@ -1483,7 +1483,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Lyria",
                     "X": 17.44,
                     "Y": -206.022,
@@ -1491,7 +1491,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer A Wreck": {
-                    "name": "Freelancer A Wreck",
+                    "Name": "Freelancer A Wreck",
                     "Container": "Lyria",
                     "X": 169.675,
                     "Y": -95.46,
@@ -1499,7 +1499,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Lyria",
                     "X": -116.661,
                     "Y": -189.259,
@@ -1519,7 +1519,7 @@
             "Body Radius": 283.0,
             "POI": {
                 "ArcCorp Mining Area 045": {
-                    "name": "ArcCorp Mining Area 045",
+                    "Name": "ArcCorp Mining Area 045",
                     "Container": "Wala",
                     "X": -282.798,
                     "Y": 14.108,
@@ -1527,7 +1527,7 @@
                     "QTMarker": "TRUE"
                 },
                 "ArcCorp Mining Area 048": {
-                    "name": "ArcCorp Mining Area 048",
+                    "Name": "ArcCorp Mining Area 048",
                     "Container": "Wala",
                     "X": -178.193,
                     "Y": 97.756,
@@ -1535,7 +1535,7 @@
                     "QTMarker": "TRUE"
                 },
                 "ArcCorp Mining Area 056": {
-                    "name": "ArcCorp Mining Area 056",
+                    "Name": "ArcCorp Mining Area 056",
                     "Container": "Wala",
                     "X": 116.546,
                     "Y": -50.147,
@@ -1543,7 +1543,7 @@
                     "QTMarker": "TRUE"
                 },
                 "ArcCorp Mining Area 061": {
-                    "name": "ArcCorp Mining Area 061",
+                    "Name": "ArcCorp Mining Area 061",
                     "Container": "Wala",
                     "X": -21.04,
                     "Y": -247.548,
@@ -1551,7 +1551,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Samson & Son's Salvage Yard": {
-                    "name": "Samson & Son's Salvage Yard",
+                    "Name": "Samson & Son's Salvage Yard",
                     "Container": "Wala",
                     "X": -42.545,
                     "Y": 279.059,
@@ -1559,7 +1559,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shady Glen Farms": {
-                    "name": "Shady Glen Farms",
+                    "Name": "Shady Glen Farms",
                     "Container": "Wala",
                     "X": -20.622,
                     "Y": 268.985,
@@ -1567,7 +1567,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar B Wreck": {
-                    "name": "Caterpillar B Wreck",
+                    "Name": "Caterpillar B Wreck",
                     "Container": "Wala",
                     "X": 232.944,
                     "Y": 30.599,
@@ -1575,7 +1575,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer B Wreck": {
-                    "name": "Freelancer B Wreck",
+                    "Name": "Freelancer B Wreck",
                     "Container": "Wala",
                     "X": 158.741,
                     "Y": -212.549,
@@ -1583,7 +1583,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Wala",
                     "X": -100.249,
                     "Y": -244.995,
@@ -1603,7 +1603,7 @@
             "Body Radius": 1000.0,
             "POI": {
                 "New Babbage": {
-                    "name": "New Babbage",
+                    "Name": "New Babbage",
                     "Container": "Microtech",
                     "X": 520.723,
                     "Y": 419.364,
@@ -1611,7 +1611,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Port Tressler": {
-                    "name": "Port Tressler",
+                    "Name": "Port Tressler",
                     "Container": "Microtech",
                     "X": 561.471,
                     "Y": 545.853,
@@ -1619,7 +1619,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Rayari Deltana Research Outpost": {
-                    "name": "Rayari Deltana Research Outpost",
+                    "Name": "Rayari Deltana Research Outpost",
                     "Container": "Microtech",
                     "X": -693.91,
                     "Y": -648.299,
@@ -1627,7 +1627,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SM0-10": {
-                    "name": "Shubin Mining Facility SM0-10",
+                    "Name": "Shubin Mining Facility SM0-10",
                     "Container": "Microtech",
                     "X": 85.476,
                     "Y": -950.856,
@@ -1635,7 +1635,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SM0-13": {
-                    "name": "Shubin Mining Facility SM0-13",
+                    "Name": "Shubin Mining Facility SM0-13",
                     "Container": "Microtech",
                     "X": -172.819,
                     "Y": -981.308,
@@ -1643,7 +1643,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SM0-18": {
-                    "name": "Shubin Mining Facility SM0-18",
+                    "Name": "Shubin Mining Facility SM0-18",
                     "Container": "Microtech",
                     "X": 920.21,
                     "Y": -389.542,
@@ -1651,7 +1651,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SM0-22": {
-                    "name": "Shubin Mining Facility SM0-22",
+                    "Name": "Shubin Mining Facility SM0-22",
                     "Container": "Microtech",
                     "X": 24.299,
                     "Y": -822.591,
@@ -1659,7 +1659,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter 2UB-RB9-5": {
-                    "name": "MT DataCenter 2UB-RB9-5",
+                    "Name": "MT DataCenter 2UB-RB9-5",
                     "Container": "Microtech",
                     "X": 907.102,
                     "Y": 139.922,
@@ -1667,7 +1667,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter 4HJ-LVE-A": {
-                    "name": "MT DataCenter 4HJ-LVE-A",
+                    "Name": "MT DataCenter 4HJ-LVE-A",
                     "Container": "Microtech",
                     "X": -100.656,
                     "Y": 962.479,
@@ -1675,7 +1675,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter 5WQ-R2V-C": {
-                    "name": "MT DataCenter 5WQ-R2V-C",
+                    "Name": "MT DataCenter 5WQ-R2V-C",
                     "Container": "Microtech",
                     "X": 959.827,
                     "Y": 40.202,
@@ -1683,7 +1683,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter 8FK-Q2X-K": {
-                    "name": "MT DataCenter 8FK-Q2X-K",
+                    "Name": "MT DataCenter 8FK-Q2X-K",
                     "Container": "Microtech",
                     "X": 22.273,
                     "Y": 2.974,
@@ -1691,7 +1691,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter D79-ECG-R": {
-                    "name": "MT DataCenter D79-ECG-R",
+                    "Name": "MT DataCenter D79-ECG-R",
                     "Container": "Microtech",
                     "X": 201.182,
                     "Y": 308.978,
@@ -1699,7 +1699,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter E2Q-NSG-Y": {
-                    "name": "MT DataCenter E2Q-NSG-Y",
+                    "Name": "MT DataCenter E2Q-NSG-Y",
                     "Container": "Microtech",
                     "X": 916.82,
                     "Y": 187.359,
@@ -1707,7 +1707,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter QVX-J88-J": {
-                    "name": "MT DataCenter QVX-J88-J",
+                    "Name": "MT DataCenter QVX-J88-J",
                     "Container": "Microtech",
                     "X": -247.573,
                     "Y": 892.65,
@@ -1715,7 +1715,7 @@
                     "QTMarker": "TRUE"
                 },
                 "MT DataCenter TMG-XEV-2": {
-                    "name": "MT DataCenter TMG-XEV-2",
+                    "Name": "MT DataCenter TMG-XEV-2",
                     "Container": "Microtech",
                     "X": -160.905,
                     "Y": 62.279,
@@ -1723,7 +1723,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Calhoun Pass Emergency Shelter": {
-                    "name": "Calhoun Pass Emergency Shelter",
+                    "Name": "Calhoun Pass Emergency Shelter",
                     "Container": "Microtech",
                     "X": 938.116,
                     "Y": -347.818,
@@ -1731,7 +1731,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Clear View Emergency Shelter": {
-                    "name": "Clear View Emergency Shelter",
+                    "Name": "Clear View Emergency Shelter",
                     "Container": "Microtech",
                     "X": -609.561,
                     "Y": -688.363,
@@ -1739,7 +1739,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Nuiqsut Emergency Shelter": {
-                    "name": "Nuiqsut Emergency Shelter",
+                    "Name": "Nuiqsut Emergency Shelter",
                     "Container": "Microtech",
                     "X": 750.613,
                     "Y": -207.852,
@@ -1747,7 +1747,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Point Wain Emergency Shelter": {
-                    "name": "Point Wain Emergency Shelter",
+                    "Name": "Point Wain Emergency Shelter",
                     "Container": "Microtech",
                     "X": -627.441,
                     "Y": -485.258,
@@ -1755,7 +1755,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Necropolis (Stash House)": {
-                    "name": "Necropolis (Stash House)",
+                    "Name": "Necropolis (Stash House)",
                     "Container": "Microtech",
                     "X": 63.643,
                     "Y": -162.085,
@@ -1763,7 +1763,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Outpost 54 (Stash House)": {
-                    "name": "Outpost 54 (Stash House)",
+                    "Name": "Outpost 54 (Stash House)",
                     "Container": "Microtech",
                     "X": 113.566,
                     "Y": 14.479,
@@ -1771,7 +1771,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Microtech Cave N39 [F]": {
-                    "name": "Microtech Cave N39 [F]",
+                    "Name": "Microtech Cave N39 [F]",
                     "Container": "Microtech",
                     "X": 679.115,
                     "Y": 379.185,
@@ -1779,7 +1779,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Microtech Cave N71 [F]": {
-                    "name": "Microtech Cave N71 [F]",
+                    "Name": "Microtech Cave N71 [F]",
                     "Container": "Microtech",
                     "X": 209.189,
                     "Y": -260.05,
@@ -1787,7 +1787,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Microtech Cave S01 [S]": {
-                    "name": "Microtech Cave S01 [S]",
+                    "Name": "Microtech Cave S01 [S]",
                     "Container": "Microtech",
                     "X": -428.145,
                     "Y": 903.758,
@@ -1795,7 +1795,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Microtech Cave N20 [FVS]": {
-                    "name": "Microtech Cave N20 [FVS]",
+                    "Name": "Microtech Cave N20 [FVS]",
                     "Container": "Microtech",
                     "X": 940.94,
                     "Y": -23.79,
@@ -1803,7 +1803,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Microtech Cave N47 [FV]": {
-                    "name": "Microtech Cave N47 [FV]",
+                    "Name": "Microtech Cave N47 [FV]",
                     "Container": "Microtech",
                     "X": 515.708,
                     "Y": 444.099,
@@ -1811,7 +1811,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Microtech Cave N02 [S]": {
-                    "name": "Microtech Cave N02 [S]",
+                    "Name": "Microtech Cave N02 [S]",
                     "Container": "Microtech",
                     "X": 914.967,
                     "Y": -405.203,
@@ -1819,7 +1819,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar D Wreck": {
-                    "name": "Caterpillar D Wreck",
+                    "Name": "Caterpillar D Wreck",
                     "Container": "Microtech",
                     "X": 422.031,
                     "Y": 170.819,
@@ -1827,7 +1827,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar C Wreck": {
-                    "name": "Caterpillar C Wreck",
+                    "Name": "Caterpillar C Wreck",
                     "Container": "Microtech",
                     "X": -267.953,
                     "Y": 310.782,
@@ -1835,7 +1835,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar B Wreck": {
-                    "name": "Caterpillar B Wreck",
+                    "Name": "Caterpillar B Wreck",
                     "Container": "Microtech",
                     "X": -223.634,
                     "Y": 218.519,
@@ -1843,7 +1843,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Microtech",
                     "X": -174.985,
                     "Y": 978.259,
@@ -1851,7 +1851,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation A Wreck": {
-                    "name": "Constellation A Wreck",
+                    "Name": "Constellation A Wreck",
                     "Container": "Microtech",
                     "X": -167.21,
                     "Y": 960.391,
@@ -1859,7 +1859,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation B Wreck": {
-                    "name": "Constellation B Wreck",
+                    "Name": "Constellation B Wreck",
                     "Container": "Microtech",
                     "X": 376.776,
                     "Y": 920.916,
@@ -1867,7 +1867,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation D Wreck": {
-                    "name": "Constellation D Wreck",
+                    "Name": "Constellation D Wreck",
                     "Container": "Microtech",
                     "X": -676.718,
                     "Y": -728.925,
@@ -1875,7 +1875,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation C Wreck": {
-                    "name": "Constellation C Wreck",
+                    "Name": "Constellation C Wreck",
                     "Container": "Microtech",
                     "X": 875.201,
                     "Y": -465.38,
@@ -1883,7 +1883,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer B Wreck": {
-                    "name": "Freelancer B Wreck",
+                    "Name": "Freelancer B Wreck",
                     "Container": "Microtech",
                     "X": -933.3,
                     "Y": -309.024,
@@ -1891,7 +1891,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer D Wreck": {
-                    "name": "Freelancer D Wreck",
+                    "Name": "Freelancer D Wreck",
                     "Container": "Microtech",
                     "X": -683.477,
                     "Y": -719.405,
@@ -1899,7 +1899,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer C Wreck": {
-                    "name": "Freelancer C Wreck",
+                    "Name": "Freelancer C Wreck",
                     "Container": "Microtech",
                     "X": -973.704,
                     "Y": -225.635,
@@ -1907,7 +1907,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer A Wreck": {
-                    "name": "Freelancer A Wreck",
+                    "Name": "Freelancer A Wreck",
                     "Container": "Microtech",
                     "X": -686.688,
                     "Y": -719.067,
@@ -1915,7 +1915,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer D Wreck": {
-                    "name": "Starfarer D Wreck",
+                    "Name": "Starfarer D Wreck",
                     "Container": "Microtech",
                     "X": -588.09,
                     "Y": 805.331,
@@ -1923,7 +1923,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Microtech",
                     "X": 9.472,
                     "Y": 103.8,
@@ -1931,7 +1931,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer B Wreck": {
-                    "name": "Starfarer B Wreck",
+                    "Name": "Starfarer B Wreck",
                     "Container": "Microtech",
                     "X": -637.938,
                     "Y": 747.782,
@@ -1939,7 +1939,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Microtech",
                     "X": -226.008,
                     "Y": 212.797,
@@ -1959,7 +1959,7 @@
             "Body Radius": 240.0,
             "POI": {
                 "Rayari Anvik Research Outpost": {
-                    "name": "Rayari Anvik Research Outpost",
+                    "Name": "Rayari Anvik Research Outpost",
                     "Container": "Calliope",
                     "X": -184.632,
                     "Y": -127.794,
@@ -1967,7 +1967,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Rayari Kaltag Research Outpost": {
-                    "name": "Rayari Kaltag Research Outpost",
+                    "Name": "Rayari Kaltag Research Outpost",
                     "Container": "Calliope",
                     "X": 205.267,
                     "Y": 6.261,
@@ -1975,7 +1975,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SMCa-6": {
-                    "name": "Shubin Mining Facility SMCa-6",
+                    "Name": "Shubin Mining Facility SMCa-6",
                     "Container": "Calliope",
                     "X": 50.066,
                     "Y": 233.437,
@@ -1983,7 +1983,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Mining Facility SMCa-8": {
-                    "name": "Shubin Mining Facility SMCa-8",
+                    "Name": "Shubin Mining Facility SMCa-8",
                     "Container": "Calliope",
                     "X": 160.166,
                     "Y": 168.987,
@@ -1991,7 +1991,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPMC-1": {
-                    "name": "Shubin Processing Facility SPMC-1",
+                    "Name": "Shubin Processing Facility SPMC-1",
                     "Container": "Calliope",
                     "X": 231.078,
                     "Y": -34.373,
@@ -1999,7 +1999,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPMC-10": {
-                    "name": "Shubin Processing Facility SPMC-10",
+                    "Name": "Shubin Processing Facility SPMC-10",
                     "Container": "Calliope",
                     "X": -222.726,
                     "Y": -74.372,
@@ -2007,7 +2007,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPMC-11": {
-                    "name": "Shubin Processing Facility SPMC-11",
+                    "Name": "Shubin Processing Facility SPMC-11",
                     "Container": "Calliope",
                     "X": 72.393,
                     "Y": -187.928,
@@ -2015,7 +2015,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPMC-14": {
-                    "name": "Shubin Processing Facility SPMC-14",
+                    "Name": "Shubin Processing Facility SPMC-14",
                     "Container": "Calliope",
                     "X": 228.587,
                     "Y": -21.222,
@@ -2023,7 +2023,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPMC-3": {
-                    "name": "Shubin Processing Facility SPMC-3",
+                    "Name": "Shubin Processing Facility SPMC-3",
                     "Container": "Calliope",
                     "X": 239.598,
                     "Y": -11.458,
@@ -2031,7 +2031,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Shubin Processing Facility SPMC-5": {
-                    "name": "Shubin Processing Facility SPMC-5",
+                    "Name": "Shubin Processing Facility SPMC-5",
                     "Container": "Calliope",
                     "X": -229.991,
                     "Y": 66.814,
@@ -2039,7 +2039,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Raven's Roost": {
-                    "name": "Raven's Roost",
+                    "Name": "Raven's Roost",
                     "Container": "Calliope",
                     "X": -176.14,
                     "Y": -160.362,
@@ -2047,7 +2047,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Calliope Cave N13 [F]": {
-                    "name": "Calliope Cave N13 [F]",
+                    "Name": "Calliope Cave N13 [F]",
                     "Container": "Calliope",
                     "X": 207.343,
                     "Y": -107.085,
@@ -2055,7 +2055,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Calliope Cave N25 [F]": {
-                    "name": "Calliope Cave N25 [F]",
+                    "Name": "Calliope Cave N25 [F]",
                     "Container": "Calliope",
                     "X": 213.196,
                     "Y": -40.556,
@@ -2063,7 +2063,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Calliope Cave N40 [F]": {
-                    "name": "Calliope Cave N40 [F]",
+                    "Name": "Calliope Cave N40 [F]",
                     "Container": "Calliope",
                     "X": 181.3,
                     "Y": -3.049,
@@ -2071,7 +2071,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Calliope",
                     "X": 218.632,
                     "Y": -7.016,
@@ -2079,7 +2079,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar C Wreck": {
-                    "name": "Caterpillar C Wreck",
+                    "Name": "Caterpillar C Wreck",
                     "Container": "Calliope",
                     "X": 232.099,
                     "Y": -41.336,
@@ -2087,7 +2087,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Cutlass A Wreck": {
-                    "name": "Cutlass A Wreck",
+                    "Name": "Cutlass A Wreck",
                     "Container": "Calliope",
                     "X": 234.805,
                     "Y": -46.699,
@@ -2095,7 +2095,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer B Wreck": {
-                    "name": "Starfarer B Wreck",
+                    "Name": "Starfarer B Wreck",
                     "Container": "Calliope",
                     "X": 152.525,
                     "Y": 184.796,
@@ -2103,7 +2103,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Calliope",
                     "X": 225.967,
                     "Y": -35.194,
@@ -2123,7 +2123,7 @@
             "Body Radius": 337.17,
             "POI": {
                 "Rayari Cantwell Research Outpost": {
-                    "name": "Rayari Cantwell Research Outpost",
+                    "Name": "Rayari Cantwell Research Outpost",
                     "Container": "Clio",
                     "X": -217.175,
                     "Y": 215.278,
@@ -2131,7 +2131,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Rayari McGrath Research Outpost": {
-                    "name": "Rayari McGrath Research Outpost",
+                    "Name": "Rayari McGrath Research Outpost",
                     "Container": "Clio",
                     "X": -325.904,
                     "Y": -85.713,
@@ -2139,7 +2139,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Clio Cave N66 [F]": {
-                    "name": "Clio Cave N66 [F]",
+                    "Name": "Clio Cave N66 [F]",
                     "Container": "Clio",
                     "X": -6.584,
                     "Y": 137.809,
@@ -2147,7 +2147,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Clio Cave N67 [F]": {
-                    "name": "Clio Cave N67 [F]",
+                    "Name": "Clio Cave N67 [F]",
                     "Container": "Clio",
                     "X": -11.324,
                     "Y": 131.045,
@@ -2155,7 +2155,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Clio Cave N71 [F]": {
-                    "name": "Clio Cave N71 [F]",
+                    "Name": "Clio Cave N71 [F]",
                     "Container": "Clio",
                     "X": 26.403,
                     "Y": 105.022,
@@ -2163,7 +2163,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Clio Cave N76 [F]": {
-                    "name": "Clio Cave N76 [F]",
+                    "Name": "Clio Cave N76 [F]",
                     "Container": "Clio",
                     "X": 12.477,
                     "Y": 77.049,
@@ -2171,7 +2171,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar B Wreck": {
-                    "name": "Caterpillar B Wreck",
+                    "Name": "Caterpillar B Wreck",
                     "Container": "Clio",
                     "X": -142.973,
                     "Y": 98.286,
@@ -2179,7 +2179,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar C Wreck": {
-                    "name": "Caterpillar C Wreck",
+                    "Name": "Caterpillar C Wreck",
                     "Container": "Clio",
                     "X": -235.054,
                     "Y": 222.127,
@@ -2187,7 +2187,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Clio",
                     "X": 253.201,
                     "Y": 178.404,
@@ -2195,7 +2195,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Constellation A Wreck": {
-                    "name": "Constellation A Wreck",
+                    "Name": "Constellation A Wreck",
                     "Container": "Clio",
                     "X": 237.915,
                     "Y": 197.092,
@@ -2203,7 +2203,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Clio",
                     "X": -125.554,
                     "Y": 242.328,
@@ -2211,7 +2211,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Clio",
                     "X": 6.513,
                     "Y": 175.082,
@@ -2219,7 +2219,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer B Wreck": {
-                    "name": "Starfarer B Wreck",
+                    "Name": "Starfarer B Wreck",
                     "Container": "Clio",
                     "X": 76.745,
                     "Y": 235.733,
@@ -2239,7 +2239,7 @@
             "Body Radius": 213.0,
             "POI": {
                 "Bud's Growery": {
-                    "name": "Bud's Growery",
+                    "Name": "Bud's Growery",
                     "Container": "Euterpe",
                     "X": 50.173,
                     "Y": -172.259,
@@ -2247,7 +2247,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Devlin Scrap & Salvage": {
-                    "name": "Devlin Scrap & Salvage",
+                    "Name": "Devlin Scrap & Salvage",
                     "Container": "Euterpe",
                     "X": 14.506,
                     "Y": 211.267,
@@ -2255,7 +2255,7 @@
                     "QTMarker": "TRUE"
                 },
                 "Euterpe Cave N02 [F]": {
-                    "name": "Euterpe Cave N02 [F]",
+                    "Name": "Euterpe Cave N02 [F]",
                     "Container": "Euterpe",
                     "X": 136.39,
                     "Y": 163.644,
@@ -2263,7 +2263,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Euterpe Cave N10 [F]": {
-                    "name": "Euterpe Cave N10 [F]",
+                    "Name": "Euterpe Cave N10 [F]",
                     "Container": "Euterpe",
                     "X": -192.561,
                     "Y": -82.292,
@@ -2271,7 +2271,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Euterpe Cave N12 [F]": {
-                    "name": "Euterpe Cave N12 [F]",
+                    "Name": "Euterpe Cave N12 [F]",
                     "Container": "Euterpe",
                     "X": -192.196,
                     "Y": -80.447,
@@ -2279,7 +2279,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Euterpe Cave S38 [F]": {
-                    "name": "Euterpe Cave S38 [F]",
+                    "Name": "Euterpe Cave S38 [F]",
                     "Container": "Euterpe",
                     "X": -33.199,
                     "Y": 162.934,
@@ -2287,7 +2287,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Euterpe Cave S51 [F]": {
-                    "name": "Euterpe Cave S51 [F]",
+                    "Name": "Euterpe Cave S51 [F]",
                     "Container": "Euterpe",
                     "X": 114.707,
                     "Y": -65.951,
@@ -2295,7 +2295,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar A Wreck": {
-                    "name": "Caterpillar A Wreck",
+                    "Name": "Caterpillar A Wreck",
                     "Container": "Euterpe",
                     "X": 67.368,
                     "Y": 196.703,
@@ -2303,7 +2303,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar D Wreck": {
-                    "name": "Caterpillar D Wreck",
+                    "Name": "Caterpillar D Wreck",
                     "Container": "Euterpe",
                     "X": 200.332,
                     "Y": 34.467,
@@ -2311,7 +2311,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar E Wreck": {
-                    "name": "Caterpillar E Wreck",
+                    "Name": "Caterpillar E Wreck",
                     "Container": "Euterpe",
                     "X": 145.497,
                     "Y": -63.948,
@@ -2319,7 +2319,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar C Wreck": {
-                    "name": "Caterpillar C Wreck",
+                    "Name": "Caterpillar C Wreck",
                     "Container": "Euterpe",
                     "X": 180.074,
                     "Y": 69.715,
@@ -2327,7 +2327,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Caterpillar B Wreck": {
-                    "name": "Caterpillar B Wreck",
+                    "Name": "Caterpillar B Wreck",
                     "Container": "Euterpe",
                     "X": 145.418,
                     "Y": 152.345,
@@ -2335,7 +2335,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer A Wreck": {
-                    "name": "Freelancer A Wreck",
+                    "Name": "Freelancer A Wreck",
                     "Container": "Euterpe",
                     "X": 138.738,
                     "Y": -91.03,
@@ -2343,7 +2343,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer C Wreck": {
-                    "name": "Freelancer C Wreck",
+                    "Name": "Freelancer C Wreck",
                     "Container": "Euterpe",
                     "X": 4.195,
                     "Y": -200.346,
@@ -2351,7 +2351,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer D Wreck": {
-                    "name": "Freelancer D Wreck",
+                    "Name": "Freelancer D Wreck",
                     "Container": "Euterpe",
                     "X": -213.175,
                     "Y": -2.543,
@@ -2359,7 +2359,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Freelancer B Wreck": {
-                    "name": "Freelancer B Wreck",
+                    "Name": "Freelancer B Wreck",
                     "Container": "Euterpe",
                     "X": 116.976,
                     "Y": -158.184,
@@ -2367,7 +2367,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer C Wreck": {
-                    "name": "Starfarer C Wreck",
+                    "Name": "Starfarer C Wreck",
                     "Container": "Euterpe",
                     "X": -87.49,
                     "Y": -187.25,
@@ -2375,7 +2375,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer B Wreck": {
-                    "name": "Starfarer B Wreck",
+                    "Name": "Starfarer B Wreck",
                     "Container": "Euterpe",
                     "X": 44.458,
                     "Y": -170.185,
@@ -2383,7 +2383,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer A Wreck": {
-                    "name": "Starfarer A Wreck",
+                    "Name": "Starfarer A Wreck",
                     "Container": "Euterpe",
                     "X": -12.14,
                     "Y": -209.638,
@@ -2391,7 +2391,7 @@
                     "QTMarker": "FALSE"
                 },
                 "Starfarer D Wreck": {
-                    "name": "Starfarer D Wreck",
+                    "Name": "Starfarer D Wreck",
                     "Container": "Euterpe",
                     "X": -119.3,
                     "Y": -77.344,
