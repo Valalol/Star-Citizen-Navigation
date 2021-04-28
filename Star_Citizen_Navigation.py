@@ -349,7 +349,7 @@ while True:
                 Rotation_speed_in_degrees_per_second = 0.1 * (1/Rotation_speed_in_hours_per_rotation)
                 
                 #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
-                Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjustment"]) % 360
+                Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjust"]) % 360
 
                 #get the new player unrotated coordinates
                 New_player_local_unrotated_coordinates = {}
