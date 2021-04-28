@@ -394,7 +394,7 @@ while True:
                             
                             #Latitude
                             Latitude = degrees(asin(z/Radius))
-                        except : 
+                        except :
                             continue
                         
                         
