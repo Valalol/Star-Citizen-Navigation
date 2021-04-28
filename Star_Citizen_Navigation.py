@@ -374,25 +374,28 @@ while True:
         #-------------------------------------------------New player local Long Lat Height--------------------------------------------------
                 if Actual_Container != 0:
                     if Actual_Container['Name'] == Target['Container']:
-                        #Cartesian Coordinates
-                        x = New_player_local_rotated_coordinates["X"]
-                        y = New_player_local_rotated_coordinates["Y"]
-                        z = New_player_local_rotated_coordinates["Z"]
-                        
-                        #Radius of the container
-                        Radius = Actual_Container["Body Radius"]
-                        
-                        #Radial_Distance
-                        Radial_Distance = sqrt(x**2 + y**2 + z**2)
-                        
-                        #Height
-                        Height = Radial_Distance - Radius
-                        
-                        #Longitude
-                        Longitude = degrees(atan2(x, y))
-                        
-                        #Latitude
-                        Latitude = degrees(asin(z/Radius))
+                        try :
+                            #Cartesian Coordinates
+                            x = New_player_local_rotated_coordinates["X"]
+                            y = New_player_local_rotated_coordinates["Y"]
+                            z = New_player_local_rotated_coordinates["Z"]
+                            
+                            #Radius of the container
+                            Radius = Actual_Container["Body Radius"]
+                            
+                            #Radial_Distance
+                            Radial_Distance = sqrt(x**2 + y**2 + z**2)
+                            
+                            #Height
+                            Height = Radial_Distance - Radius
+                            
+                            #Longitude
+                            Longitude = degrees(atan2(x, y))
+                            
+                            #Latitude
+                            Latitude = degrees(asin(z/Radius))
+                        except : 
+                            continue
                         
                         
 
