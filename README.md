@@ -2,6 +2,8 @@
 
 This project is a tool designed to help the navigation in Star Citizen.
 
+This project was greatly inspired by the **"Murphy Exploration Group"** and more particularly by **Graupunkt#4414** who carried out a very similar program.
+
 
 ## Table of Contents
 1. [General Info](#general-info)
@@ -12,7 +14,7 @@ This project is a tool designed to help the navigation in Star Citizen.
 ## General Info
 This program relies almost entirely on the in-game `/showlocation` command. This command copies the global coordinates (relative to the center of the system) to the clipboard. This program continuously retrieves the contents of this clipboard and, if coordinates are found, interprets them in order to guide the user to his target.
 
-The program itself is called [Star Citizen Navigation.py](Star_Citizen_Navigation.py). When launched, a terminal and another window should open. The window allows you to select the navigation mode and the desired target. Once the target is selected, the window should close and a `Program has started` should appear in the terminal.
+The program itself is called [Star_Citizen_Navigation.py](Star_Citizen_Navigation.py). When launched, a terminal and another window should open. The window allows you to select the navigation mode and the desired target. Once the target is selected, the window should close and a `Program has started` should appear in the terminal.
 
 From this moment the program is in working order.
 
@@ -51,7 +53,7 @@ This program requires [Python](https://www.python.org/downloads/) to run.
 git clone https://github.com/Valalol/Star-Citizen-Navigation.git
 cd Star-Citizen-Navigation
 pip install -r requirements.txt 
-python "Star Citizen Navigation.py"
+python "Star_Citizen_Navigation.py"
 ```
 
 
