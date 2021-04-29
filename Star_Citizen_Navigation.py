@@ -90,7 +90,7 @@ def Program_mode_selected(event):
 
 
 def Container_Selected(event):
-    POI_Selection_Combobox["values"] = Planetary_POI_list[Container_Selection_Combobox.get()]
+    Planetary_POI_Selection_Combobox["values"] = Planetary_POI_list[Container_Selection_Combobox.get()]
 
 
 
@@ -114,7 +114,7 @@ def Planetary_Known_Target_Selected(event):
 def Start_Planetary_Navigation_Known_POI():
     global Target, Mode
     Mode = Program_mode_selection_Combobox.get()
-    Target = Database["Containers"][Container_Selection_Combobox.get()]["POI"][f'{POI_Selection_Combobox.get()}']
+    Target = Database["Containers"][Container_Selection_Combobox.get()]["POI"][f'{Planetary_POI_Selection_Combobox.get()}']
     
     root.destroy()
 
@@ -146,7 +146,7 @@ def Space_Known_Target_Selected(event):
 def Start_Space_Navigation_Known_POI():
     global Target, Mode
     Mode = Program_mode_selection_Combobox.get()
-    Target = Database["Space_POI"][f'{POI_Selection_Combobox.get()}']
+    Target = Database["Space_POI"][f'{Space_POI_Selection_Combobox.get()}']
     
     root.destroy()
 
@@ -201,9 +201,9 @@ Planetary_Known_POI_Frame = ttk.Frame(Planetary_Navigation_Frame)
 Planetary_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
 
 
-POI_Selection_Combobox = ttk.Combobox(Planetary_Known_POI_Frame, state='readonly', values = "")
-POI_Selection_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_Target_Selected)
-POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
+Planetary_POI_Selection_Combobox = ttk.Combobox(Planetary_Known_POI_Frame, state='readonly', values = "")
+Planetary_POI_Selection_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_Target_Selected)
+Planetary_POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
 
 
 Planetary_Known_POI_Frame_Start_Navigation_Button = tk.Button(Planetary_Known_POI_Frame, text="Start Navigation", command=Start_Planetary_Navigation_Known_POI)
@@ -256,9 +256,9 @@ Space_Known_POI_Frame = ttk.Frame(Space_Navigation_Frame)
 Space_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
 
 
-POI_Selection_Combobox = ttk.Combobox(Space_Known_POI_Frame, state='readonly', values = Space_POI_list)
-POI_Selection_Combobox.bind("<<ComboboxSelected>>", Space_Known_Target_Selected)
-POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
+Space_POI_Selection_Combobox = ttk.Combobox(Space_Known_POI_Frame, state='readonly', values = Space_POI_list)
+Space_POI_Selection_Combobox.bind("<<ComboboxSelected>>", Space_Known_Target_Selected)
+Space_POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
 
 
 Space_Known_POI_Frame_Start_Navigation_Button = tk.Button(Space_Known_POI_Frame, text="Start Navigation", command=Start_Space_Navigation_Known_POI)
