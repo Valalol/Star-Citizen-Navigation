@@ -7,7 +7,8 @@ This project was greatly inspired by the **"Murphy Exploration Group"** and more
 
 ## Table of Contents
 1. [General Info](#general-info)
-3. [Installation](#installation)
+2. [Installation](#installation)
+3. [Contribute](#contribute)
 4. [LICENSE](#license)
 
 
@@ -55,6 +56,12 @@ cd Star-Citizen-Navigation
 pip install -r requirements.txt 
 python "Star_Citizen_Navigation.py"
 ```
+
+
+## Contribute:
+### How to contribute :
+
+Either send me a mp at Valalol#4360 or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation) fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
 
 
 ## License
