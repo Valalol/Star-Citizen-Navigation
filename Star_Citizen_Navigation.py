@@ -128,6 +128,38 @@ def Start_Planetary_Navigation_Custom_POI():
     root.destroy()
 
 
+def Space_Known_or_custom_selected(event):
+    if Space_Known_or_custom_POI_Combobox.get() == "Known POI" :
+        Space_Known_POI_Frame.grid(column='2', row='0')
+        Space_Custom_POI_Frame.grid_forget()
+    
+    
+    elif Space_Known_or_custom_POI_Combobox.get() == "Custom POI" :
+        Space_Known_POI_Frame.grid_forget()
+        Space_Custom_POI_Frame.grid(column='2', row='0')
+
+
+def Space_Known_Target_Selected(event):
+    Space_Known_POI_Frame_Start_Navigation_Button.grid(column='1', padx='8', pady='8', row='0')
+
+
+def Start_Space_Navigation_Known_POI():
+    global Target, Mode
+    Mode = Program_mode_selection_Combobox.get()
+    Target = Database["Space_POI"][f'{POI_Selection_Combobox.get()}']
+    
+    root.destroy()
+
+
+def Start_Space_Navigation_Custom_POI():
+    global Target, Mode
+    Mode = Program_mode_selection_Combobox.get()
+    Target = {'Name': 'Custom POI', 'Container': 0, 'X': float(Space_X_Custom_POI_Entry.get()), 'Y': float(Space_Y_Custom_POI_Entry.get()), 'Z': float(Space_Z_Custom_POI_Entry.get())}
+    
+    root.destroy()
+
+
+
 
 #root
 root = tk.Tk()
@@ -207,12 +239,65 @@ Planetary_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pa
 
 
 
+
 #Space Navigation frame
 Space_Navigation_Frame = ttk.Frame(MainWindow)
 Space_Navigation_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
 
-Space_Navigation_WIP_Label = tk.Label(Space_Navigation_Frame, text="Work in progress")
-Space_Navigation_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
+
+Space_Known_or_custom_POI_Combobox = ttk.Combobox(Space_Navigation_Frame, state='readonly', values = ["Known POI", "Custom POI"])
+Space_Known_or_custom_POI_Combobox.bind("<<ComboboxSelected>>", Space_Known_or_custom_selected)
+Space_Known_or_custom_POI_Combobox.grid(column='1', padx='8', pady='8', row='0')
+
+
+
+#Known Poi Selection
+Space_Known_POI_Frame = ttk.Frame(Space_Navigation_Frame)
+Space_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+
+POI_Selection_Combobox = ttk.Combobox(Space_Known_POI_Frame, state='readonly', values = Space_POI_list)
+POI_Selection_Combobox.bind("<<ComboboxSelected>>", Space_Known_Target_Selected)
+POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
+
+
+Space_Known_POI_Frame_Start_Navigation_Button = tk.Button(Space_Known_POI_Frame, text="Start Navigation", command=Start_Space_Navigation_Known_POI)
+
+
+
+#Custom Poi Selection
+Space_Custom_POI_Frame = ttk.Frame(Space_Navigation_Frame)
+Space_Custom_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+
+
+Space_X_Custom_POI_Small_X = tk.Label(Space_Custom_POI_Frame, text="X =")
+Space_X_Custom_POI_Small_Y = tk.Label(Space_Custom_POI_Frame, text="Y =")
+Space_X_Custom_POI_Small_Z = tk.Label(Space_Custom_POI_Frame, text="Z =")
+
+Space_X_Custom_POI_Small_X.grid(column='0', padx='1', pady='3', row='0')
+Space_X_Custom_POI_Small_Y.grid(column='0', padx='1', pady='3', row='1')
+Space_X_Custom_POI_Small_Z.grid(column='0', padx='1', pady='3', row='2')
+
+
+Space_X_Custom_POI_Entry = tk.Entry(Space_Custom_POI_Frame)
+Space_Y_Custom_POI_Entry = tk.Entry(Space_Custom_POI_Frame)
+Space_Z_Custom_POI_Entry = tk.Entry(Space_Custom_POI_Frame)
+
+Space_X_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='0')
+Space_Y_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='1')
+Space_Z_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='2')
+
+
+Space_Custom_POI_Frame_Start_Navigation_Button = tk.Button(Space_Custom_POI_Frame, text="Start Navigation", command=Start_Space_Navigation_Custom_POI)
+Space_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pady='2', row='1')
+
+
+
+
+
+
+
+
 
 
 
@@ -487,9 +572,9 @@ while True:
                         else :
                             print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
                 
-                if Course_Deviation <= 5:
+                if Course_Deviation <= 10:
                     print(f"Course Deviation          : {colors.Green}{round(Course_Deviation, 1)}°{colors.Reset}")
-                elif Course_Deviation > 5 and Course_Deviation <= 15:
+                elif 10 < Course_Deviation <= 20:
                     print(f"Course Deviation          : {colors.Yellow}{round(Course_Deviation, 1)}°{colors.Reset}")
                 else:
                     print(f"Course Deviation          : {colors.Red}{round(Course_Deviation, 1)}°{colors.Reset}")
@@ -589,40 +674,25 @@ while True:
         #----------------------------------------------------Display cool data--------------------------------------------------------------
 
 
-                print(f"-------------------------------------------------------------------------------------------")
-                print(f"Destination : {Target['Name']}   Updated : {time.strftime('%H:%M:%S', time.localtime(New_time))}")
-                print(f"")
-                print(f"         Player Global Coordinates       Distance to the POI       Delta distance to the POI ")
+                print(f"-------------------------------------------------------------------------")
+                print(f"Updated                   : {colors.Cyan}{time.strftime('%H:%M:%S', time.localtime(New_time))}{colors.Reset},  Destination : {colors.Cyan}{Target['Name']}{colors.Reset}")
                 
-                if Delta_Distance_to_POI['X'] <= 0 :
-                    print(f"    X :  {New_Player_Global_coordinates['X']}{(31-len(str(New_Player_Global_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
-                else :
-                    print(f"    X :  {New_Player_Global_coordinates['X']}{(31-len(str(New_Player_Global_coordinates['X'])))*' '} {New_Distance_to_POI['X']}{(25-len(str(New_Distance_to_POI['X'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['X'])}{colors.Reset}")
-
-                if Delta_Distance_to_POI['Y'] <= 0 :
-                    print(f"    Y :  {New_Player_Global_coordinates['Y']}{(31-len(str(New_Player_Global_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
-                else :
-                    print(f"    Y :  {New_Player_Global_coordinates['Y']}{(31-len(str(New_Player_Global_coordinates['Y'])))*' '} {New_Distance_to_POI['Y']}{(25-len(str(New_Distance_to_POI['Y'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Y'])}{colors.Reset}")
-                
-                if Delta_Distance_to_POI['Z'] <= 0 :
-                    print(f"    Z :  {New_Player_Global_coordinates['Z']}{(31-len(str(New_Player_Global_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Green}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
-                else :
-                    print(f"    Z :  {New_Player_Global_coordinates['Z']}{(31-len(str(New_Player_Global_coordinates['Z'])))*' '} {New_Distance_to_POI['Z']}{(25-len(str(New_Distance_to_POI['Z'])))*' '} {colors.Red}{abs(Delta_Distance_to_POI['Z'])}{colors.Reset}")
+                print(f"Global coordinates        : {colors.Cyan}{round(New_Player_Global_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Z'], 3)}{colors.Reset}")
                 
                 if Delta_Distance_to_POI_Total <= 0 :
-                    print(f"Total :                                  {New_Distance_to_POI_Total}{(25-len(str(New_Distance_to_POI_Total)))*' '} {colors.Green}{abs(Delta_Distance_to_POI_Total)}{colors.Reset}")
+                    print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
                 else :
-                    print(f"Total :                                  {New_Distance_to_POI_Total}{(25-len(str(New_Distance_to_POI_Total)))*' '} {colors.Red}{abs(Delta_Distance_to_POI_Total)}{colors.Reset}")
+                    print(f"Distance to POI           : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
                 
-                print(f"")
-
-
-                print(f"Estimated time of arrival = {Estimated_time_of_arrival} secondes")
-                print(f"")
-
-                print(f"Course deviation = {Course_Deviation}\N{DEGREE SIGN}")
-
-                print(f"-------------------------------------------------------------------------------------------")
+                if Course_Deviation <= 10:
+                    print(f"Course Deviation          : {colors.Green}{round(Course_Deviation, 1)}°{colors.Reset}")
+                elif 10 < Course_Deviation <= 20:
+                    print(f"Course Deviation          : {colors.Yellow}{round(Course_Deviation, 1)}°{colors.Reset}")
+                else:
+                    print(f"Course Deviation          : {colors.Red}{round(Course_Deviation, 1)}°{colors.Reset}")
+                
+                
+                print(f"Estimated time of arrival : {colors.Cyan}{int(Estimated_time_of_arrival)//60} Min {int(Estimated_time_of_arrival)%60} Sec{colors.Reset}")
 
 
 
