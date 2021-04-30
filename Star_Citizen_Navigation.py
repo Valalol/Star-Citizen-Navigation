@@ -327,17 +327,20 @@ root.mainloop()
 
 
 def angle_between_vectors(a, b):
-    """Function that return an angle in degrees between 2 vectors"""
+    """Function that returns an angle in degrees between 2 vectors"""
 
     try :
-        angle = degrees(acos((a["X"]*b["X"] + a["Y"]*b["Y"] + a["Z"]*b["Z"]) / (vector_norm(a) * vector_norm(b))))
+        angle = degrees(acos(vector_product(a, b) / (vector_norm(a) * vector_norm(b))))
     except :
         angle = 0.0
     return angle
 
+def vector_product(a, b):
+    """Returns the dot product of two vectors"""
+    return a["X"]*b["X"] + a["Y"]*b["Y"] + a["Z"]*b["Z"]
 
 def vector_norm(a):
-    """Return the norm of a vector """
+    """Returns the norm of a vector"""
     return sqrt(a["X"]**2 + a["Y"]**2 + a["Z"]**2)
 
 
@@ -549,6 +552,51 @@ while True:
 
 
 
+        #----------------------------------------------------------Flat_angle--------------------------------------------------------------
+                previous = Old_player_local_rotated_coordinates
+                current = New_player_local_rotated_coordinates
+
+
+                #Vector AB (Previous -> Current)
+                previous_to_current = {}
+                for i in ["X", "Y", "Z"]:
+                    previous_to_current[i] = current[i] - previous[i]
+                
+                #Vector AC (C = center of the planet, Previous -> Center)
+                previous_to_center = {}
+                for i in ["X", "Y", "Z"]:
+                    previous_to_center[i] = 0 - previous[i]
+                
+                #Vector BD (Current -> Target)
+                current_to_target = {}
+                for i in ["X", "Y", "Z"]:
+                    current_to_target[i] = Target[i] - current[i]
+                
+                    #Vector BC (C = center of the planet, Current -> Center)
+                current_to_center = {}
+                for i in ["X", "Y", "Z"]:
+                    current_to_center[i] = 0 - current[i]
+                
+                
+                
+                #Normal vector of a plane:
+                #abc : Previous/Current/Center 
+                n1 = {}
+                n1["X"] = previous_to_current["Y"] * previous_to_center["Z"] - previous_to_current["Z"] * previous_to_center["Y"]
+                n1["Y"] = previous_to_current["Z"] * previous_to_center["X"] - previous_to_current["X"] * previous_to_center["Z"]
+                n1["Z"] = previous_to_current["X"] * previous_to_center["Y"] - previous_to_current["Y"] * previous_to_center["X"]
+                
+                #acd : Previous/Center/Target
+                n2 = {}
+                n2["X"] = current_to_target["Y"] * current_to_center["Z"] - current_to_target["Z"] * current_to_center["Y"]
+                n2["Y"] = current_to_target["Z"] * current_to_center["X"] - current_to_target["X"] * current_to_center["Z"]
+                n2["Z"] = current_to_target["X"] * current_to_center["Y"] - current_to_target["Y"] * current_to_center["X"]
+                
+                Flat_angle = angle_between_vectors(n1, n2)
+            
+            
+
+
         #---------------------------------------------------Display cool data---------------------------------------------------------------
 
                 print(f"-------------------------------------------------------------------------")
@@ -578,6 +626,13 @@ while True:
                     print(f"Course Deviation          : {colors.Yellow}{round(Course_Deviation, 1)}°{colors.Reset}")
                 else:
                     print(f"Course Deviation          : {colors.Red}{round(Course_Deviation, 1)}°{colors.Reset}")
+                
+                if Flat_angle <= 10:
+                    print(f"Flat Angle                : {colors.Green}{round(Flat_angle, 1)}°{colors.Reset}")
+                elif 10 < Flat_angle <= 20:
+                    print(f"Flat Angle                : {colors.Yellow}{round(Flat_angle, 1)}°{colors.Reset}")
+                else:
+                    print(f"Flat Angle                : {colors.Red}{round(Flat_angle, 1)}°{colors.Reset}")
                 
                 
                 print(f"Estimated time of arrival : {colors.Cyan}{int(Estimated_time_of_arrival)//60} Min {int(Estimated_time_of_arrival)%60} Sec{colors.Reset}")
