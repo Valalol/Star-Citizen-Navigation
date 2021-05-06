@@ -10,6 +10,62 @@
             "OM Radius": 11733.75,
             "Body Radius": 7450.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Crusader",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 11733.75,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Crusader",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -11733.75,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Crusader",
+                    "X": 0.0,
+                    "Y": 11733.75,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Crusader",
+                    "X": 0.0,
+                    "Y": -11733.75,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Crusader",
+                    "X": 11733.75,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Crusader",
+                    "X": -11733.75,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST2-55": {
+                    "Name": "Comm Array ST2-55",
+                    "Container": "Crusader",
+                    "X": -1387.917,
+                    "Y": 7850.592,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Port Olisar": {
                     "Name": "Port Olisar",
                     "Container": "Crusader",
@@ -30,6 +86,62 @@
             "OM Radius": 380.53,
             "Body Radius": 260.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Cellin",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 380.53,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Cellin",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -380.53,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Cellin",
+                    "X": 0.0,
+                    "Y": 380.53,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Cellin",
+                    "X": 0.0,
+                    "Y": -380.53,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Cellin",
+                    "X": 380.53,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Cellin",
+                    "X": -380.53,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST2-28": {
+                    "Name": "Comm Array ST2-28",
+                    "Container": "Cellin",
+                    "X": 242.244,
+                    "Y": 347.193,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Gallete Family Farms": {
                     "Name": "Gallete Family Farms",
                     "Container": "Cellin",
@@ -170,6 +282,62 @@
             "OM Radius": 430.027,
             "Body Radius": 295.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Daymar",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 430.027,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Daymar",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -430.027,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Daymar",
+                    "X": 0.0,
+                    "Y": 430.027,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Daymar",
+                    "X": 0.0,
+                    "Y": -430.027,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Daymar",
+                    "X": 430.027,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Daymar",
+                    "X": -430.027,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST2-47": {
+                    "Name": "Comm Array ST2-47",
+                    "Container": "Daymar",
+                    "X": -435.617,
+                    "Y": -146.996,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "ArcCorp Mining Area 141": {
                     "Name": "ArcCorp Mining Area 141",
                     "Container": "Daymar",
@@ -390,6 +558,62 @@
             "OM Radius": 455.483,
             "Body Radius": 313.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Yela",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 455.483,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Yela",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -455.483,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Yela",
+                    "X": 0.0,
+                    "Y": 455.483,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Yela",
+                    "X": 0.0,
+                    "Y": -455.483,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Yela",
+                    "X": 455.483,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Yela",
+                    "X": -455.483,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST2-76": {
+                    "Name": "Comm Array ST2-76",
+                    "Container": "Yela",
+                    "X": 150.336,
+                    "Y": -454.428,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Grim HEX": {
                     "Name": "Grim HEX",
                     "Container": "Yela",
@@ -538,6 +762,62 @@
             "OM Radius": 1427.047,
             "Body Radius": 1000.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Hurston",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1427.047,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Hurston",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -1427.047,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Hurston",
+                    "X": 0.0,
+                    "Y": 1427.047,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Hurston",
+                    "X": 0.0,
+                    "Y": -1427.047,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Hurston",
+                    "X": 1427.047,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Hurston",
+                    "X": -1427.047,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST1-61": {
+                    "Name": "Comm Array ST1-61",
+                    "Container": "Hurston",
+                    "X": 919.253,
+                    "Y": -771.345,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Lorville": {
                     "Name": "Lorville",
                     "Container": "Hurston",
@@ -998,6 +1278,62 @@
             "OM Radius": 500.03,
             "Body Radius": 344.5,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Arial",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 500.03,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Arial",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -500.03,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Arial",
+                    "X": 0.0,
+                    "Y": 500.03,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Arial",
+                    "X": 0.0,
+                    "Y": -500.03,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Arial",
+                    "X": 500.03,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Arial",
+                    "X": -500.03,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST1-13": {
+                    "Name": "Comm Array ST1-13",
+                    "Container": "Arial",
+                    "X": -78.76,
+                    "Y": 505.628,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "HDMS Bezdek": {
                     "Name": "HDMS Bezdek",
                     "Container": "Arial",
@@ -1058,6 +1394,62 @@
             "OM Radius": 400.329,
             "Body Radius": 274.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Aberdeen",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 400.329,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Aberdeen",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -400.329,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Aberdeen",
+                    "X": 0.0,
+                    "Y": 400.329,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Aberdeen",
+                    "X": 0.0,
+                    "Y": -400.329,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Aberdeen",
+                    "X": 400.329,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Aberdeen",
+                    "X": -400.329,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST1-92": {
+                    "Name": "Comm Array ST1-92",
+                    "Container": "Aberdeen",
+                    "X": -435.359,
+                    "Y": -45.214,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "HDMS Anderson": {
                     "Name": "HDMS Anderson",
                     "Container": "Aberdeen",
@@ -1182,6 +1574,62 @@
             "OM Radius": 494.841,
             "Body Radius": 340.83,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Magda",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 494.841,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Magda",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -494.841,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Magda",
+                    "X": 0.0,
+                    "Y": 494.841,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Magda",
+                    "X": 0.0,
+                    "Y": -494.841,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Magda",
+                    "X": 494.841,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Magda",
+                    "X": -494.841,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST1-48": {
+                    "Name": "Comm Array ST1-48",
+                    "Container": "Magda",
+                    "X": 295.516,
+                    "Y": 413.046,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "HDMS Hahn": {
                     "Name": "HDMS Hahn",
                     "Container": "Magda",
@@ -1234,6 +1682,62 @@
             "OM Radius": 472.454,
             "Body Radius": 325.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Ita",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 472.454,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Ita",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -472.454,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Ita",
+                    "X": 0.0,
+                    "Y": 472.454,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Ita",
+                    "X": 0.0,
+                    "Y": -472.454,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Ita",
+                    "X": 472.454,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Ita",
+                    "X": -472.454,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST1-02": {
+                    "Name": "Comm Array ST1-02",
+                    "Container": "Ita",
+                    "X": 122.153,
+                    "Y": -475.821,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "HDMS Ryder": {
                     "Name": "HDMS Ryder",
                     "Container": "Ita",
@@ -1294,6 +1798,62 @@
             "OM Radius": 1144.205,
             "Body Radius": 800.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "ArcCorp",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1144.205,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "ArcCorp",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -1144.205,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "ArcCorp",
+                    "X": 0.0,
+                    "Y": 1144.205,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "ArcCorp",
+                    "X": 0.0,
+                    "Y": -1144.205,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "ArcCorp",
+                    "X": 1144.205,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "ArcCorp",
+                    "X": -1144.205,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST3-90": {
+                    "Name": "Comm Array ST3-90",
+                    "Container": "ArcCorp",
+                    "X": 758.384,
+                    "Y": -636.36,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Area 04": {
                     "Name": "Area 04",
                     "Container": "ArcCorp",
@@ -1362,6 +1922,62 @@
             "OM Radius": 328.204,
             "Body Radius": 223.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Lyria",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 328.204,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Lyria",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -328.204,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Lyria",
+                    "X": 0.0,
+                    "Y": 328.204,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Lyria",
+                    "X": 0.0,
+                    "Y": -328.204,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Lyria",
+                    "X": 328.204,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Lyria",
+                    "X": -328.204,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST3-18": {
+                    "Name": "Comm Array ST3-18",
+                    "Container": "Lyria",
+                    "X": -382.727,
+                    "Y": 33.034,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Humboldt Mines": {
                     "Name": "Humboldt Mines",
                     "Container": "Lyria",
@@ -1518,6 +2134,62 @@
             "OM Radius": 413.056,
             "Body Radius": 283.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Wala",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 413.056,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Wala",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -413.056,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Wala",
+                    "X": 0.0,
+                    "Y": 413.056,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Wala",
+                    "X": 0.0,
+                    "Y": -413.056,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Wala",
+                    "X": 413.056,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Wala",
+                    "X": -413.056,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST3-35": {
+                    "Name": "Comm Array ST3-35",
+                    "Container": "Wala",
+                    "X": 365.821,
+                    "Y": -257.408,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "ArcCorp Mining Area 045": {
                     "Name": "ArcCorp Mining Area 045",
                     "Container": "Wala",
@@ -1602,6 +2274,62 @@
             "OM Radius": 1427.047,
             "Body Radius": 1000.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Microtech",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1427.047,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Microtech",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -1427.047,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Microtech",
+                    "X": 0.0,
+                    "Y": 1427.047,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Microtech",
+                    "X": 0.0,
+                    "Y": -1427.047,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Microtech",
+                    "X": 1427.047,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Microtech",
+                    "X": -1427.047,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST4-22": {
+                    "Name": "Comm Array ST4-22",
+                    "Container": "Microtech",
+                    "X": 771.345,
+                    "Y": 919.253,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "New Babbage": {
                     "Name": "New Babbage",
                     "Container": "Microtech",
@@ -1958,6 +2686,62 @@
             "OM Radius": 352.246,
             "Body Radius": 240.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Calliope",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 352.246,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Calliope",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -352.246,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Calliope",
+                    "X": 0.0,
+                    "Y": 352.246,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Calliope",
+                    "X": 0.0,
+                    "Y": -352.246,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Calliope",
+                    "X": 352.246,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Calliope",
+                    "X": -352.246,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST4-31": {
+                    "Name": "Comm Array ST4-31",
+                    "Container": "Calliope",
+                    "X": 189.547,
+                    "Y": 354.905,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Rayari Anvik Research Outpost": {
                     "Name": "Rayari Anvik Research Outpost",
                     "Container": "Calliope",
@@ -2122,6 +2906,62 @@
             "OM Radius": 489.664,
             "Body Radius": 337.17,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Clio",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -489.664,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Clio",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -489.664,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Clio",
+                    "X": 0.0,
+                    "Y": 489.664,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Clio",
+                    "X": 0.0,
+                    "Y": -489.664,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Clio",
+                    "X": 489.664,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Clio",
+                    "X": -489.664,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST4-59": {
+                    "Name": "Comm Array ST4-59",
+                    "Container": "Clio",
+                    "X": -318.257,
+                    "Y": 390.837,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Rayari Cantwell Research Outpost": {
                     "Name": "Rayari Cantwell Research Outpost",
                     "Container": "Clio",
@@ -2238,6 +3078,62 @@
             "OM Radius": 314.061,
             "Body Radius": 213.0,
             "POI": {
+                "OM-1": {
+                    "Name": "OM-1",
+                    "Container": "Euterpe",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 314.061,
+                    "QTMarker": "TRUE"
+                },
+                "OM-2": {
+                    "Name": "OM-2",
+                    "Container": "Euterpe",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -314.061,
+                    "QTMarker": "TRUE"
+                },
+                "OM-3": {
+                    "Name": "OM-3",
+                    "Container": "Euterpe",
+                    "X": 0.0,
+                    "Y": 314.061,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-4": {
+                    "Name": "OM-4",
+                    "Container": "Euterpe",
+                    "X": 0.0,
+                    "Y": -314.061,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-5": {
+                    "Name": "OM-5",
+                    "Container": "Euterpe",
+                    "X": 314.061,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "OM-6": {
+                    "Name": "OM-6",
+                    "Container": "Euterpe",
+                    "X": -314.061,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Comm Array ST4-64": {
+                    "Name": "Comm Array ST4-64",
+                    "Container": "Euterpe",
+                    "X": 362.788,
+                    "Y": 88.702,
+                    "Z": 24.0,
+                    "QTMarker": "TRUE"
+                },
                 "Bud's Growery": {
                     "Name": "Bud's Growery",
                     "Container": "Euterpe",
@@ -2407,7 +3303,8 @@
             "Container": 0,
             "X": 20196776410.415634,
             "Y": 33456387485.680557,
-            "Z": 2896115.502795
+            "Z": 2896115.502795,
+            "QTMarker": "TRUE"
         }
     }
 }
