@@ -138,6 +138,4 @@ dmypy.json
 cython_debug/
 
 .vscode/
-Local Files/
-Assisted navigation tool/
-Assisted navigation tool.zip
+Logs/

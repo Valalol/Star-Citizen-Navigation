@@ -11,6 +11,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import json
 import os
+import csv
 
 os.system("")
 
@@ -165,7 +166,7 @@ def Start_Space_Navigation_Custom_POI():
 root = tk.Tk()
 
 root.title("Navigation Tool")
-root.iconbitmap('Icon.ico')
+root.iconbitmap(r'Images/Icon.ico')
 
 
 #Man Frame
@@ -320,9 +321,17 @@ Racing_Tool_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
 
 root.mainloop()
 
+Log_Mode = True
 
 #-------------------------------------------------------------GUI-----------------------------------------------------------------------
 #-------------------------------------------------------------END-----------------------------------------------------------------------
+
+if Mode == '':
+    print(f'Program Mode not selected')
+    time.sleep(1/3)
+    print(f'Closing program ...')
+    time.sleep(1)
+    exit()
 
 
 def vector_norm(a):
@@ -355,6 +364,24 @@ Epoch = datetime(1970, 1, 1)
 Reference_time = (Reference_time_UTC - Epoch).total_seconds()
 
 
+if Log_Mode == True:
+    if not os.path.isdir('Logs'):
+        os.mkdir('Logs')
+
+    if not os.path.isfile('Logs/Logs.csv'):
+        field = ['Key', 'X', 'Y', 'Z', 'Container', 'Longitude', 'Latitude', 'Height']
+        with open("Logs/Logs.csv","w+", newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(field)
+    
+    New_run_field = ['New_Run']
+    with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(New_run_field)
+
+
+
+
 Old_clipboard = ""
 
 Old_player_Global_coordinates = {}
@@ -373,7 +400,7 @@ Old_time = time.time()
 pyperclip.copy("")
 
 
-print("Program has started")
+print("Program is ready \nType the command '/showlocation' in the chat to start the navigation")
 
 
 while True:
@@ -442,7 +469,17 @@ while True:
 
                 #---------------------------------------------------Actual Container----------------------------------------------------------------
                 #search in the Databse to see if the player is ina Container
-                Actual_Container = 0
+                Actual_Container = {
+                    "Name": None,
+                    "X": 0,
+                    "Y": 0,
+                    "Z": 0,
+                    "Rotation Speed": 0,
+                    "Rotation Adjust": 0,
+                    "OM Radius": 0,
+                    "Body Radius": 0,
+                    "POI": {}
+                }
                 for i in Database["Containers"] :
                     Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
                     if vector_norm(Player_Container_vector) <= 1.5 * Database["Containers"][i]["OM Radius"]:
@@ -451,32 +488,38 @@ while True:
 
 
                 #-------------------------------------------------New player local Long Lat Height--------------------------------------------------
-                if Actual_Container != 0:
-                    if Actual_Container['Name'] == Target['Container']:
-                        try :
-                            #Cartesian Coordinates
-                            x = New_player_local_rotated_coordinates["X"]
-                            y = New_player_local_rotated_coordinates["Y"]
-                            z = New_player_local_rotated_coordinates["Z"]
+                
+                if Actual_Container['Name'] == Target['Container']:
+                    
+                    #Cartesian Coordinates
+                    x = New_player_local_rotated_coordinates["X"]
+                    y = New_player_local_rotated_coordinates["Y"]
+                    z = New_player_local_rotated_coordinates["Z"]
 
-                            #Radius of the container
-                            Radius = Actual_Container["Body Radius"]
+                    #Radius of the container
+                    Radius = Actual_Container["Body Radius"]
 
-                            #Radial_Distance
-                            Radial_Distance = sqrt(x**2 + y**2 + z**2)
+                    #Radial_Distance
+                    Radial_Distance = sqrt(x**2 + y**2 + z**2)
 
-                            #Height
-                            Height = Radial_Distance - Radius
+                    #Height
+                    Height = Radial_Distance - Radius
+                    
+                    #Longitude
+                    try :
+                        Longitude = -1*degrees(atan2(x, y))
+                    except Exception as err:
+                        print(f'Error in Longitude : {err}')
+                        Longitude = 0
+                        continue
 
-                            #Longitude
-                            Longitude = degrees(atan2(x, y))
-
-                            #Latitude
-                            Latitude = degrees(asin(z/Radius))
-
-                        except Exception as err:
-                            print(err)
-                            continue
+                    #Latitude
+                    try :
+                        Latitude = degrees(asin(z/Radius))
+                    except Exception as err:
+                        print(f'Error in Latitude : {err}')
+                        Latitude = 0
+                        continue
 
 
 
@@ -640,21 +683,20 @@ while True:
 
                 print(f"Global coordinates                : {colors.Cyan}{round(New_Player_Global_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Z'], 3)}{colors.Reset}")
 
-                if Actual_Container == 0:
+                if Actual_Container['Name'] == None:
                     print(f"Actual Container                  : {colors.Yellow}None{colors.Reset}")
                 elif Actual_Container['Name'] == Target['Container']:
                     print(f"Actual Container                  : {colors.Green}{Actual_Container['Name']}{colors.Reset}")
                 else :
                     print(f"Actual Container                  : {colors.Red}{Actual_Container['Name']}{colors.Reset}")
 
-                if Actual_Container != 0:
-                    if Actual_Container['Name'] == Target['Container']:
-                        print(f"Local coordinates                 : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
+                if Actual_Container['Name'] == Target['Container']:
+                    print(f"Local coordinates                 : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
 
-                        if Delta_Distance_to_POI_Total <= 0 :
-                            print(f"Distance to POI                   : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
-                        else :
-                            print(f"Distance to POI                   : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
+                    if Delta_Distance_to_POI_Total <= 0 :
+                        print(f"Distance to POI                   : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Green}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
+                    else :
+                        print(f"Distance to POI                   : {colors.Cyan}{round(New_Distance_to_POI_Total, 3)} km{colors.Reset} (Delta : {colors.Red}{round(abs(Delta_Distance_to_POI_Total), 3)} km{colors.Reset})")
 
                 if Total_deviation_from_target <= 10:
                     print(f"Total deviation from target       : {colors.Green}{round(Total_deviation_from_target, 1)}°{colors.Reset}")
@@ -664,20 +706,26 @@ while True:
                     print(f"Total deviation from target       : {colors.Red}{round(Total_deviation_from_target, 1)}°{colors.Reset}")
 
 
-                if Actual_Container != 0:
-                    if Actual_Container['Name'] == Target['Container']:
-                        if Flat_angle <= 10:
-                            print(f"Horizontal deviation from target  : {colors.Green}{round(Flat_angle, 1)}°{colors.Reset}")
-                        elif 10 < Flat_angle <= 20:
-                            print(f"Horizontal deviation from target  : {colors.Yellow}{round(Flat_angle, 1)}°{colors.Reset}")
-                        else:
-                            print(f"Horizontal deviation from target  : {colors.Red}{round(Flat_angle, 1)}°{colors.Reset}")
+                if Actual_Container['Name'] == Target['Container']:
+                    if Flat_angle <= 10:
+                        print(f"Horizontal deviation from target  : {colors.Green}{round(Flat_angle, 1)}°{colors.Reset}")
+                    elif 10 < Flat_angle <= 20:
+                        print(f"Horizontal deviation from target  : {colors.Yellow}{round(Flat_angle, 1)}°{colors.Reset}")
+                    else:
+                        print(f"Horizontal deviation from target  : {colors.Red}{round(Flat_angle, 1)}°{colors.Reset}")
 
 
                 print(f"Estimated time of arrival         : {colors.Cyan}{int(Estimated_time_of_arrival)//60} Min {int(Estimated_time_of_arrival)%60} Sec{colors.Reset}")
 
 
 
+                #------------------------------------------------------------Logs update------------------------------------------------------------
+                if Log_Mode == True:
+                    fields = ['None', str(New_player_local_rotated_coordinates['X']), str(New_player_local_rotated_coordinates['Y']), str(New_player_local_rotated_coordinates['Z']), str(Actual_Container['Name']), str(Longitude), str(Latitude), str(Height)]
+
+                    with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
+                        writer = csv.writer(csv_file)
+                        writer.writerow(fields)
 
 
 

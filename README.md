@@ -28,12 +28,18 @@ The `Database.json` file contains all the data the program needs to operate (rot
 ### Displayed Informations
 During navigation, various information are displayed:
 - `Updated` : The time of the last command
-- `Destination` : Your target
+- `Target` : Your target
+- `Closest Orbital Markers` : The 3 closest Orbital Markers from the target
+- `Closest Quantum Beacon to target` : The closest Quantum Beacon from the target to start the navigation
 - `Global coordinates` : The global coordinates of your character
 - `Actual Container` : The planet/moon you are around
        (red: bad star, yellow: in the middle of nowhere, green: around the star of your target)
-- `Course Deviation` : The angle between your previous position, your current position and your target
-       (red : Angle > 15°, Yellow : 15° > Angle > 5°, green: 5° > Angle)
+- `Total Deviation from target` : The angle between your previous position, your current position and your target
+
+  (red : Angle > 20°, Yellow : 20° > Angle > 10°, green: 10° > Angle)
+- `Horizontal Deviation from target` : The flat angle between your previous position, your current position and your target. It allows to ignore the vertical deviation and to get an heading to the target.
+
+  (red : Angle > 20°, Yellow : 20° > Angle > 10°, green: 10° > Angle)
 - `Estimated time of arrival` : Approximate time of arrival at your target if the speed is kept constant
 
 If you are around your target's container, two other pieces of information are displayed:
@@ -42,7 +48,8 @@ If you are around your target's container, two other pieces of information are d
        (green if you get closer, red if you move away)
 
 ### Screenshot
-![Screenshot of the tool](Images/Screenshot_1.png)
+![Screenshot of the main window](Images/Screenshot_1.png)
+![Screenshot of the app running with Javelin Wreck](Images/Screenshot_2.png)
 
 
 
