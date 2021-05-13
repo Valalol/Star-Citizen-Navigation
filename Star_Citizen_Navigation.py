@@ -452,8 +452,13 @@ while True:
 
                 #Grab the rotation speed of the container in the Database and convert it in degrees/s
                 Rotation_speed_in_hours_per_rotation = Database["Containers"][Target["Container"]]["Rotation Speed"]
-                Rotation_speed_in_degrees_per_second = 0.1 * (1/Rotation_speed_in_hours_per_rotation)
-
+                try:
+                    Rotation_speed_in_degrees_per_second = 0.1 * (1/Rotation_speed_in_hours_per_rotation)
+                except ZeroDivisionError:
+                    Rotation_speed_in_degrees_per_second = 0
+                    continue
+                
+                
                 #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
                 Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjust"]) % 360
 
