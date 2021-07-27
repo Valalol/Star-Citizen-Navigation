@@ -20,7 +20,12 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./Icon.ico"
+        "icon": "./Icon.ico",
+        "files": [
+          "!.git/",
+          "!Logs/",
+          "!.gitignore"
+        ]
       },
       "makers": [
         {
