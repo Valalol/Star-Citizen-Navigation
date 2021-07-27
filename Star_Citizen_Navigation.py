@@ -160,6 +160,13 @@ def Start_Space_Navigation_Custom_POI():
     root.destroy()
 
 
+def Start_Companion():
+    global Mode
+    Mode = Program_mode_selection_Combobox.get()
+
+    root.destroy()
+
+
 
 
 #root
@@ -306,8 +313,8 @@ Space_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pady='
 Companion_Tool_Frame = ttk.Frame(MainWindow)
 Companion_Tool_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
 
-Companion_Tool_WIP_Label = tk.Label(Companion_Tool_Frame, text="Work in progress")
-Companion_Tool_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
+Start_Companion_Button = tk.Button(Companion_Tool_Frame, text="Start Companion", command=Start_Companion)
+Start_Companion_Button.grid(column='0', padx='8', pady='8', row='0')
 
 
 
@@ -494,7 +501,7 @@ while True:
 
                 #-------------------------------------------------New player local Long Lat Height--------------------------------------------------
                 
-                if Actual_Container['Name'] == Target['Container']:
+                if Actual_Container['Name'] != None:
                     
                     #Cartesian Coordinates
                     x = New_player_local_rotated_coordinates["X"]
@@ -514,17 +521,15 @@ while True:
                     try :
                         Longitude = -1*degrees(atan2(x, y))
                     except Exception as err:
-                        print(f'Error in Longitude : {err}')
+                        print(f'Error in Longitude : {err} \nx = {x}, y = {y} \nPlease report this to Valalol#4360 for me to try to solve this issue')
                         Longitude = 0
-                        continue
 
                     #Latitude
                     try :
-                        Latitude = degrees(asin(z/Radius))
+                        Latitude = degrees(asin(z/Radial_Distance))
                     except Exception as err:
-                        print(f'Error in Latitude : {err}')
+                        print(f'Error in Latitude : {err} \nz = {z}, radius = {Radial_Distance} \nPlease report this at Valalol#4360 for me to try to solve this issue')
                         Latitude = 0
-                        continue
 
 
 
@@ -674,7 +679,7 @@ while True:
 
 
 
-                #---------------------------------------------------Display cool data---------------------------------------------------------------)))))))))
+                #---------------------------------------------------Display cool data---------------------------------------------------------------
 
                 print(f"---------------------------------------------------------------------------------------")
                 print(f"Updated                           : {colors.Cyan}{time.strftime('%H:%M:%S', time.localtime(New_time))}{colors.Reset}")
@@ -726,11 +731,12 @@ while True:
 
                 #------------------------------------------------------------Logs update------------------------------------------------------------
                 if Log_Mode == True:
-                    fields = ['None', str(New_player_local_rotated_coordinates['X']), str(New_player_local_rotated_coordinates['Y']), str(New_player_local_rotated_coordinates['Z']), str(Actual_Container['Name']), str(Longitude), str(Latitude), str(Height)]
+                    if Actual_Container['Name'] != None:
+                        fields = ['None', str(New_player_local_rotated_coordinates['X']), str(New_player_local_rotated_coordinates['Y']), str(New_player_local_rotated_coordinates['Z']), str(Actual_Container['Name']), str(Longitude), str(Latitude), str(Height)]
 
-                    with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
-                        writer = csv.writer(csv_file)
-                        writer.writerow(fields)
+                        with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
+                            writer = csv.writer(csv_file)
+                            writer.writerow(fields)
 
 
 
@@ -743,7 +749,7 @@ while True:
 
                 Old_time = New_time
 
-        #-------------------------------------------------------------------------------------------------------------------------------------------
+                #-------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -752,8 +758,8 @@ while True:
 
 
 
-        #-----------------------------------------------------Space Navigation------------------------------------------------------------------
-        #If the target is within the attraction of a planet
+            #-----------------------------------------------------Space Navigation------------------------------------------------------------------
+            #If the target is within the attraction of a planet
             if Mode == "Space Navigation":
 
                 #-----------------------------------------------------Distance to POI---------------------------------------------------------------
@@ -850,7 +856,184 @@ while True:
                 Old_time = New_time
 
 
-        #---------------------------------------------------------------------------------------------------------------------------------------
+            #---------------------------------------------------------------------------------------------------------------------------------------
+            
+            if Mode == "Companion":
+                
+                # Distance since last update
+                Distance_since_last_update = vector_norm({'X' : New_Player_Global_coordinates['X'] - Old_player_Global_coordinates['X'], 'Y' : New_Player_Global_coordinates['Y'] - Old_player_Global_coordinates['Y'], 'Z' : New_Player_Global_coordinates['Z'] - Old_player_Global_coordinates['Z']})
+                
+                
+                
+                # Actual container
+                # Search in the Database to see if the player is in a Container
+                Actual_Container = {
+                    "Name": None,
+                    "X": 0,
+                    "Y": 0,
+                    "Z": 0,
+                    "Rotation Speed": 0,
+                    "Rotation Adjust": 0,
+                    "OM Radius": 0,
+                    "Body Radius": 0,
+                    "POI": {}
+                }
+                for i in Database["Containers"] :
+                    Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
+                    if vector_norm(Player_Container_vector) <= 1.5 * Database["Containers"][i]["OM Radius"]:
+                        Actual_Container = Database["Containers"][i]
+                
+                
+                
+                
+                # If around a container :
+                if Actual_Container['Name'] != None :
+                    
+                    
+                    
+                    # Local coordinates
+                    
+                    #Time passed since the start of game simulation
+                    Time_passed_since_reference_in_seconds = New_time - Reference_time
+                    #Grab the rotation speed of the container in the Database and convert it in degrees/s
+                    Rotation_speed_in_hours_per_rotation = Actual_Container["Rotation Speed"]
+                    try:
+                        Rotation_speed_in_degrees_per_second = 0.1 * (1/Rotation_speed_in_hours_per_rotation)
+                    except ZeroDivisionError:
+                        Rotation_speed_in_degrees_per_second = 0
+                        continue
+                    
+                    #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
+                    Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Actual_Container["Rotation Adjust"]) % 360
+                    
+                    #get the new player unrotated coordinates
+                    New_player_local_unrotated_coordinates = {}
+                    for i in ['X', 'Y', 'Z']:
+                        New_player_local_unrotated_coordinates[i] = New_Player_Global_coordinates[i] - Actual_Container[i]
+                    
+                    #get the new player rotated coordinates
+                    New_player_local_rotated_coordinates = rotate_point_2D(New_player_local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
+                    
+                    
+                    
+                    
+                    
+                    
+                    # Lattitude, Longitude, Height
+                    
+                    #Radius of the container
+                    Radius = Actual_Container["Body Radius"]
+                    
+                    #Radial_Distance
+                    Radial_Distance = sqrt(New_player_local_rotated_coordinates["X"]**2 + New_player_local_rotated_coordinates["Y"]**2 + New_player_local_rotated_coordinates["Z"]**2)
+                    
+                    #Height
+                    Height = Radial_Distance - Radius
+                    
+                    #Longitude
+                    try :
+                        Longitude = -1*degrees(atan2(New_player_local_rotated_coordinates["X"], New_player_local_rotated_coordinates["Y"]))
+                    except Exception as err:
+                        print(f'Error in Longitude : {err} \nx = {New_player_local_rotated_coordinates["X"]}, y = {New_player_local_rotated_coordinates["Y"]} \nPlease report this to Valalol#4360 for me to try to solve this issue')
+                        Longitude = 0
+                    
+                    #Latitude
+                    try :
+                        Latitude = degrees(asin(New_player_local_rotated_coordinates["Z"]/Radial_Distance))
+                    except Exception as err:
+                        print(f'Error in Latitude : {err} \nz = {New_player_local_rotated_coordinates["Z"]}, radius = {Radial_Distance} \nPlease report this at Valalol#4360 for me to try to solve this issue')
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    # 3 closest OMs
+                    
+                    Closest_OM = {}
+                    
+                    if New_player_local_rotated_coordinates["X"] >= 0:
+                        Closest_OM["X"] = {"OM" : Actual_Container["POI"]["OM-5"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-5"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-5"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-5"]["Z"]})}
+                    else:
+                        Closest_OM["X"] = {"OM" : Actual_Container["POI"]["OM-6"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-6"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-6"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-6"]["Z"]})}
+                    if New_player_local_rotated_coordinates["Y"] >= 0:
+                        Closest_OM["Y"] = {"OM" : Actual_Container["POI"]["OM-3"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-3"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-3"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-3"]["Z"]})}
+                    else:
+                        Closest_OM["Y"] = {"OM" : Actual_Container["POI"]["OM-4"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-4"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-4"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-4"]["Z"]})}
+                    if New_player_local_rotated_coordinates["Z"] >= 0:
+                        Closest_OM["Z"] = {"OM" : Actual_Container["POI"]["OM-1"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-1"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-1"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-1"]["Z"]})}
+                    else:
+                        Closest_OM["Z"] = {"OM" : Actual_Container["POI"]["OM-2"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-2"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-2"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-2"]["Z"]})}
+                
+                
+                
+                
+                
+                
+                
+                    # 2 Closest POIs
+                    Player_to_POIs_Distances = []
+                    for POI in Database['Containers'][Actual_Container['Name']]["POI"]:
+                        Vector_POI_Player = {}
+                        for i in ["X", "Y", "Z"]:
+                            Vector_POI_Player[i] = abs(New_player_local_rotated_coordinates[i] - Database["Containers"][Actual_Container['Name']]["POI"][POI][i])
+                        Distance_POI_Player = vector_norm(Vector_POI_Player)
+                        Player_to_POIs_Distances.append({"Name" : POI, "Distance" : Distance_POI_Player})
+                
+                # for POI in Database['Space_POI']:
+                #     Vector_POI_Player = {}
+                #     for i in ["X", "Y", "Z"]:
+                #         Vector_POI_Player[i] = abs(New_Player_Global_coordinates[i] - Database["Space_POI"][POI][i])
+                #     Distance_POI_Player = vector_norm(Vector_POI_Player)
+                #     Player_to_POIs_Distances.append({"Name" : POI, "Distance" : Distance_POI_Player})
+                
+                
+                Player_to_POIs_Distances_Sorted = sorted(Player_to_POIs_Distances, key=lambda k: k['Distance'])
+                
+                
+                
+                
+                
+                
+                #---------------------------------------------------Display cool data------------------------------------------------------------------
+                
+                print(f"---------------------------------------------------------------------------------------")
+                print(f"Updated                           : {colors.Cyan}{time.strftime('%H:%M:%S', time.localtime(New_time))}{colors.Reset}")
+                
+                print(f"Global coordinates                : {colors.Cyan}{round(New_Player_Global_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_Player_Global_coordinates['Z'], 3)}{colors.Reset}")
+                
+                print(f"Distance since last update        : {colors.Cyan}{round(Distance_since_last_update, 3)} km{colors.Reset}")
+                
+                print(f"Actual Container                  : {colors.Cyan}{Actual_Container['Name']}{colors.Reset}")
+                
+                if Actual_Container['Name'] != None:
+                    print(f"Local coordinates                 : {colors.Cyan}{round(New_player_local_rotated_coordinates['X'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Y'], 3)}{colors.Reset}; {colors.Cyan}{round(New_player_local_rotated_coordinates['Z'], 3)}{colors.Reset}")
+                    
+                    print(f"Longitude/Latitude                : {colors.Cyan}{round(Longitude, 3)}°{colors.Reset} / {colors.Cyan}{round(Latitude, 3)}°{colors.Reset}")
+                    
+                    print(f"Height                            : {colors.Cyan}{round(Height, 3)} km{colors.Reset}")
+                    
+                    print(f"Closest OMs                       : {colors.Cyan}{Closest_OM['X']['OM']['Name']}({round(Closest_OM['X']['Distance'], 3)} km){colors.Reset}; {colors.Cyan}{Closest_OM['Y']['OM']['Name']}({round(Closest_OM['Y']['Distance'], 3)} km){colors.Reset}; {colors.Cyan}{Closest_OM['Z']['OM']['Name']}({round(Closest_OM['Z']['Distance'], 3)} km){colors.Reset}")
+                    
+                    print(f"2 Closest POIs                    : {colors.Cyan}{Player_to_POIs_Distances_Sorted[0]['Name']}({round(Player_to_POIs_Distances_Sorted[0]['Distance'], 3)} km){colors.Reset}, {colors.Cyan}{Player_to_POIs_Distances_Sorted[1]['Name']}({round(Player_to_POIs_Distances_Sorted[1]['Distance'], 3)} km){colors.Reset}")
+                
+                
+                
+                
+                
+                #---------------------------------------------------Update coordinates for the next update------------------------------------------
+                for i in ["X", "Y", "Z"]:
+                    Old_player_Global_coordinates[i] = New_Player_Global_coordinates[i]
+                
+                for i in ["X", "Y", "Z"]:
+                    Old_player_local_rotated_coordinates[i] = New_player_local_rotated_coordinates[i]
+                
+                Old_time = New_time
+                
+                #-------------------------------------------------------------------------------------------------------------------------------------------
 
 
         if new_clipboard == "1rst hotkey":

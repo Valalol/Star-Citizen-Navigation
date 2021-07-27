@@ -72,9 +72,9 @@ def animate (i):
         print('Updating ...')
         plt.cla()
         
-        if container != None:
+        if container != 'None':
             m.warpimage(f"Images/{container}_Sheet.jpg")
-        m.plot(longs, lats, latlon=True, color='c', marker='.', markersize=8, markeredgecolor='k', markeredgewidth=0.5, linestyle='-', linewidth=0.5, alpha=0.75)
+        m.plot(longs, lats, latlon=True, color='c', marker='.', markersize=9, markeredgecolor='k', markeredgewidth=0.5, linestyle='-', linewidth=0.8, alpha=0.75)
         
         old_data = new_data
 
