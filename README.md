@@ -41,7 +41,7 @@ If everything worked you should be able to launch the program called "star-citiz
 ## Contribute:
 ### How to contribute :
 
-Either send me a pm at Valalol#4360 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation) fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
+Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation) fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
 
 
 ## License
