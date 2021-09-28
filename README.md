@@ -31,17 +31,17 @@ The `Database.json` file contains all the data the program needs to operate (rot
 
 This program requires [Python](https://www.python.org/downloads/) to run and it **must be added to the PATH** during installation.
 
-Open a command prompt by clicking on the adress bar on top of this folder and by typing cmd then pressing Enter
-Then type pip install -r requirements.txt to install the library required
+Open a command prompt by pressing CTRL + R and by typing cmd then pressing Enter
+Then type `pip install pyperclip==1.8.2` to install the library required
 
-If everything worked you should be able to launch the program called "star-citizen-navigation-tool.exe" without problems
+If everything worked you should be able to launch the program called "star-citizen-navigation-tool.exe" without issues
 
 
 
 ## Contribute:
 ### How to contribute :
 
-Either send me a pm at Valalol#4360 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation) fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
+Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation) fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
 
 
 ## License
