@@ -1,20 +1,47 @@
 let { PythonShell } = require('python-shell')
 
+window.resizeTo(350,119)
 
 var Mode = ""
 
 let pyshell = new PythonShell('backend.py')
 
+error_message = "Something Wrong Happened. \nPlease see the error below \nIf anything shows up please report the issue to Valalol#1790 on Discord"
+
 pyshell.on('stderr', function (stderr) {
     console.log(stderr)
-    document.getElementById("status_icon").src = 'Images/red_dot.png';
-    document.getElementById("status_message").innerText = "Something Wrong Happened. \nPlease press Ctrl + Shift + I to open debug tools and check the console for potential errors. \nIf anything shows up please report the issue to Valalol#4360"
+    window.resizeTo(350,750)
+
+    document.getElementById("loading_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("loading_status_message").innerText = error_message
+    document.getElementById("loading_error_message").innerText = stderr
+    document.getElementById("planetary_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("planetary_status_message").innerText = error_message
+    document.getElementById("planetary_error_message").innerText = stderr
+    document.getElementById("space_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("space_status_message").innerText = error_message
+    document.getElementById("space_error_message").innerText = stderr
+    document.getElementById("companion_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("companion_status_message").innerText = error_message
+    document.getElementById("companion_error_message").innerText = stderr
 })
 
 pyshell.on('error', function (err) {
     console.log(err)
-    document.getElementById("status_icon").src = 'Images/red_dot.png';
-    document.getElementById("status_message").innerText = "Something Wrong Happened. \nPlease press Ctrl + Shift + I to open debug tools and check the console for potential errors. \nIf anything shows up please report the issue to Valalol#4360 on Discord"
+    window.resizeTo(350,750)
+
+    document.getElementById("loading_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("loading_status_message").innerText = error_message
+    document.getElementById("loading_error_message").innerText = err
+    document.getElementById("planetary_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("planetary_status_message").innerText = error_message
+    document.getElementById("planetary_error_message").innerText = err
+    document.getElementById("space_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("space_status_message").innerText = error_message
+    document.getElementById("space_error_message").innerText = err
+    document.getElementById("companion_status_icon").src = 'Images/red_dot.png';
+    document.getElementById("companion_status_message").innerText = error_message
+    document.getElementById("companion_error_message").innerText = err
 })
 
 
@@ -28,6 +55,7 @@ pyshell.on('message', (message) => {
         console.log("Mode selected :", Mode)
 
         if (Mode === "Planetary Navigation") {
+            window.resizeTo(350,655)
             // hide all mode divs except planetary navigation
             document.getElementById("Loading").style.display = "none";
             document.getElementById("planetary_Navigation").style.display = "block";
@@ -35,6 +63,7 @@ pyshell.on('message', (message) => {
             document.getElementById("companion").style.display = "none";
         }
         if (Mode === "Space Navigation") {
+            window.resizeTo(350,367)
             // hide all mode divs except space navigation
             document.getElementById("Loading").style.display = "none";
             document.getElementById("planetary_Navigation").style.display = "none";
@@ -43,6 +72,7 @@ pyshell.on('message', (message) => {
             
         }
         if (Mode === "Companion") {
+            window.resizeTo(350,450)
             // hide all mode divs except companion
             document.getElementById("Loading").style.display = "none";
             document.getElementById("planetary_Navigation").style.display = "none";
@@ -87,22 +117,27 @@ pyshell.on('message', (message) => {
             document.getElementById("planetary_course_deviation_value").style.color = new_data["total_deviation_color"]
             document.getElementById("planetary_flat_angle_value").innerText = new_data["horizontal_deviation"]
             document.getElementById("planetary_flat_angle_value").style.color = new_data["horizontal_deviation_color"]
+            document.getElementById("planetary_heading_value").innerText = new_data["heading"]
             document.getElementById("planetary_ETA_value").innerText = new_data["ETA"]
             console.log("Succefully updated the GUI")
         }
 
         if (Mode === "Space Navigation") {
-            document.getElementById("space_updated").innerText = new_data["updated"]
-            document.getElementById("space_target_selected").innerText = new_data["target"]
-            document.getElementById("player_X_global_coordinate").innerText = "X : " + new_data["player_x"]
-            document.getElementById("player_Y_global_coordinate").innerText = "Y : " + new_data["player_y"]
-            document.getElementById("player_Z_global_coordinate").innerText = "Z : " + new_data["player_z"]
-            document.getElementById("target_X_global_coordinate").innerText = "X : " + new_data["target_x"]
-            document.getElementById("target_Y_global_coordinate").innerText = "Y : " + new_data["target_y"]
-            document.getElementById("target_Z_global_coordinate").innerText = "Z : " + new_data["target_z"]
-            document.getElementById("space_distance_to_poi").innerText = "Distance to POI : " + new_data["distance_to_poi"]
-            document.getElementById("space_course_deviation").innerText = "Total deviation from target : " + new_data["total_deviation"]
-            document.getElementById("space_ETA").innerText = "Estimated time of arrival : " + new_data["ETA"]
+            document.getElementById("space_updated_value").innerText = new_data["updated"]
+            document.getElementById("space_target_selected_value").innerText = new_data["target"]
+            document.getElementById("player_X_global_coordinate_value").innerText = new_data["player_x"]
+            document.getElementById("player_Y_global_coordinate_value").innerText = new_data["player_y"]
+            document.getElementById("player_Z_global_coordinate_value").innerText = new_data["player_z"]
+            document.getElementById("target_X_global_coordinate_value").innerText = new_data["target_x"]
+            document.getElementById("target_Y_global_coordinate_value").innerText = new_data["target_y"]
+            document.getElementById("target_Z_global_coordinate_value").innerText = new_data["target_z"]
+            document.getElementById("space_distance_to_poi_value").innerText = new_data["distance_to_poi"]
+            document.getElementById("space_distance_to_poi_value").style.color = new_data["distance_to_poi_color"]
+            document.getElementById("space_distance_to_poi_value_delta").innerText = new_data["delta_distance_to_poi"]
+            document.getElementById("space_distance_to_poi_value_delta").style.color = new_data["delta_distance_to_poi_color"]
+            document.getElementById("space_course_deviation_value").innerText = new_data["total_deviation"]
+            document.getElementById("space_course_deviation_value").style.color = new_data["total_deviation_color"]
+            document.getElementById("space_ETA_value").innerText = new_data["ETA"]
             console.log("Succefully updated the GUI")
         }
 

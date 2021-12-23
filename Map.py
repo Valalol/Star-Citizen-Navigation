@@ -1,4 +1,3 @@
-
 import csv
 import os
 import time
@@ -73,7 +72,7 @@ def animate (i):
         plt.cla()
         
         if container != 'None':
-            m.warpimage(f"Images/{container}_Sheet.jpg")
+            m.warpimage(f"Images/{container}_sheet.png")
         m.plot(longs, lats, latlon=True, color='c', marker='.', markersize=9, markeredgecolor='k', markeredgewidth=0.5, linestyle='-', linewidth=0.8, alpha=0.75)
         
         old_data = new_data

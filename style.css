@@ -135,14 +135,18 @@ span {
 }
 
 
-#status_icon {
+.status_icon {
   width: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 90px;
+  float: right;
 }
 
-#status_message {
+.status_message {
   padding-top: 15px;
-  color: rgb(255, 0, 0);
+  color: #ff0000;
+}
+
+.error_message {
+  font-size: 110%;
+  font-weight: bold;
+  color: #ff0000;
 }

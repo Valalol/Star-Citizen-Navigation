@@ -13,7 +13,11 @@
 
 <body>
     <div id="Loading" class="mode_div">
-        <h1>Loading ...</h1>
+        <h1>Waiting for Mode and Target to be selected</h1>
+        <img id="loading_status_icon" class="status_icon" src="Images/green_dot.png">
+        <label id="loading_status_message" class="status_message"></label>
+        <code id="loading_error_message" class="error_message"></code>
+
     </div>
 
 
@@ -81,16 +85,18 @@
             <label class="bottom_things" id="planetary_distance_to_poi">Distance to POI : <span id="planetary_distance_to_poi_value">263.235 km</span> (<span id="planetary_distance_to_poi_value_delta">1.563 km</span>)</label>
             <label class="bottom_things" id="planetary_course_deviation">Total deviation from target : <span id="planetary_course_deviation_value">25.2°</span></label>
             <label class="bottom_things" id="planetary_flat_angle">Horizontal deviation from target : <span id="planetary_flat_angle_value">11.9°</span></label>
+            <label class="bottom_things" id="planetary_heading">Heading to target : <span id="planetary_heading_value">8.9°</span></label>
             <label class="bottom_things" id="planetary_ETA">Estimated time of arrival : <span id="planetary_ETA_value">00:15:36</span></label>
         </div>
         <div class="real_botton_div">
             <label id="planetary_updated">Updated : <span id="planetary_updated_value">11:42:56</span></label>
         </div>
         <div class="real_real_bottom_div">
-            <label id="created_by">Created by Valalol#4360 with ❤ and ☕</label>
+            <label id="created_by">Created by Valalol#1790 with ❤ and ☕</label>
         </div>
-        <img id="status_icon" src="Images/green_dot.png">
-        <label id="status_message"></label>
+        <img id="planetary_status_icon" class="status_icon" src="Images/green_dot.png">
+        <label id="planetary_status_message" class="status_message"></label>
+        <code id="planetary_error_message" class="error_message"></code>
     </div>
 
 
@@ -99,16 +105,16 @@
         <h1>Space Navigation</h1>
 
         <label id="space_target_selected_start">Target selected : </label>
-        <label id="space_target_selected">Javelin Wreck</label>
+        <label id="space_target_selected"><span id="space_target_selected_value">Wreck</span></label>
 
         <div class="player_target_div">
             <div class="player_div">
                 <h2>Player</h2>
 
                 <div class="block_info" id="player_global_cartesian_coordinates">
-                    <label id="player_X_global_coordinate">X : -18930439540</label>
-                    <label id="player_Y_global_coordinate">Y : -2610058765</label>
-                    <label id="player_Z_global_coordinate">Z : 0</label>
+                    <label id="player_X_global_coordinate">X : <span id="player_X_global_coordinate_value">-18930439540</span></label>
+                    <label id="player_Y_global_coordinate">Y : <span id="player_Y_global_coordinate_value">-2610058765</span></label>
+                    <label id="player_Z_global_coordinate">Z : <span id="player_Z_global_coordinate_value">0</span></label>
                 </div>
             </div>
 
@@ -116,24 +122,27 @@
                 <h2>Target</h2>
 
                 <div class="block_info" id="player_global_cartesian_coordinates">
-                    <label id="target_X_global_coordinate">X : -18930439540</label>
-                    <label id="target_Y_global_coordinate">Y : -2610058765</label>
-                    <label id="target_Z_global_coordinate">Z : 0</label>
+                    <label id="target_X_global_coordinate">X : <span id="target_X_global_coordinate_value">-18930439540</span></label>
+                    <label id="target_Y_global_coordinate">Y : <span id="target_Y_global_coordinate_value">-2610058765</span></label>
+                    <label id="target_Z_global_coordinate">Z : <span id="target_Z_global_coordinate_value">0</span></label>
                 </div>
 
             </div>
         </div>
         <div class="bottom_div">
-            <label class="bottom_things" id="space_distance_to_poi">Distance to POI : 263.235 km</label>
-            <label class="bottom_things" id="space_course_deviation">Deviation from target : 25.2°</label>
-            <label class="bottom_things" id="space_ETA">Estimated time of arrival : 00:15:36</label>
+            <label class="bottom_things" id="space_distance_to_poi">Distance to POI : <span id="space_distance_to_poi_value">263.235 km</span> (<span id="space_distance_to_poi_value_delta">1.563 km</span>)</label>
+            <label class="bottom_things" id="space_course_deviation">Deviation from target : <span id="space_course_deviation_value">25.2°</span></label>
+            <label class="bottom_things" id="space_ETA">Estimated time of arrival : <span id="space_ETA_value">00:15:36</span></label>
         </div>
         <div class="real_botton_div">
-            <label id="space_updated">Updated : 11:42:56</label>
+            <label id="space_updated">Updated : <span id="space_updated_value">11:42:56</span></label>
         </div>
         <div class="real_real_bottom_div">
-            <label id="created_by">Created by Valalol#4360 with ❤ and ☕</label>
+            <label id="created_by">Created by Valalol#1790 with ❤ and ☕</label>
         </div>
+        <img id="space_status_icon" class="status_icon" src="Images/green_dot.png">
+        <label id="space_status_message" class="status_message"></label>
+        <code id="space_error_message" class="error_message"></code>
     </div>
 
 
@@ -177,8 +186,12 @@
             <label id="companion_updated">Updated : 11:42:56</label>
         </div>
         <div class="real_real_bottom_div">
-            <label id="created_by">Created by Valalol#4360 with ❤ and ☕</label>
+            <label id="created_by">Created by Valalol#1790 with ❤ and ☕</label>
         </div>
+
+        <img id="companion_status_icon" class="status_icon" src="Images/green_dot.png">
+        <label id="companion_status_message" class="status_message"></label>
+        <code id="companion_error_message" class="error_message"></code>
     </div>
 
 </body>

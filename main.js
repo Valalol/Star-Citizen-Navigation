@@ -6,7 +6,9 @@ const BrowserWindow = electron.BrowserWindow
 function createWindow() {
   window = new BrowserWindow({
       width: 350,
-      height: 700,
+      height: 119,
+      // UseContentSize: true,
+      // enablePreferredSizeMode : true,
       frame: false,
       transparent: true,
       resizable: false,
