@@ -273,6 +273,18 @@
                     "qz": 0.93579894,
                     "QTMarker": "FALSE"
                 },
+                "Derelict Caterpillar Wreck": {
+                    "Name": "Derelict Caterpillar Wreck 1B",
+                    "Container": "Aberdeen",
+                    "X": -160.520,
+                    "Y": 187.065,
+                    "Z": 122.157,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
                 "Kleschler Main Prison Building": {
                     "Name": "Kleschler Main Prison Building",
                     "Container": "Aberdeen",
@@ -967,6 +979,18 @@
                     "qz": 0.80305684,
                     "QTMarker": "FALSE"
                 },
+                "Derelict Caterpillar Wreck 1A": {
+                    "Name": "Derelict Caterpillar Wreck 1A",
+                    "Container": "Arial",
+                    "X": 21.290,
+                    "Y": -234.274,
+                    "Z": 252.404,
+                    "qw": 1.00000000,
+                    "qx": 0.000000003,
+                    "qy": 0.00000000,
+                    "qz": 0.00000000,
+                    "QTMarker": "FALSE"
+                },
                 "Bezdek Racetrack 1": {
                     "Name": "Bezdek Racetrack 1",
                     "Container": "Arial",
@@ -1505,6 +1529,18 @@
                     "qy": -0.22018914,
                     "qz": 0.78728139,
                     "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 4A": {
+                    "Name": "Derelict Caterpillar Wreck 4A",
+                    "Container": "Calliope",
+                    "X": 199.393,
+                    "Y": 126.188,
+                    "Z": 45.985,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -1851,6 +1887,18 @@
                     "qx": 0.00654436,
                     "qy": 0.35049891,
                     "qz": 0.91603512,
+                    "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 2A": {
+                    "Name": "Derelict Caterpillar Wreck 2A",
+                    "Container": "Cellin",
+                    "X": 112.178,
+                    "Y": -163.730,
+                    "Z": 169.625,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
                 "Hickes Racetrack 1": {
@@ -4209,6 +4257,18 @@
                     "qz": 0.45681646,
                     "QTMarker": "FALSE"
                 },
+                "Derelict Caterpillar Wreck 1D": {
+                    "Name": "Derelict Caterpillar Wreck 1D",
+                    "Container": "Ita",
+                    "X": 137.997,
+                    "Y": 211.437,
+                    "Z": 204.970,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
                 "Ryder Racetrack 1": {
                     "Name": "Ryder Racetrack 1",
                     "Container": "Ita",
@@ -4807,6 +4867,30 @@
                     "qy": -0.52593553,
                     "qz": 0.74401814,
                     "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 1 3A": {
+                    "Name": "Derelict Caterpillar Wreck 1-3A",
+                    "Container": "Lyria",
+                    "X": 90.196,
+                    "Y": 60.433,
+                    "Z": 196.272,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 2 3A": {
+                    "Name": "Derelict Caterpillar Wreck 2-3A",
+                    "Container": "Lyria",
+                    "X": 143.507,
+                    "Y": -71.508,
+                    "Z": 156.466,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -4973,6 +5057,30 @@
                     "qx": 0.12658451,
                     "qy": -0.52317905,
                     "qz": -3e-08,
+                    "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 1-1C": {
+                    "Name": "Derelict Caterpillar Wreck 1-1C",
+                    "Container": "Magda",
+                    "X": -171.923,
+                    "Y": -278.139,
+                    "Z": 96.953,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 2-1C": {
+                    "Name": "Derelict Caterpillar Wreck 2-1C",
+                    "Container": "Magda",
+                    "X": -84.944,
+                    "Y": -284.415,
+                    "Z": 168.126,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
                 "Hahn Racetrack 1": {
@@ -6218,6 +6326,30 @@
                     "qy": 0.58966941,
                     "qz": -0.5268243,
                     "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 1-3B": {
+                    "Name": "Derelict Caterpillar Wreck 1-3B",
+                    "Container": "Wala",
+                    "X": -281.801,
+                    "Y": 10.547,
+                    "Z": -22.472,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 2-3B": {
+                    "Name": "Derelict Caterpillar Wreck 2-3B",
+                    "Container": "Wala",
+                    "X": -164.031,
+                    "Y": 85.551,
+                    "Z": -213.830,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -6528,6 +6660,18 @@
                     "qx": 0.41191292,
                     "qy": 0.14467743,
                     "qz": 0.78154659,
+                    "QTMarker": "FALSE"
+                },
+                "Derelict Caterpillar Wreck 2C": {
+                    "Name": "Derelict Caterpillar Wreck 2C",
+                    "Container": "Yela",
+                    "X": -29.543,
+                    "Y": 236.610,
+                    "Z": 203.199,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
                 "Racetrack 1 20": {

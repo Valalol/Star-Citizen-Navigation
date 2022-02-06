@@ -27,7 +27,7 @@ class colors:
     White = "\u001b[37m"
     Reset = "\u001b[0m"
 
-Program_mode_list = ["Planetary Navigation", "Space Navigation", "Companion", "Racing Tool"]
+Program_mode_list = ["Planetary Navigation", "Space Navigation", "Companion"] #, "Racing Tool"
 
 with open('Database.json') as f:
     Database = json.load(f)
@@ -211,7 +211,7 @@ Planetary_Known_POI_Frame = ttk.Frame(Planetary_Navigation_Frame)
 Planetary_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
 
 
-Planetary_POI_Selection_Combobox = ttk.Combobox(Planetary_Known_POI_Frame, state='readonly', values = "")
+Planetary_POI_Selection_Combobox = ttk.Combobox(Planetary_Known_POI_Frame, state='readonly', values = "", width=45)
 Planetary_POI_Selection_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_Target_Selected)
 Planetary_POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
 
@@ -352,7 +352,7 @@ if Mode == "Planetary Navigation" :
         "player_z" : "0.0",
         "player_long" : "0.0°",
         "player_lat" : "0.0°",
-        "player_height" : "0 m",
+        "player_height" : "0 km",
         "player_OM1" : "OM-1 : 0.000 km",
         "player_OM2" : "OM-3 : 0.000 km",
         "player_OM3" : "OM-5 : 0.000 km",
@@ -362,7 +362,7 @@ if Mode == "Planetary Navigation" :
         "target_z" : "0.0",
         "target_long" : "0.0°",
         "target_lat" : "0.0°",
-        "target_height" : "0 m",
+        "target_height" : "0 km",
         "target_OM1" : "OM-1 : 0.000 km",
         "target_OM2" : "OM-3 : 0.000 km",
         "target_OM3" : "OM-5 : 0.000 km",
@@ -516,7 +516,7 @@ while True:
 
 
     #If clipboard content hasn't changed
-    if new_clipboard == Old_clipboard:
+    if new_clipboard == Old_clipboard and new_clipboard != "":
 
         #Wait some time
         time.sleep(1/5)
@@ -930,7 +930,7 @@ while True:
                     "player_z" : round(New_player_local_rotated_coordinates['Z'], 3),
                     "player_long" : f"{round(player_Longitude, 2)}°",
                     "player_lat" : f"{round(player_Latitude, 2)}°",
-                    "player_height" : f"{round(player_Height, 1)} m",
+                    "player_height" : f"{round(player_Height, 1)} km",
                     "player_OM1" : f"{player_Closest_OM['Z']['OM']['Name']} : {round(player_Closest_OM['Z']['Distance'], 3)} km",
                     "player_OM2" : f"{player_Closest_OM['Y']['OM']['Name']} : {round(player_Closest_OM['Y']['Distance'], 3)} km",
                     "player_OM3" : f"{player_Closest_OM['X']['OM']['Name']} : {round(player_Closest_OM['X']['Distance'], 3)} km",
@@ -940,7 +940,7 @@ while True:
                     "target_z" : Target["Z"],
                     "target_long" : f"{round(target_Longitude, 2)}°",
                     "target_lat" : f"{round(target_Latitude, 2)}°",
-                    "target_height" : f"{round(target_Height, 1)} m",
+                    "target_height" : f"{round(target_Height, 1)} km",
                     "target_OM1" : f"{target_Closest_OM['Z']['OM']['Name']} : {round(target_Closest_OM['Z']['Distance'], 3)} km",
                     "target_OM2" : f"{target_Closest_OM['Y']['OM']['Name']} : {round(target_Closest_OM['Y']['Distance'], 3)} km",
                     "target_OM3" : f"{target_Closest_OM['X']['OM']['Name']} : {round(target_Closest_OM['X']['Distance'], 3)} km",
