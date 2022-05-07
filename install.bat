@@ -6,6 +6,5 @@ PAUSE
 pip install pyperclip
 pip install tk
 pip install requests
-ECHO 
 ECHO Library installed!!
 PAUSE
