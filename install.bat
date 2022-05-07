@@ -6,7 +6,6 @@ PAUSE
 pip install pyperclip
 pip install tk
 pip install requests
-pip install webbrowser
 ECHO 
 ECHO Library installed!!
 PAUSE
