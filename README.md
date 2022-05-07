@@ -1,6 +1,6 @@
 # Star Citizen Navigation
 
-This project is a tool designed to help the navigation in Star Citizen.
+This tool is designed to help you navigate in the universe of Star Citizen.
 
 This project was greatly inspired by the **"Murphy Exploration Group"** and more particularly by **Graupunkt#4414** who carried out a very similar program.
 
@@ -8,40 +8,48 @@ This project was greatly inspired by the **"Murphy Exploration Group"** and more
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Installation](#installation)
-3. [Contribute](#contribute)
-4. [LICENSE](#license)
+3. [Help](#help)
+4. [Contribute](#contribute)
+5. [License](#license)
 
 
 ## General Info
-This program relies almost entirely on the in-game `/showlocation` command. This command copies the global coordinates (relative to the center of the system) to the clipboard. This program continuously retrieves the contents of this clipboard and, if coordinates are found, interprets them in order to guide the user to his target.
+This program relies almost entirely on the in-game `/showlocation` command. This command copies the global coordinates (relative to the center of the system) to the clipboard. The tool continuously retrieves the contents of this clipboard and, if coordinates are found, interprets them in order to guide the user to his target.
 
-The `Database.json` file contains all the data the program needs to operate (rotational speed of the planets, their location, coordinates of points of interest, etc.)
 
 ### Glossary 
 - POI = Point Of Interest
 - Container = The planets and moons on which the points of interest can be
 
-### Screenshot
+### Screenshots
 ![Screenshot of the main window](Images/Screenshot_1.png)
 ![Screenshot of the app running with Javelin Wreck](Images/Screenshot_2.png)
 
 
-
 ## Installation
 
-This program requires [Python](https://www.python.org/downloads/) to run and it **must be added to the PATH** during installation.
+1) Copy and extract the star-citizen-navigation-tool-win32-x64 folder wherever you want.
 
-Open a command prompt by pressing WINDOWS + R then by typing cmd and pressing Enter
-Then type `pip install pyperclip==1.8.2` to install the library required
+2) Install Python from the [Python Download page](https://www.python.org/downloads/). **Make sure the Path box at the bottom right is ticked as shown in the screenshot below**, and let it install with default location and settings.
 
-If everything worked you should be able to launch the program called "star-citizen-navigation-tool.exe" without issues
+3) Run the `install.bat` to install the library required by the tool (pyperclip).
 
+4) If everything worked, you should be able to launch the program called `star-citizen-navigation-tool.exe` inside the folder you copied over without issues.
 
+5) After inputting your search selections into the cascading selection  boxes, you will manually need to do a `/showlocation` command from within Starcitizen in order for the map to update.
+to do this open the Global chat using `F12`. Hit `enter`, and a command line will open for you. Then simply type in `/showlocation` then `enter`, and the tool will update.
+
+6) If you want the tool to draw your lacation on a map, run the `Map.exe` and make sure you've done a few commands in-game. The map depends on the main tool to work.
+
+![Screenshot of the Add to PATH box](Images/Screenshot_3.png)
+
+## Help:
+If you need some help about the installation and the use of the tool, do not hesitate to create an issue on github, pm me on discord (Valalol#1790), or join the [Meridian Discord Server](https://discord.gg/WMh5YCeQVS) for anything related to the navigation in Star Citizen.
 
 ## Contribute:
 ### How to contribute :
 
-Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation) fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
+Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation), fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
 
 
 ## License

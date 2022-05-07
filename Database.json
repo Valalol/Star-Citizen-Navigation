@@ -13,9 +13,9 @@
             "OM Radius": 402.708,
             "Body Radius": 274.0,
             "Arrival Radius": 437.7,
-            "Time Lines": 22.0,
+            "Time Lines": 20.0,
             "Rotation Speed": 2.5999999,
-            "Rotation Adjust": 116.9042807,
+            "Rotation Adjust": 116.67681,
             "Orbital Radius": 68815.024,
             "Orbital Speed": 0.0,
             "Orbital Angle": 36.524,
@@ -153,8 +153,8 @@
                     "qz": 0.44670483,
                     "QTMarker": "TRUE"
                 },
-                "Kleschler Rehabilitation Facility": {
-                    "Name": "Kleschler Rehabilitation Facility",
+                "Klescher Rehabilitation Facility": {
+                    "Name": "Klescher Rehabilitation Facility",
                     "Container": "Aberdeen",
                     "X": 44.975,
                     "Y": 221.563,
@@ -274,9 +274,9 @@
                     "QTMarker": "FALSE"
                 },
                 "Derelict Caterpillar Wreck": {
-                    "Name": "Derelict Caterpillar Wreck 1B",
+                    "Name": "Derelict Caterpillar Wreck",
                     "Container": "Aberdeen",
-                    "X": -160.520,
+                    "X": -160.52,
                     "Y": 187.065,
                     "Z": 122.157,
                     "qw": 0.0,
@@ -554,7 +554,7 @@
             "Arrival Radius": 990.0,
             "Time Lines": 16.0,
             "Rotation Speed": 3.1099999,
-            "Rotation Adjust": 230.8844272,
+            "Rotation Adjust": 230.73368,
             "Orbital Radius": 28917272.576,
             "Orbital Speed": 0.0,
             "Orbital Angle": 310.0,
@@ -815,9 +815,9 @@
             "OM Radius": 501.541,
             "Body Radius": 344.5,
             "Arrival Radius": 511.725,
-            "Time Lines": 11.0,
+            "Time Lines": 12.0,
             "Rotation Speed": 5.5100002,
-            "Rotation Adjust": 38.5142349,
+            "Rotation Adjust": 38.40291,
             "Orbital Radius": 52658.856,
             "Orbital Speed": 0.0,
             "Orbital Angle": 323.292,
@@ -979,16 +979,16 @@
                     "qz": 0.80305684,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 1A": {
-                    "Name": "Derelict Caterpillar Wreck 1A",
+                "Derelict Caterpillar Wreck": {
+                    "Name": "Derelict Caterpillar Wreck",
                     "Container": "Arial",
-                    "X": 21.290,
+                    "X": 21.29,
                     "Y": -234.274,
                     "Z": 252.404,
-                    "qw": 1.00000000,
-                    "qx": 0.000000003,
-                    "qy": 0.00000000,
-                    "qz": 0.00000000,
+                    "qw": 1.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
                 "Bezdek Racetrack 1": {
@@ -1210,9 +1210,9 @@
             "OM Radius": 352.246,
             "Body Radius": 240.0,
             "Arrival Radius": 402.35,
-            "Time Lines": 24.0,
+            "Time Lines": 25.0,
             "Rotation Speed": 4.5900002,
-            "Rotation Adjust": 212.4145472,
+            "Rotation Adjust": 212.32677,
             "Orbital Radius": 65823.064,
             "Orbital Speed": 0.0,
             "Orbital Angle": 194.774,
@@ -1425,14 +1425,14 @@
                 "Raven's Roost": {
                     "Name": "Raven's Roost",
                     "Container": "Calliope",
-                    "X": -176.14,
-                    "Y": -160.362,
-                    "Z": 29.498,
-                    "qw": -0.48480293,
-                    "qx": 0.08492654,
-                    "qy": 0.65676385,
-                    "qz": -0.57132727,
-                    "QTMarker": "TRUE"
+                    "X": 33.908,
+                    "Y": -106.4,
+                    "Z": -212.484,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 },
                 "Calliope Cave N13 [F]": {
                     "Name": "Calliope Cave N13 [F]",
@@ -1530,11 +1530,11 @@
                     "qz": 0.78728139,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 4A": {
-                    "Name": "Derelict Caterpillar Wreck 4A",
+                "Derelict Caterpillar Wreck": {
+                    "Name": "Derelict Caterpillar Wreck",
                     "Container": "Calliope",
                     "X": 199.393,
-                    "Y": 126.188,
+                    "Y": -126.188,
                     "Z": 45.985,
                     "qw": 0.0,
                     "qx": 0.0,
@@ -1557,9 +1557,9 @@
             "OM Radius": 380.53,
             "Body Radius": 260.0,
             "Arrival Radius": 423.35,
-            "Time Lines": 25.0,
+            "Time Lines": 26.0,
             "Rotation Speed": 4.4499998,
-            "Rotation Adjust": 253.6008872,
+            "Rotation Adjust": 253.46701,
             "Orbital Radius": 50863.26,
             "Orbital Speed": 0.0,
             "Orbital Angle": 240.0,
@@ -1889,11 +1889,11 @@
                     "qz": 0.91603512,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 2A": {
-                    "Name": "Derelict Caterpillar Wreck 2A",
+                "Derelict Caterpillar Wreck": {
+                    "Name": "Derelict Caterpillar Wreck",
                     "Container": "Cellin",
                     "X": 112.178,
-                    "Y": -163.730,
+                    "Y": -163.73,
                     "Z": 169.625,
                     "qw": 0.0,
                     "qx": 0.0,
@@ -2187,54 +2187,6 @@
                     "qy": 0.39327413,
                     "qz": 0.90927768,
                     "QTMarker": "FALSE"
-                },
-                "Starting Line": {
-                    "Name": "Starting Line",
-                    "Container": "Clio",
-                    "X": 107.487,
-                    "Y": -46.05,
-                    "Z": -316.442,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
-                },
-                "Checkpoint 1": {
-                    "Name": "Checkpoint 1",
-                    "Container": "Clio",
-                    "X": 79.833,
-                    "Y": -2.246,
-                    "Z": -327.624,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
-                },
-                "Checkpoint 2": {
-                    "Name": "Checkpoint 2",
-                    "Container": "Clio",
-                    "X": 107.78,
-                    "Y": -3.157,
-                    "Z": -319.623,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
-                },
-                "Finish Line": {
-                    "Name": "Finish Line",
-                    "Container": "Clio",
-                    "X": 118.376,
-                    "Y": -30.453,
-                    "Z": -314.442,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -2253,11 +2205,11 @@
             "Arrival Radius": 7972.5,
             "Time Lines": 7.0,
             "Rotation Speed": 5.0999999,
-            "Rotation Adjust": 300.4782305,
+            "Rotation Adjust": 300.33377,
             "Orbital Radius": 19148527.616,
             "Orbital Speed": 0.0,
             "Orbital Angle": 188.0,
-            "Grid Radius": 0.0,
+            "Grid Radius": 14900.0,
             "POI": {
                 "OM-1": {
                     "Name": "OM-1",
@@ -2335,7 +2287,7 @@
                     "Name": "Comm Array ST2-55",
                     "Container": "Crusader",
                     "X": -1387.917,
-                    "Y": 7850.592,
+                    "Y": 8802.204,
                     "Z": 24.0,
                     "qw": 0.92387956,
                     "qx": 0.0,
@@ -2384,7 +2336,7 @@
             "Arrival Radius": 459.75,
             "Time Lines": 35.0,
             "Rotation Speed": 2.48,
-            "Rotation Adjust": 30.2954426,
+            "Rotation Adjust": 30.29544,
             "Orbital Radius": 63279.908,
             "Orbital Speed": 0.0,
             "Orbital Angle": 60.0,
@@ -2897,7 +2849,7 @@
             "Arrival Radius": 373.475,
             "Time Lines": 25.0,
             "Rotation Speed": 4.2800002,
-            "Rotation Adjust": 269.161587,
+            "Rotation Adjust": 269.04452,
             "Orbital Radius": 107710.472,
             "Orbital Speed": 0.0,
             "Orbital Angle": 284.02,
@@ -3244,7 +3196,7 @@
             "Arrival Radius": 1200.0,
             "Time Lines": 61.0,
             "Rotation Speed": 2.48,
-            "Rotation Adjust": 19.3888861,
+            "Rotation Adjust": 19.10777,
             "Orbital Radius": 12850457.6,
             "Orbital Speed": 0.0,
             "Orbital Angle": 0.0,
@@ -3478,8 +3430,8 @@
                     "qz": -0.51739424,
                     "QTMarker": "TRUE"
                 },
-                "HDSF Breckenridge": {
-                    "Name": "HDSF Breckenridge",
+                "HDSF Breckinridge": {
+                    "Name": "HDSF Breckinridge",
                     "Container": "Hurston",
                     "X": -557.599,
                     "Y": 680.528,
@@ -4093,9 +4045,9 @@
             "OM Radius": 472.454,
             "Body Radius": 325.0,
             "Arrival Radius": 491.25,
-            "Time Lines": 11.0,
+            "Time Lines": 12.0,
             "Rotation Speed": 4.8499999,
-            "Rotation Adjust": 243.1995839,
+            "Rotation Adjust": 243.07207,
             "Orbital Radius": 116686.336,
             "Orbital Speed": 0.0,
             "Orbital Angle": 100.0,
@@ -4257,12 +4209,12 @@
                     "qz": 0.45681646,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 1D": {
-                    "Name": "Derelict Caterpillar Wreck 1D",
+                "Derelict Caterpillar Wreck": {
+                    "Name": "Derelict Caterpillar Wreck",
                     "Container": "Ita",
                     "X": 137.997,
                     "Y": 211.437,
-                    "Z": 204.970,
+                    "Z": 204.97,
                     "qw": 0.0,
                     "qx": 0.0,
                     "qy": 0.0,
@@ -4500,9 +4452,9 @@
             "OM Radius": 328.204,
             "Body Radius": 223.0,
             "Arrival Radius": 384.15,
-            "Time Lines": 27.0,
+            "Time Lines": 29.0,
             "Rotation Speed": 6.4299998,
-            "Rotation Adjust": 359.4217912,
+            "Rotation Adjust": 359.36575,
             "Orbital Radius": 119827.896,
             "Orbital Speed": 0.0,
             "Orbital Angle": 14.631,
@@ -4667,14 +4619,14 @@
                 "Paradise Cove": {
                     "Name": "Paradise Cove",
                     "Container": "Lyria",
-                    "X": -87.676,
-                    "Y": 198.093,
-                    "Z": -56.17,
-                    "qw": 0.61196744,
-                    "qx": -0.72374129,
-                    "qy": -0.31889394,
-                    "qz": 0.00101509,
-                    "QTMarker": "TRUE"
+                    "X": -10.654,
+                    "Y": 147.439,
+                    "Z": -168.175,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 },
                 "Shubin Processing Facility SPAL-12": {
                     "Name": "Shubin Processing Facility SPAL-12",
@@ -4832,18 +4784,6 @@
                     "qz": -0.45207271,
                     "QTMarker": "FALSE"
                 },
-                "Caterpillar st2c nmc mlf msc rlc": {
-                    "Name": "Caterpillar st2c nmc mlf msc rlc",
-                    "Container": "Lyria",
-                    "X": 89.473,
-                    "Y": 60.45,
-                    "Z": 196.577,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": ""
-                },
                 "Freelancer A Wreck": {
                     "Name": "Freelancer A Wreck",
                     "Container": "Lyria",
@@ -4868,8 +4808,8 @@
                     "qz": 0.74401814,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 1 3A": {
-                    "Name": "Derelict Caterpillar Wreck 1-3A",
+                "Derelict Caterpillar Wreck 1": {
+                    "Name": "Derelict Caterpillar Wreck 1",
                     "Container": "Lyria",
                     "X": 90.196,
                     "Y": 60.433,
@@ -4880,8 +4820,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 2 3A": {
-                    "Name": "Derelict Caterpillar Wreck 2-3A",
+                "Derelict Caterpillar Wreck 2": {
+                    "Name": "Derelict Caterpillar Wreck 2",
                     "Container": "Lyria",
                     "X": 143.507,
                     "Y": -71.508,
@@ -4907,9 +4847,9 @@
             "OM Radius": 494.841,
             "Body Radius": 340.83,
             "Arrival Radius": 507.875,
-            "Time Lines": 10.0,
+            "Time Lines": 12.0,
             "Rotation Speed": 1.9400001,
-            "Rotation Adjust": 242.6977069,
+            "Rotation Adjust": 242.12456,
             "Orbital Radius": 94246.656,
             "Orbital Speed": 0.0,
             "Orbital Angle": 232.195,
@@ -5059,8 +4999,8 @@
                     "qz": -3e-08,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 1-1C": {
-                    "Name": "Derelict Caterpillar Wreck 1-1C",
+                "Derelict Caterpillar Wreck 1": {
+                    "Name": "Derelict Caterpillar Wreck 1",
                     "Container": "Magda",
                     "X": -171.923,
                     "Y": -278.139,
@@ -5071,8 +5011,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 2-1C": {
-                    "Name": "Derelict Caterpillar Wreck 2-1C",
+                "Derelict Caterpillar Wreck 2": {
+                    "Name": "Derelict Caterpillar Wreck 2",
                     "Container": "Magda",
                     "X": -84.944,
                     "Y": -284.415,
@@ -5299,24 +5239,12 @@
                     "qz": 0.76603389,
                     "QTMarker": "FALSE"
                 },
-                "Crater 5km": {
-                    "Name": "Crater 5km",
+                "Sketto Rock": {
+                    "Name": "Sketto Rock",
                     "Container": "Magda",
-                    "X": -143.785,
-                    "Y": 287.122,
-                    "Z": -114.837,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
-                },
-                "Crater 48km": {
-                    "Name": "Crater 48km",
-                    "Container": "Magda",
-                    "X": -182.597,
-                    "Y": 264.94,
-                    "Z": -113.161,
+                    "X": -335.013,
+                    "Y": 45.699,
+                    "Z": 50.233,
                     "qw": 0.0,
                     "qx": 0.0,
                     "qy": 0.0,
@@ -5340,7 +5268,7 @@
             "Arrival Radius": 1800.0,
             "Time Lines": 51.0,
             "Rotation Speed": 4.1199999,
-            "Rotation Adjust": 217.2260307,
+            "Rotation Adjust": 217.11688,
             "Orbital Radius": 43443216.384,
             "Orbital Speed": 0.0,
             "Orbital Angle": 58.866,
@@ -5445,8 +5373,8 @@
                 "Comm Array ST4-22": {
                     "Name": "Comm Array ST4-22",
                     "Container": "microTech",
-                    "X": 771.345,
-                    "Y": 919.253,
+                    "X": -771.345,
+                    "Y": -919.253,
                     "Z": 24.0,
                     "qw": 0.9238795,
                     "qx": 0.0,
@@ -5766,12 +5694,24 @@
                     "qz": -0.39744779,
                     "QTMarker": "FALSE"
                 },
-                "microTech Cave N47 [FV]": {
-                    "Name": "microTech Cave N47 [FV]",
+                "microTech Cave N47 [FV] 3.16.1": {
+                    "Name": "microTech Cave N47 [FV] 3.16.1",
                     "Container": "microTech",
                     "X": 515.708,
                     "Y": 444.099,
                     "Z": 736.475,
+                    "qw": 0.87785107,
+                    "qx": -0.31630239,
+                    "qy": 0.18093422,
+                    "qz": -0.31079426,
+                    "QTMarker": "FALSE"
+                },
+                "microTech Cave N48 [FV] 3.17.0": {
+                    "Name": "microTech Cave N48 [FV] 3.17.0",
+                    "Container": "microTech",
+                    "X": 495.285,
+                    "Y": 446.713,
+                    "Z": 749.188,
                     "qw": 0.87785107,
                     "qx": -0.31630239,
                     "qy": 0.18093422,
@@ -5994,18 +5934,6 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Valalol microTech point": {
-                    "Name": "Valalol microTech point",
-                    "Container": "microTech",
-                    "X": -553.467,
-                    "Y": -77.91,
-                    "Z": -828.317,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": ""
-                },
                 "Chestnuts on an open fire": {
                     "Name": "Chestnuts on an open fire",
                     "Container": "microTech",
@@ -6016,7 +5944,7 @@
                     "qx": 0.0,
                     "qy": 0.0,
                     "qz": 0.0,
-                    "QTMarker": ""
+                    "QTMarker": "FALSE"
                 },
                 "Lakeside Chairs": {
                     "Name": "Lakeside Chairs",
@@ -6028,7 +5956,7 @@
                     "qx": 0.0,
                     "qy": 0.0,
                     "qz": 0.0,
-                    "QTMarker": ""
+                    "QTMarker": "FALSE"
                 },
                 "Mountainside Chairs": {
                     "Name": "Mountainside Chairs",
@@ -6040,7 +5968,43 @@
                     "qx": 0.0,
                     "qy": 0.0,
                     "qz": 0.0,
-                    "QTMarker": ""
+                    "QTMarker": "FALSE"
+                },
+                "Tears of Fire Painting": {
+                    "Name": "Tears of Fire Painting",
+                    "Container": "microTech",
+                    "X": 518.388,
+                    "Y": 416.271,
+                    "Z": 747.876,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "microTech River (lake)": {
+                    "Name": "microTech River (lake)",
+                    "Container": "microTech",
+                    "X": 809.509,
+                    "Y": 415.291,
+                    "Z": 415.788,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "microTech River (head)": {
+                    "Name": "microTech River (head)",
+                    "Container": "microTech",
+                    "X": 806.117,
+                    "Y": 424.57,
+                    "Z": 414.685,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -6079,9 +6043,9 @@
             "OM Radius": 413.056,
             "Body Radius": 283.0,
             "Arrival Radius": 447.308,
-            "Time Lines": 18.0,
+            "Time Lines": 20.0,
             "Rotation Speed": 6.3200002,
-            "Rotation Adjust": 135.56548,
+            "Rotation Adjust": 135.45425,
             "Orbital Radius": 257308.32,
             "Orbital Speed": 0.0,
             "Orbital Angle": 143.943,
@@ -6327,8 +6291,8 @@
                     "qz": -0.5268243,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 1-3B": {
-                    "Name": "Derelict Caterpillar Wreck 1-3B",
+                "Derelict Caterpillar Wreck 1": {
+                    "Name": "Derelict Caterpillar Wreck 1",
                     "Container": "Wala",
                     "X": -281.801,
                     "Y": 10.547,
@@ -6339,12 +6303,12 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 2-3B": {
-                    "Name": "Derelict Caterpillar Wreck 2-3B",
+                "Derelict Caterpillar Wreck 2": {
+                    "Name": "Derelict Caterpillar Wreck 2",
                     "Container": "Wala",
                     "X": -164.031,
                     "Y": 85.551,
-                    "Z": -213.830,
+                    "Z": -213.83,
                     "qw": 0.0,
                     "qx": 0.0,
                     "qy": 0.0,
@@ -6366,9 +6330,9 @@
             "OM Radius": 455.483,
             "Body Radius": 313.0,
             "Arrival Radius": 478.65,
-            "Time Lines": 28.0,
+            "Time Lines": 29.0,
             "Rotation Speed": 1.8200001,
-            "Rotation Adjust": 218.6484155,
+            "Rotation Adjust": 217.58054,
             "Orbital Radius": 79286.88,
             "Orbital Speed": 0.0,
             "Orbital Angle": 140.0,
@@ -6554,18 +6518,6 @@
                     "qz": -0.12399876,
                     "QTMarker": "TRUE"
                 },
-                "Jumptown": {
-                    "Name": "Jumptown",
-                    "Container": "Yela",
-                    "X": -240.325,
-                    "Y": 15.776,
-                    "Z": -200.406,
-                    "qw": -0.36577675,
-                    "qx": -0.40734431,
-                    "qy": 0.80863082,
-                    "qz": 0.21539304,
-                    "QTMarker": "TRUE"
-                },
                 "Yela Stash House (NT-999-XX)": {
                     "Name": "Yela Stash House (NT-999-XX)",
                     "Container": "Yela",
@@ -6662,11 +6614,11 @@
                     "qz": 0.78154659,
                     "QTMarker": "FALSE"
                 },
-                "Derelict Caterpillar Wreck 2C": {
-                    "Name": "Derelict Caterpillar Wreck 2C",
+                "Derelict Caterpillar Wreck": {
+                    "Name": "Derelict Caterpillar Wreck",
                     "Container": "Yela",
                     "X": -29.543,
-                    "Y": 236.610,
+                    "Y": 236.61,
                     "Z": 203.199,
                     "qw": 0.0,
                     "qx": 0.0,
@@ -6696,6 +6648,18 @@
                     "qx": -0.41929606,
                     "qy": -0.00947751,
                     "qz": -0.00010888,
+                    "QTMarker": "FALSE"
+                },
+                "Jumptown": {
+                    "Name": "Jumptown",
+                    "Container": "Yela",
+                    "X": 268.025,
+                    "Y": 143.784,
+                    "Z": 74.777,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
                 "Utopia": {
@@ -9009,6 +8973,18 @@
                     "qx": -0.19594352,
                     "qy": 0.02200879,
                     "qz": -0.55284858,
+                    "QTMarker": "FALSE"
+                },
+                "Object Container 05": {
+                    "Name": "Object Container 05",
+                    "Container": "MIC-L1",
+                    "X": 8784.108,
+                    "Y": -28.578,
+                    "Z": 3.522,
+                    "qw": 0.70710683,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.70710677,
                     "QTMarker": "FALSE"
                 },
                 "Object Container 03": {

@@ -2,7 +2,6 @@
 #First release 16/04/2021
 
 #Imports
-import math
 from math import sqrt, degrees, radians, cos, acos, sin, asin, atan2
 import pyperclip
 import time
@@ -13,19 +12,66 @@ import json
 import os
 import csv
 import sys
+import requests
+import webbrowser
 
 os.system("")
 
-class colors:
-    Black = "\u001b[30m"
-    Red = "\u001b[31m"
-    Green = "\u001b[32m"
-    Yellow = "\u001b[33m"
-    Blue = "\u001b[34m"
-    Magenta = "\u001b[35m"
-    Cyan = "\u001b[36m"
-    White = "\u001b[37m"
-    Reset = "\u001b[0m"
+with open("settings.json", "r") as f:
+    settings = json.load(f)
+
+if settings["Update_checker"] == "TRUE":
+    Local_version =  "2.0.3"
+
+    release_request_url = "https://api.github.com/repos/Valalol/Star-Citizen-Navigation/releases"
+
+
+    r = requests.get(release_request_url)
+    content = r.json()
+
+    Status_code = r.status_code
+    Github_version = content[0]['tag_name']
+    Download_URL = content[0]['html_url']
+    Release_content = content[0]['name']
+
+    if Status_code == 200 :
+        if Github_version.replace(".", "") > Local_version.replace(".", ""):
+            print("New version available")
+            def Go_to_release_func():
+                webbrowser.open(Download_URL)
+                root.destroy()
+                raise SystemExit("Opened the new release page in your browser")
+
+            def Next_time_func():
+                root.destroy()
+
+            root = tk.Tk()
+            root.title("Update Checker")
+
+            MainWindow = tk.Frame(root)
+            MainWindow.configure(borderwidth='0', height='200', relief='flat', width='200')
+            MainWindow.pack(expand='true', fill='both', side='left')
+
+            Update_Text = tk.Label(MainWindow, text=f"A new release is available !\n\nNew content :\n{Release_content}\n\nWould you like to go to the release page ?")
+            Update_Text.grid(row='0', column='0', padx='40', pady='3')
+
+            Button_Frame = tk.Frame(MainWindow)
+            Button_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
+            Button_Frame.grid(row='1', column='0', pady='6')
+
+            Go_to_release_Button = tk.Button(Button_Frame, text="Go to release", command=Go_to_release_func)
+            Next_time_Button = tk.Button(Button_Frame, text="Next time", command=Next_time_func)
+
+            Go_to_release_Button.grid(row='0', column='0', padx='10', pady='2')
+            Next_time_Button.grid(row='0', column='1', padx='10', pady='2')
+
+            root.mainloop()
+
+
+
+
+
+
 
 Program_mode_list = ["Planetary Navigation", "Space Navigation", "Companion"] #, "Racing Tool"
 
@@ -178,7 +224,7 @@ root.title("Navigation Tool")
 root.iconbitmap(r'Images/Icon.ico')
 
 
-#Man Frame
+#Main Frame
 MainWindow = ttk.Frame(root)
 MainWindow.configure(borderwidth='0', height='200', relief='flat', width='200')
 MainWindow.pack(expand='true', fill='both', side='left')
@@ -305,12 +351,6 @@ Space_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pady='
 
 
 
-
-
-
-
-
-
 #Companion Tool Frame
 Companion_Tool_Frame = ttk.Frame(MainWindow)
 Companion_Tool_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
@@ -337,9 +377,7 @@ Log_Mode = True
 
 
 if Mode == '':
-    raise Exception("Program mode not selected")
-    time.sleep(1)
-    exit()
+    raise SystemExit("Program mode not selected")
 
 if Mode == "Planetary Navigation" : 
     setup = {
@@ -462,7 +500,7 @@ if Log_Mode == True:
         os.mkdir('Logs')
 
     if not os.path.isfile('Logs/Logs.csv'):
-        field = ['Key', 'X', 'Y', 'Z', 'Container', 'Longitude', 'Latitude', 'Height']
+        field = ['Key', 'System' ,'Global_X', 'Global_Y', 'Global_Z', 'Container', 'Local_X', 'Local_Y', 'Local_Z', 'Longitude', 'Latitude', 'Height', 'Time', 'Readable_Time', 'Player', 'Comment']
         with open("Logs/Logs.csv","w+", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(field)
@@ -567,7 +605,7 @@ while True:
                 }
                 for i in Database["Containers"] :
                     Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
-                    if vector_norm(Player_Container_vector) <= 1.5 * Database["Containers"][i]["OM Radius"]:
+                    if vector_norm(Player_Container_vector) <= 2 * Database["Containers"][i]["OM Radius"]:
                         Actual_Container = Database["Containers"][i]
 
 
@@ -965,8 +1003,43 @@ while True:
                 #------------------------------------------------------------Logs update------------------------------------------------------------
                 if Log_Mode == True:
                     if Actual_Container['Name'] != "None":
-                        fields = ['None', str(New_player_local_rotated_coordinates['X']), str(New_player_local_rotated_coordinates['Y']), str(New_player_local_rotated_coordinates['Z']), str(Actual_Container['Name']), str(player_Longitude), str(player_Latitude), str(player_Height)]
-
+                        fields = [
+                            'None',
+                            'Stanton',
+                            str(New_player_local_rotated_coordinates["X"]*1000),
+                            str(New_player_local_rotated_coordinates["Y"]*1000),
+                            str(New_player_local_rotated_coordinates["Z"]*1000),
+                            str(Actual_Container['Name']),
+                            str(New_player_local_rotated_coordinates['X']),
+                            str(New_player_local_rotated_coordinates['Y']),
+                            str(New_player_local_rotated_coordinates['Z']),
+                            str(player_Longitude),
+                            str(player_Latitude),
+                            str(player_Height*1000),
+                            str(time.time()),
+                            time.strftime('%d %b %Y %H:%M:%S', time.gmtime(time.time())),
+                            "",
+                            ""
+                        ]
+                        # field = [
+                        #     'Key', 
+                        #     'System', 
+                        #     'Global_X', 
+                        #     'Global_Y', 
+                        #     'Global_Z', 
+                        #     'Container', 
+                        #     'Local_X', 
+                        #     'Local_Y', 
+                        #     'Local_Z', 
+                        #     'Longitude', 
+                        #     'Latitude', 
+                        #     'Height', 
+                        #     'Time', 
+                        #     'Readable_Time',', 
+                        #     'Player', 
+                        #     'Comment'
+                        # ]
+                        
                         with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
                             writer = csv.writer(csv_file)
                             writer.writerow(fields)
@@ -1125,16 +1198,21 @@ while True:
                 }
                 for i in Database["Containers"] :
                     Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
-                    if vector_norm(Player_Container_vector) <= 1.5 * Database["Containers"][i]["OM Radius"]:
+                    if vector_norm(Player_Container_vector) <= 2 * Database["Containers"][i]["OM Radius"]:
                         Actual_Container = Database["Containers"][i]
                 
                 
                 
                 
                 # If around a container :
-                if Actual_Container['Name'] != "None" :
+                if Actual_Container['Name'] == "None" :
                     
-                    
+                    Distance_since_last_update = {}
+                    for i in ["X", "Y", "Z"]:
+                        Distance_since_last_update[i] = abs(Old_player_Global_coordinates[i] - New_Player_Global_coordinates[i])
+                    Distance_since_last_update_Total = vector_norm(Distance_since_last_update)
+                
+                else :
                     
                     # Local coordinates
                     
@@ -1288,7 +1366,7 @@ while True:
                         "player_local_z" : f"Local Z : {round(New_player_local_rotated_coordinates['Z'], 3)}",
                         "player_long" : f"Longitude : {round(Longitude, 2)}°",
                         "player_lat" : f"Latitude : {round(Latitude, 2)}°",
-                        "player_height" : f"Height : {round(Height, 1)} m",
+                        "player_height" : f"Height : {round(Height, 1)} km",
                         "player_OM1" : f"{Closest_OM['Z']['OM']['Name']} : {round(Closest_OM['Z']['Distance'], 3)} km",
                         "player_OM2" : f"{Closest_OM['Y']['OM']['Name']} : {round(Closest_OM['Y']['Distance'], 3)} km",
                         "player_OM3" : f"{Closest_OM['X']['OM']['Name']} : {round(Closest_OM['X']['Distance'], 3)} km",
@@ -1326,9 +1404,7 @@ while True:
             sys.stdout.flush()
 
 
-# Jericho_Station
+
 # Hurston : Coordinates: x:12850457093 y:0 z:0
 # Microtech : Coordinates: x:22462016306.0103 y:37185625645.8346 z:0
 # Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
-
-# Coordinates: x:-16930439540 y:-2610058765 z:0
