@@ -2,7 +2,7 @@
 #First release 16/04/2021
 
 #Imports
-from math import sqrt, degrees, radians, cos, acos, sin, asin, atan2
+from math import sqrt, degrees, radians, cos, acos, sin, asin, tan ,atan2, copysign, pi
 import pyperclip
 import time
 import datetime
@@ -713,16 +713,13 @@ while True:
                 try :
                     target_Longitude = -1*degrees(atan2(x, y))
                 except Exception as err:
-                    print(f'Error in Longitude : {err} \nx = {x}, y = {y} \nPlease report this to Valalol#1790 for me to try to solve this issue')
-                    sys.stdout.flush()
                     target_Longitude = 0
+                
 
                 #Latitude
                 try :
                     target_Latitude = degrees(asin(z/target_Radial_Distance))
                 except Exception as err:
-                    print(f'Error in Latitude : {err} \nz = {z}, radius = {target_Radial_Distance} \nPlease report this at Valalol#1790 for me to try to solve this issue')
-                    sys.stdout.flush()
                     target_Latitude = 0
 
 
@@ -942,10 +939,10 @@ while True:
                     Flat_angle_color = "#ffd000"
                 else:
                     Flat_angle_color = "#ff3700"
-                
-                
-                
-                
+
+
+
+
                 #----------------------------------------------------------Heading--------------------------------------------------------------
                 
                 bearingX = cos(radians(target_Latitude)) * sin(radians(target_Longitude) - radians(player_Longitude))
@@ -954,6 +951,270 @@ while True:
                 Bearing = (degrees(atan2(bearingX, bearingY)) + 360) % 360
 
 
+
+
+                #-------------------------------------------------Sunrise Sunset Calculation----------------------------------------------------
+                
+                # Stanton X Y Z coordinates in refrence of the center of the system
+                sx, sy, sz = Database["Containers"]["Stanton"]["X"], Database["Containers"]["Stanton"]["Y"], Database["Containers"]["Stanton"]["Z"]
+                
+                
+                # Container X Y Z coordinates in refrence of the center of the system
+                player_bx, player_by, player_bz = Actual_Container["X"], Actual_Container["Y"], Actual_Container["Z"]
+                target_bx, target_by, target_bz = Database["Containers"][Target["Container"]]["X"], Database["Containers"][Target["Container"]]["Y"], Database["Containers"][Target["Container"]]["Z"]
+                
+                
+                # Container qw/qx/qy/qz quaternion rotation 
+                player_qw, player_qx, player_qy, player_qz = Actual_Container["qw"], Actual_Container["qx"], Actual_Container["qy"], Actual_Container["qz"]
+                target_qw, target_qx, target_qy, target_qz = Database["Containers"][Target["Container"]]["qw"], Database["Containers"][Target["Container"]]["qx"], Database["Containers"][Target["Container"]]["qy"], Actual_Container["qz"]
+                
+                
+                # Stanton X Y Z coordinates in refrence of the center of the container
+                player_bsx = ((1-(2*player_qy**2)-(2*player_qz**2))*(sx-player_bx))+(((2*player_qx*player_qy)-(2*player_qz*player_qw))*(sy-player_by))+(((2*player_qx*player_qz)+(2*player_qy*player_qw))*(sz-player_bz))
+                player_bsy = (((2*player_qx*player_qy)+(2*player_qz*player_qw))*(sx-player_bx))+((1-(2*player_qx**2)-(2*player_qz**2))*(sy-player_by))+(((2*player_qy*player_qz)-(2*player_qx*player_qw))*(sz-player_bz))
+                player_bsz = (((2*player_qx*player_qz)-(2*player_qy*player_qw))*(sx-player_bx))+(((2*player_qy*player_qz)+(2*player_qx*player_qw))*(sy-player_by))+((1-(2*player_qx**2)-(2*player_qy**2))*(sz-player_bz))
+                
+                target_bsx = ((1-(2*target_qy**2)-(2*target_qz**2))*(sx-target_bx))+(((2*target_qx*target_qy)-(2*target_qz*target_qw))*(sy-target_by))+(((2*target_qx*target_qz)+(2*target_qy*target_qw))*(sz-target_bz)) # OK
+                target_bsy = (((2*target_qx*target_qy)+(2*target_qz*target_qw))*(sx-target_bx))+((1-(2*target_qx**2)-(2*target_qz**2))*(sy-target_by))+(((2*target_qy*target_qz)-(2*target_qx*target_qw))*(sz-target_bz)) # OK
+                target_bsz = (((2*target_qx*target_qz)-(2*target_qy*target_qw))*(sx-target_bx))+(((2*target_qy*target_qz)+(2*target_qx*target_qw))*(sy-target_by))+((1-(2*target_qx**2)-(2*target_qy**2))*(sz-target_bz)) # OK
+                
+                
+                # Solar Declination of Stanton
+                player_Solar_declination = degrees(acos((((sqrt(player_bsx**2+player_bsy**2+player_bsz**2))**2)+((sqrt(player_bsx**2+player_bsy**2))**2)-(player_bsz**2))/(2*(sqrt(player_bsx**2+player_bsy**2+player_bsz**2))*(sqrt(player_bsx**2+player_bsy**2)))))*copysign(1,player_bsz)
+                target_Solar_declination = degrees(acos((((sqrt(target_bsx**2+target_bsy**2+target_bsz**2))**2)+((sqrt(target_bsx**2+target_bsy**2))**2)-(target_bsz**2))/(2*(sqrt(target_bsx**2+target_bsy**2+target_bsz**2))*(sqrt(target_bsx**2+target_bsy**2)))))*copysign(1,target_bsz) # OK
+                
+                
+                # Radius of Stanton
+                StarRadius = Database["Containers"]["Stanton"]["Body Radius"] # OK
+                
+                
+                # Apparent Radius of Stanton
+                player_Apparent_Radius = degrees(asin(StarRadius/(sqrt((player_bsx)**2+(player_bsy)**2+(player_bsz)**2))))
+                target_Apparent_Radius = degrees(asin(StarRadius/(sqrt((target_bsx)**2+(target_bsy)**2+(target_bsz)**2)))) # OK
+                
+                
+                # Length of day is the planet rotation rate expressed as a fraction of a 24 hr day.
+                player_LengthOfDay = 3600*player_Rotation_speed_in_hours_per_rotation/86400
+                target_LengthOfDay = 3600*target_Rotation_speed_in_hours_per_rotation/86400 # OK
+                
+                
+                # A Julian Date is simply the number of days and fraction of a day since a specific event. (01/01/2020 00:00:00)
+                JulianDate = Time_passed_since_reference_in_seconds/(24*60*60) # OK
+                
+                
+                # Determine the current day/night cycle of the planet.
+                # The current cycle is expressed as the number of day/night cycles and fraction of the cycle that have occurred
+                # on that planet since Jan 1, 2020 given the length of day. While the number of sunrises that have occurred on the 
+                # planet since Jan 1, 2020 is interesting, we are really only interested in the fractional part.
+                player_CurrentCycle =JulianDate/player_LengthOfDay
+                target_CurrentCycle =JulianDate/target_LengthOfDay # OK
+                
+                
+                # The rotation correction is a value that accounts for the rotation of the planet on Jan 1, 2020 as we don’t know
+                # exactly when the rotation of the planet started.  This value is measured and corrected during a rotation
+                # alignment that is performed periodically in-game and is retrieved from the navigation database.
+                player_RotationCorrection = Actual_Container["Rotation Adjust"]
+                target_RotationCorrection = Database["Containers"][Target["Container"]]["Rotation Adjust"] # OK
+                
+                
+                # CurrentRotation is how far the planet has rotated in this current day/night cycle expressed in the number of
+                # degrees remaining before the planet completes another day/night cycle.
+                player_CurrentRotation = (360-(player_CurrentCycle%1)*360-player_RotationCorrection)%360
+                target_CurrentRotation = (360-(target_CurrentCycle%1)*360-target_RotationCorrection)%360 # OK
+                
+                
+                # Meridian determine where the star would be if the planet did not rotate.
+                # Between the planet and Stanton there is a plane that contains the north pole and south pole
+                # of the planet and the center of Stanton. Locations on the surface of the planet on this plane
+                # experience the phenomenon we call noon.
+                player_Meridian = degrees( (atan2(player_bsy,player_bsx)-(pi/2)) % (2*pi) )
+                target_Meridian = degrees( (atan2(target_bsy,target_bsx)-(pi/2)) % (2*pi) ) # OK
+                
+                
+                # Because the planet rotates, the location of noon is constantly moving. This equation
+                # computes the current longitude where noon is occurring on the planet.
+                player_SolarLongitude = player_CurrentRotation-(0-player_Meridian)%360
+                if player_SolarLongitude>180:
+                    player_SolarLongitude = player_SolarLongitude-360
+                elif player_SolarLongitude<-180:
+                    player_SolarLongitude = player_SolarLongitude+360
+                
+                target_SolarLongitude = target_CurrentRotation-(0-target_Meridian)%360 # OK
+                if target_SolarLongitude>180:
+                    target_SolarLongitude = target_SolarLongitude-360
+                elif target_SolarLongitude<-180:
+                    target_SolarLongitude = target_SolarLongitude+360
+                
+                
+                # The difference between Longitude and Longitude360 is that for Longitude, Positive values
+                # indicate locations in the Eastern Hemisphere, Negative values indicate locations in the Western
+                # Hemisphere.
+                # For Longitude360, locations in longitude 0-180 are in the Eastern Hemisphere, locations in
+                # longitude 180-359 are in the Western Hemisphere.
+                player_360Longitude = player_Longitude%360 # OK
+                target_360Longitude = target_Longitude%360 # OK
+                
+                
+                # Determine correction for location height
+                player_ElevationCorrection = degrees(acos(Actual_Container["Body Radius"]/(Actual_Container["Body Radius"]))) if player_Height<0 else degrees(acos(Actual_Container["Body Radius"]/(Actual_Container["Body Radius"]+player_Height)))
+                target_ElevationCorrection = degrees(acos(target_Radius/(target_Radius))) if target_Height<0 else degrees(acos(target_Radius/(target_Radius+target_Height))) # OK
+                
+                
+                # Determine Rise/Set Hour Angle
+                # The star rises at + (positive value) rise/set hour angle and sets at - (negative value) rise/set hour angle
+                # Solar Declination and Apparent Radius come from the first set of equations when we determined where the star is.
+                player_RiseSetHourAngle = degrees(acos(-tan(radians(player_Latitude))*tan(radians(player_Solar_declination))))+player_Apparent_Radius+player_ElevationCorrection
+                target_RiseSetHourAngle = degrees(acos(-tan(radians(target_Latitude))*tan(radians(target_Solar_declination))))+target_Apparent_Radius+target_ElevationCorrection # OK
+                
+                
+                # Determine the current Hour Angle of the star
+                
+                # Hour Angles between 180 and the +Rise Hour Angle are before sunrise.
+                # Between +Rise Hour angle and 0 are after sunrise before noon. 0 noon,
+                # between 0 and -Set Hour Angle is afternoon,
+                # between -Set Hour Angle and -180 is after sunset.
+                
+                # Once the current Hour Angle is determined, we now know the actual angle (in degrees)
+                # between the position of the star and the +rise hour angle and the -set hour angle.
+                player_HourAngle = (player_CurrentRotation-(player_360Longitude-player_Meridian)%360)%360
+                if player_HourAngle > 180:
+                    player_HourAngle = player_HourAngle - 360
+                
+                target_HourAngle = (target_CurrentRotation-(target_360Longitude-target_Meridian)%360)%360 # OK
+                if target_HourAngle > 180:
+                    target_HourAngle = target_HourAngle - 360
+                
+                
+                # Determine the planet Angular Rotation Rate.
+                # Angular Rotation Rate is simply the Planet Rotation Rate converted from Hours into degrees per minute.
+                # The Planet Rotation Rate is datamined from the game files.
+                player_AngularRotationRate = 6/player_Rotation_speed_in_hours_per_rotation # OK
+                target_AngularRotationRate = 6/target_Rotation_speed_in_hours_per_rotation # OK
+                
+                
+                
+                
+                player_midnight = (player_HourAngle + 180) / player_AngularRotationRate
+                
+                player_morning = (player_HourAngle - (player_RiseSetHourAngle+12)) / player_AngularRotationRate
+                if player_HourAngle <= player_RiseSetHourAngle+12:
+                    player_morning = player_morning + player_LengthOfDay*24*60
+                
+                player_sunrise = (player_HourAngle - player_RiseSetHourAngle) / player_AngularRotationRate
+                if player_HourAngle <= player_RiseSetHourAngle:
+                    player_sunrise = player_sunrise + player_LengthOfDay*24*60
+                
+                player_noon = (player_HourAngle - 0) / player_AngularRotationRate
+                if player_HourAngle <= 0:
+                    player_noon = player_noon + player_LengthOfDay*24*60
+                
+                player_sunset = (player_HourAngle - -1*player_RiseSetHourAngle) / player_AngularRotationRate
+                if player_HourAngle <= -1*player_RiseSetHourAngle:
+                    player_sunset = player_sunset + player_LengthOfDay*24*60
+                
+                player_evening = (player_HourAngle - (-1*player_RiseSetHourAngle-12)) / player_AngularRotationRate
+                if player_HourAngle <= -1*(player_RiseSetHourAngle-12):
+                    player_evening = player_evening + player_LengthOfDay*24*60
+                
+                
+                
+                
+                target_midnight = (target_HourAngle + 180) / target_AngularRotationRate
+                
+                target_morning = (target_HourAngle - (target_RiseSetHourAngle+12)) / target_AngularRotationRate
+                if target_HourAngle <= target_RiseSetHourAngle+12:
+                    target_morning = target_morning + target_LengthOfDay*24*60
+                
+                target_sunrise = (target_HourAngle - target_RiseSetHourAngle) / target_AngularRotationRate
+                if target_HourAngle <= target_RiseSetHourAngle:
+                    target_sunrise = target_sunrise + target_LengthOfDay*24*60
+                
+                target_noon = (target_HourAngle - 0) / target_AngularRotationRate
+                if target_HourAngle <= 0:
+                    target_noon = target_noon + target_LengthOfDay*24*60
+                
+                target_sunset = (target_HourAngle - -1*target_RiseSetHourAngle) / target_AngularRotationRate
+                if target_HourAngle <= -1*target_RiseSetHourAngle:
+                    target_sunset = target_sunset + target_LengthOfDay*24*60
+                
+                target_evening = (target_HourAngle - (-1*target_RiseSetHourAngle-12)) / target_AngularRotationRate
+                if target_HourAngle <= -1*(target_RiseSetHourAngle-12):
+                    target_evening = target_evening + target_LengthOfDay*24*60
+                
+                
+                
+                
+                
+                
+                if 180 >= player_HourAngle > player_RiseSetHourAngle+12:
+                    player_state_of_the_day = "After midnight"
+                    player_next_event = "Sunrise"
+                    player_next_event_time = player_sunrise
+                elif player_RiseSetHourAngle+12 >= player_HourAngle > player_RiseSetHourAngle:
+                    player_state_of_the_day = "Morning Twilight"
+                    player_next_event = "Sunrise"
+                    player_next_event_time = player_sunrise
+                elif player_RiseSetHourAngle >= player_HourAngle > 0:
+                    player_state_of_the_day = "Morning"
+                    player_next_event = "Sunset"
+                    player_next_event_time = player_sunset
+                elif 0 >= player_HourAngle > -1*player_RiseSetHourAngle:
+                    player_state_of_the_day = "Afternoon"
+                    player_next_event = "Sunset"
+                    player_next_event_time = player_sunset
+                elif -1*player_RiseSetHourAngle >= player_HourAngle > -1*player_RiseSetHourAngle-12:
+                    player_state_of_the_day = "Evening Twilight"
+                    player_next_event = "Sunrise"
+                    player_next_event_time = player_sunrise
+                elif -1*player_RiseSetHourAngle-12 >= player_HourAngle >= -180:
+                    player_state_of_the_day = "Before midnight"
+                    player_next_event = "Sunrise"
+                    player_next_event_time = player_sunrise
+                
+                
+                
+                if 180 >= target_HourAngle > target_RiseSetHourAngle+12:
+                    target_state_of_the_day = "After midnight"
+                    target_next_event = "Sunrise"
+                    target_next_event_time = target_sunrise
+                elif target_RiseSetHourAngle+12 >= target_HourAngle > target_RiseSetHourAngle:
+                    target_state_of_the_day = "Morning Twilight"
+                    target_next_event = "Sunrise"
+                    target_next_event_time = target_sunrise
+                elif target_RiseSetHourAngle >= target_HourAngle > 0:
+                    target_state_of_the_day = "Morning"
+                    target_next_event = "Sunset"
+                    target_next_event_time = target_sunset
+                elif 0 >= target_HourAngle > -1*target_RiseSetHourAngle:
+                    target_state_of_the_day = "Afternoon"
+                    target_next_event = "Sunset"
+                    target_next_event_time = target_sunset
+                elif -1*target_RiseSetHourAngle >= target_HourAngle > -1*target_RiseSetHourAngle-12:
+                    target_state_of_the_day = "Evening Twilight"
+                    target_next_event = "Sunrise"
+                    target_next_event_time = target_sunrise
+                elif -1*target_RiseSetHourAngle-12 >= target_HourAngle >= -180:
+                    target_state_of_the_day = "Before midnight"
+                    target_next_event = "Sunrise"
+                    target_next_event_time = target_sunrise
+                
+                
+                
+                
+                print(f"Player : \n - State of Day: {player_state_of_the_day}\n - Next Event: {player_next_event}\n - Next Event Time: {time.strftime('%H:%M:%S', time.localtime(New_time + player_next_event_time*60))}")
+                print(f"Target : \n - State of Day: {target_state_of_the_day}\n - Next Event: {target_next_event}\n - Next Event Time: {time.strftime('%H:%M:%S', time.localtime(New_time + target_next_event_time*60))}")
+                
+                
+                
+                
+                # print(f"target_midnight : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_midnight * 60))}")
+                # print(f"target_morning : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_morning * 60))}")
+                # print(f"target_sunrise : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_sunrise * 60))}")
+                # print(f"target_noon : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_noon * 60))}")
+                # print(f"target_sunset : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_sunset * 60))}")
+                # print(f"target_evening : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_evening * 60))}")
+                
+                # Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
 
 
 
