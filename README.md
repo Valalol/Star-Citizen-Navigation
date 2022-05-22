@@ -1,7 +1,11 @@
 # Star Citizen Navigation
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Electron.js](https://img.shields.io/badge/Electron-191970?style=for-the-badge&logo=Electron&logoColor=white)
-![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54)
+![Electron.js](https://img.shields.io/badge/Electron-191970?style=flat-square&logo=Electron&logoColor=white)
+![GitHub last commit](https://img.shields.io/github/last-commit/Valalol/Star-Citizen-Navigation?style=flat-square)
+![Downloads](https://img.shields.io/github/downloads/Valalol/Star-Citizen-Navigation/total?style=flat-square)
+![Licence](https://img.shields.io/dub/l/vibe-d?style=flat-square)
 
 
 This tool is designed to help you navigate in the universe of Star Citizen.
