@@ -6,5 +6,6 @@ PAUSE
 pip install pyperclip
 pip install tk
 pip install requests
+pip install ntplib
 ECHO Library installed!!
 PAUSE

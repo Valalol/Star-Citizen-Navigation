@@ -10,7 +10,7 @@ error_message = "Something Wrong Happened. \nPlease see the error below \nIf any
 
 pyshell.on('stderr', function (stderr) {
     console.log(stderr)
-    window.resizeTo(350,750)
+    window.resizeTo(350,850)
 
     document.getElementById("loading_status_icon").src = 'Images/red_dot.png';
     document.getElementById("loading_status_message").innerText = error_message
@@ -28,7 +28,7 @@ pyshell.on('stderr', function (stderr) {
 
 pyshell.on('error', function (err) {
     console.log(err)
-    window.resizeTo(350,750)
+    window.resizeTo(350,850)
 
     document.getElementById("loading_status_icon").src = 'Images/red_dot.png';
     document.getElementById("loading_status_message").innerText = error_message
@@ -55,7 +55,7 @@ pyshell.on('message', (message) => {
         console.log("Mode selected :", Mode)
 
         if (Mode === "Planetary Navigation") {
-            window.resizeTo(350,655)
+            window.resizeTo(350,750)
             // hide all mode divs except planetary navigation
             document.getElementById("Loading").style.display = "none";
             document.getElementById("planetary_Navigation").style.display = "block";
@@ -98,6 +98,9 @@ pyshell.on('message', (message) => {
             document.getElementById("player_OM2_value").innerText = new_data["player_OM2"]
             document.getElementById("player_OM3_value").innerText = new_data["player_OM3"]
             document.getElementById("player_closest_poi_value").innerText = new_data["player_closest_poi"]
+            document.getElementById("player_state_of_the_day_value").innerText = new_data["player_state_of_the_day"]
+            document.getElementById("player_next_event_value").innerText = new_data["player_next_event"]
+            document.getElementById("player_next_event_time_value").innerText = new_data["player_next_event_time"]
             document.getElementById("target_container_value").innerText = new_data["target_container"]
             document.getElementById("target_X_local_coordinate_value").innerText = new_data["target_x"]
             document.getElementById("target_Y_local_coordinate_value").innerText = new_data["target_y"]
@@ -109,6 +112,9 @@ pyshell.on('message', (message) => {
             document.getElementById("target_OM2_value").innerText = new_data["target_OM2"]
             document.getElementById("target_OM3_value").innerText = new_data["target_OM3"]
             document.getElementById("target_closest_QT_beacon_value").innerText = new_data["target_closest_QT_beacon"]
+            document.getElementById("target_state_of_the_day_value").innerText = new_data["target_state_of_the_day"]
+            document.getElementById("target_next_event_value").innerText = new_data["target_next_event"]
+            document.getElementById("target_next_event_time_value").innerText = new_data["target_next_event_time"]
             document.getElementById("planetary_distance_to_poi_value").innerText = new_data["distance_to_poi"]
             document.getElementById("planetary_distance_to_poi_value").style.color = new_data["distance_to_poi_color"]
             document.getElementById("planetary_distance_to_poi_value_delta").innerText = new_data["delta_distance_to_poi"]

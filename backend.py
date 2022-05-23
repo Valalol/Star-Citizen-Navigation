@@ -37,6 +37,7 @@ if settings["Update_checker"] == "TRUE":
     if Status_code == 200 :
         if Github_version.replace(".", "") > Local_version.replace(".", ""):
             print("New version available")
+            sys.stdout.flush()
             def Go_to_release_func():
                 webbrowser.open(Download_URL)
                 root.destroy()
@@ -395,6 +396,9 @@ if Mode == "Planetary Navigation" :
         "player_OM2" : "OM-3 : 0.000 km",
         "player_OM3" : "OM-5 : 0.000 km",
         "player_closest_poi" : "None : 0.000 km",
+        "player_state_of_the_day" : f"Morning", 
+        "player_next_event" : f"Sunset", 
+        "player_next_event_time" : f"00:00:00",
         "target_x" : "0.0",
         "target_y" : "0.0",
         "target_z" : "0.0",
@@ -405,6 +409,9 @@ if Mode == "Planetary Navigation" :
         "target_OM2" : "OM-3 : 0.000 km",
         "target_OM3" : "OM-5 : 0.000 km",
         "target_closest_QT_beacon" : "None : 0.000 km",
+        "target_state_of_the_day" : f"Evening Twilight", 
+        "target_next_event" : f"Sunrise", 
+        "target_next_event_time" : f"00:00:00",
         "distance_to_poi" : "0.000 km",
         "distance_to_poi_color" : "#00ff00",
         "delta_distance_to_poi" : "0.000 km",
@@ -465,6 +472,23 @@ sys.stdout.flush()
 
 
 
+try :
+    import ntplib
+    c = ntplib.NTPClient()
+    response = c.request('europe.pool.ntp.org', version=3)
+    server_time = response.tx_time
+    
+    time_offset = response.offset
+except:
+    print("Error: Could not get time from NTP server")
+    sys.stdout.flush()
+    time_offset = 0
+
+print('Time_offset:', time_offset)
+sys.stdout.flush()
+
+
+
 def vector_norm(a):
     """Returns the norm of a vector"""
     return sqrt(a["X"]**2 + a["Y"]**2 + a["Z"]**2)
@@ -487,6 +511,287 @@ def rotate_point_2D(Unrotated_coordinates, angle):
     Rotated_coordinates["Y"] = Unrotated_coordinates["X"] * sin(angle) + Unrotated_coordinates["Y"]*cos(angle)
     Rotated_coordinates["Z"] = Unrotated_coordinates["Z"]
     return (Rotated_coordinates)
+
+
+def get_current_container(X : float, Y : float, Z : float):
+    Actual_Container = {
+        "Name": "None",
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "Rotation Speed": 0,
+        "Rotation Adjust": 0,
+        "OM Radius": 0,
+        "Body Radius": 0,
+        "POI": {}
+    }
+    for i in Database["Containers"] :
+        Container_vector = {"X" : Database["Containers"][i]["X"] - X, "Y" : Database["Containers"][i]["Y"] - Y, "Z" : Database["Containers"][i]["Z"] - Z}
+        if vector_norm(Container_vector) <= 3 * Database["Containers"][i]["OM Radius"]:
+            Actual_Container = Database["Containers"][i]
+    return Actual_Container
+
+
+def get_local_rotated_coordinates(Time_passed : float, X : float, Y : float, Z : float, Actual_Container : dict):
+    
+    try:
+        Rotation_speed_in_degrees_per_second = 0.1 * (1/Actual_Container["Rotation Speed"])
+    except ZeroDivisionError:
+        Rotation_speed_in_degrees_per_second = 0
+    
+    Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed) + Actual_Container["Rotation Adjust"]) % 360
+    
+    local_unrotated_coordinates = {
+        "X": X - Actual_Container["X"],
+        "Y": Y - Actual_Container["Y"],
+        "Z": Z - Actual_Container["Z"]
+    }
+    
+    local_rotated_coordinates = rotate_point_2D(local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
+    
+    return local_rotated_coordinates
+
+
+def get_lat_long_height(X : float, Y : float, Z : float, Container : dict):
+    Radius = Container["Body Radius"]
+    
+    Radial_Distance = sqrt(X**2 + Y**2 + Z**2)
+    
+    Height = Radial_Distance - Radius
+
+    #Latitude
+    try :
+        Latitude = degrees(asin(Z/Radial_Distance))
+    except :
+        Latitude = 0
+    
+    try :
+        Longitude = -1*degrees(atan2(X, Y))
+    except :
+        Longitude = 0
+    
+    return [Latitude, Longitude, Height]
+
+
+def get_closest_POI(X : float, Y : float, Z : float, Container : dict, Quantum_marker : bool = False):
+    
+    Distances_to_POIs = []
+    
+    for POI in Container["POI"]:
+        Vector_POI = {
+            "X": abs(X - Container["POI"][POI]["X"]),
+            "Y": abs(Y - Container["POI"][POI]["Y"]),
+            "Z": abs(Z - Container["POI"][POI]["Z"])
+        }
+
+        Distance_POI = vector_norm(Vector_POI)
+
+        if Quantum_marker and Container["POI"][POI]["QTMarker"] == "TRUE" or not Quantum_marker:
+            Distances_to_POIs.append({"Name" : POI, "Distance" : Distance_POI})
+
+    Target_to_POIs_Distances_Sorted = sorted(Distances_to_POIs, key=lambda k: k['Distance'])
+    return Target_to_POIs_Distances_Sorted
+
+
+
+def get_closest_oms(X : float, Y : float, Z : float, Container : dict):
+    Closest_OM = {}
+    
+    if X >= 0:
+        Closest_OM["X"] = {"OM" : Container["POI"]["OM-5"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-5"]["X"], "Y" : Y - Container["POI"]["OM-5"]["Y"], "Z" : Z - Container["POI"]["OM-5"]["Z"]})}
+    else:
+        Closest_OM["X"] = {"OM" : Container["POI"]["OM-6"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-6"]["X"], "Y" : Y - Container["POI"]["OM-6"]["Y"], "Z" : Z - Container["POI"]["OM-6"]["Z"]})}
+    if Y >= 0:
+        Closest_OM["Y"] = {"OM" : Container["POI"]["OM-3"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-3"]["X"], "Y" : Y - Container["POI"]["OM-3"]["Y"], "Z" : Z - Container["POI"]["OM-3"]["Z"]})}
+    else:
+        Closest_OM["Y"] = {"OM" : Container["POI"]["OM-4"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-4"]["X"], "Y" : Y - Container["POI"]["OM-4"]["Y"], "Z" : Z - Container["POI"]["OM-4"]["Z"]})}
+    if Z >= 0:
+        Closest_OM["Z"] = {"OM" : Container["POI"]["OM-1"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-1"]["X"], "Y" : Y - Container["POI"]["OM-1"]["Y"], "Z" : Z - Container["POI"]["OM-1"]["Z"]})}
+    else:
+        Closest_OM["Z"] = {"OM" : Container["POI"]["OM-2"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-2"]["X"], "Y" : Y - Container["POI"]["OM-2"]["Y"], "Z" : Z - Container["POI"]["OM-2"]["Z"]})}
+
+    return Closest_OM
+
+
+
+def get_sunset_sunrise_predictions(X : float, Y : float, Z : float, Latitude : float, Longitude : float, Height : float, Container : dict, Star : dict):
+    try :
+        # Stanton X Y Z coordinates in refrence of the center of the system
+        sx, sy, sz = Star["X"], Star["Y"], Star["Z"]
+        
+        # Container X Y Z coordinates in refrence of the center of the system
+        bx, by, bz = Container["X"], Container["Y"], Container["Z"]
+        
+        # Rotation speed of the container
+        rotation_speed = Container["Rotation Speed"]
+        
+        # Container qw/qx/qy/qz quaternion rotation 
+        qw, qx, qy, qz = Container["qw"], Container["qx"], Container["qy"], Container["qz"]
+        
+        # Stanton X Y Z coordinates in refrence of the center of the container
+        bsx = ((1-(2*qy**2)-(2*qz**2))*(sx-bx))+(((2*qx*qy)-(2*qz*qw))*(sy-by))+(((2*qx*qz)+(2*qy*qw))*(sz-bz))
+        bsy = (((2*qx*qy)+(2*qz*qw))*(sx-bx))+((1-(2*qx**2)-(2*qz**2))*(sy-by))+(((2*qy*qz)-(2*qx*qw))*(sz-bz))
+        bsz = (((2*qx*qz)-(2*qy*qw))*(sx-bx))+(((2*qy*qz)+(2*qx*qw))*(sy-by))+((1-(2*qx**2)-(2*qy**2))*(sz-bz))
+        
+        # Solar Declination of Stanton
+        Solar_declination = degrees(acos((((sqrt(bsx**2+bsy**2+bsz**2))**2)+((sqrt(bsx**2+bsy**2))**2)-(bsz**2))/(2*(sqrt(bsx**2+bsy**2+bsz**2))*(sqrt(bsx**2+bsy**2)))))*copysign(1,bsz)
+        
+        # Radius of Stanton
+        StarRadius = Star["Body Radius"] # OK
+        
+        # Apparent Radius of Stanton
+        Apparent_Radius = degrees(asin(StarRadius/(sqrt((bsx)**2+(bsy)**2+(bsz)**2))))
+        
+        # Length of day is the planet rotation rate expressed as a fraction of a 24 hr day.
+        LengthOfDay = 3600*rotation_speed/86400
+        
+        
+        
+        # A Julian Date is simply the number of days and fraction of a day since a specific event. (01/01/2020 00:00:00)
+        JulianDate = Time_passed_since_reference_in_seconds/(24*60*60) # OK
+        
+        # Determine the current day/night cycle of the planet.
+        # The current cycle is expressed as the number of day/night cycles and fraction of the cycle that have occurred
+        # on that planet since Jan 1, 2020 given the length of day. While the number of sunrises that have occurred on the 
+        # planet since Jan 1, 2020 is interesting, we are really only interested in the fractional part.
+        try :
+            CurrentCycle = JulianDate/LengthOfDay
+        except ZeroDivisionError :
+            CurrentCycle = 1
+        
+        
+        # The rotation correction is a value that accounts for the rotation of the planet on Jan 1, 2020 as we don’t know
+        # exactly when the rotation of the planet started.  This value is measured and corrected during a rotation
+        # alignment that is performed periodically in-game and is retrieved from the navigation database.
+        RotationCorrection = Container["Rotation Adjust"]
+        
+        # CurrentRotation is how far the planet has rotated in this current day/night cycle expressed in the number of
+        # degrees remaining before the planet completes another day/night cycle.
+        CurrentRotation = (360-(CurrentCycle%1)*360-RotationCorrection)%360
+        
+        
+        # Meridian determine where the star would be if the planet did not rotate.
+        # Between the planet and Stanton there is a plane that contains the north pole and south pole
+        # of the planet and the center of Stanton. Locations on the surface of the planet on this plane
+        # experience the phenomenon we call noon.
+        Meridian = degrees( (atan2(bsy,bsx)-(pi/2)) % (2*pi) )
+        
+        # Because the planet rotates, the location of noon is constantly moving. This equation
+        # computes the current longitude where noon is occurring on the planet.
+        SolarLongitude = CurrentRotation-(0-Meridian)%360
+        if SolarLongitude>180:
+            SolarLongitude = SolarLongitude-360
+        elif SolarLongitude<-180:
+            SolarLongitude = SolarLongitude+360
+        
+        
+        
+        # The difference between Longitude and Longitude360 is that for Longitude, Positive values
+        # indicate locations in the Eastern Hemisphere, Negative values indicate locations in the Western
+        # Hemisphere.
+        # For Longitude360, locations in longitude 0-180 are in the Eastern Hemisphere, locations in
+        # longitude 180-359 are in the Western Hemisphere.
+        Longitude360 = Longitude%360 # OK
+        
+        # Determine correction for location height
+        ElevationCorrection = degrees(acos(Container["Body Radius"]/(Container["Body Radius"]))) if Height<0 else degrees(acos(Container["Body Radius"]/(Container["Body Radius"]+Height)))
+        
+        # Determine Rise/Set Hour Angle
+        # The star rises at + (positive value) rise/set hour angle and sets at - (negative value) rise/set hour angle
+        # Solar Declination and Apparent Radius come from the first set of equations when we determined where the star is.
+        RiseSetHourAngle = degrees(acos(-tan(radians(Latitude))*tan(radians(Solar_declination))))+Apparent_Radius+ElevationCorrection
+        
+        # Determine the current Hour Angle of the star
+        
+        # Hour Angles between 180 and the +Rise Hour Angle are before sunrise.
+        # Between +Rise Hour angle and 0 are after sunrise before noon. 0 noon,
+        # between 0 and -Set Hour Angle is afternoon,
+        # between -Set Hour Angle and -180 is after sunset.
+        
+        # Once the current Hour Angle is determined, we now know the actual angle (in degrees)
+        # between the position of the star and the +rise hour angle and the -set hour angle.
+        HourAngle = (CurrentRotation-(Longitude360-Meridian)%360)%360
+        if HourAngle > 180:
+            HourAngle = HourAngle - 360
+        
+        
+        # Determine the planet Angular Rotation Rate.
+        # Angular Rotation Rate is simply the Planet Rotation Rate converted from Hours into degrees per minute.
+        # The Planet Rotation Rate is datamined from the game files.
+        try :
+            AngularRotationRate = 6/rotation_speed # OK
+        except ZeroDivisionError :
+            AngularRotationRate = 0
+        
+        
+        if AngularRotationRate != 0 :
+            midnight = (HourAngle + 180) / AngularRotationRate
+            
+            morning = (HourAngle - (RiseSetHourAngle+12)) / AngularRotationRate
+            if HourAngle <= RiseSetHourAngle+12:
+                morning = morning + LengthOfDay*24*60
+            
+            sunrise = (HourAngle - RiseSetHourAngle) / AngularRotationRate
+            if HourAngle <= RiseSetHourAngle:
+                sunrise = sunrise + LengthOfDay*24*60
+            
+            noon = (HourAngle - 0) / AngularRotationRate
+            if HourAngle <= 0:
+                noon = noon + LengthOfDay*24*60
+            
+            sunset = (HourAngle - -1*RiseSetHourAngle) / AngularRotationRate
+            if HourAngle <= -1*RiseSetHourAngle:
+                sunset = sunset + LengthOfDay*24*60
+            
+            evening = (HourAngle - (-1*RiseSetHourAngle-12)) / AngularRotationRate
+            if HourAngle <= -1*(RiseSetHourAngle-12):
+                evening = evening + LengthOfDay*24*60
+        else :
+            midnight = 0
+            morning = 0
+            sunrise = 0
+            noon = 0
+            sunset = 0
+            evening = 0
+        
+        
+        
+        
+        if 180 >= HourAngle > RiseSetHourAngle+12:
+            state_of_the_day = "After midnight"
+            next_event = "Sunrise"
+            next_event_time = sunrise
+        elif RiseSetHourAngle+12 >= HourAngle > RiseSetHourAngle:
+            state_of_the_day = "Morning Twilight"
+            next_event = "Sunrise"
+            next_event_time = sunrise
+        elif RiseSetHourAngle >= HourAngle > 0:
+            state_of_the_day = "Morning"
+            next_event = "Sunset"
+            next_event_time = sunset
+        elif 0 >= HourAngle > -1*RiseSetHourAngle:
+            state_of_the_day = "Afternoon"
+            next_event = "Sunset"
+            next_event_time = sunset
+        elif -1*RiseSetHourAngle >= HourAngle > -1*RiseSetHourAngle-12:
+            state_of_the_day = "Evening Twilight"
+            next_event = "Sunrise"
+            next_event_time = sunrise
+        elif -1*RiseSetHourAngle-12 >= HourAngle >= -180:
+            state_of_the_day = "Before midnight"
+            next_event = "Sunrise"
+            next_event_time = sunrise
+        
+        if AngularRotationRate == 0 :
+            next_event = "N/A"
+        
+        return [state_of_the_day, next_event, next_event_time]
+    
+    except Exception as e:
+        print(f"Error in sunrise/sunset calculations: \n{e}\nValues were:\n-X : {X}\n-Y : {Y}\n-Z : {Z}\n-Latitude : {Latitude}\n-Longitude : {Longitude}\n-Height : {Height}\n-Container : {Container['Name']}\n-Star : {Star['Name']}")
+        sys.stdout.flush()
+        return ["Unknown", "Unknown", 0]
+
 
 
 #Sets some variables
@@ -554,7 +859,7 @@ while True:
 
 
     #If clipboard content hasn't changed
-    if new_clipboard == Old_clipboard and new_clipboard != "":
+    if new_clipboard == Old_clipboard or new_clipboard == "":
 
         #Wait some time
         time.sleep(1/5)
@@ -566,7 +871,7 @@ while True:
         #update the memory with the new content
         Old_clipboard = new_clipboard
 
-        New_time = time.time()
+        New_time = time.time() + time_offset
 
         #If it contains some coordinates
         if new_clipboard.startswith("Coordinates:"):
@@ -592,61 +897,24 @@ while True:
 
                 #---------------------------------------------------Actual Container----------------------------------------------------------------
                 #search in the Databse to see if the player is ina Container
-                Actual_Container = {
-                    "Name": "None",
-                    "X": 0,
-                    "Y": 0,
-                    "Z": 0,
-                    "Rotation Speed": 0,
-                    "Rotation Adjust": 0,
-                    "OM Radius": 0,
-                    "Body Radius": 0,
-                    "POI": {}
-                }
-                for i in Database["Containers"] :
-                    Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
-                    if vector_norm(Player_Container_vector) <= 2 * Database["Containers"][i]["OM Radius"]:
-                        Actual_Container = Database["Containers"][i]
+                Actual_Container = get_current_container(New_Player_Global_coordinates["X"], New_Player_Global_coordinates["Y"], New_Player_Global_coordinates["Z"])
 
 
 
                 #---------------------------------------------------New player local coordinates----------------------------------------------------
                 #Time passed since the start of game simulation
                 Time_passed_since_reference_in_seconds = New_time - Reference_time
-
-                #Grab the rotation speed of the container in the Database and convert it in degrees/s
-                player_Rotation_speed_in_hours_per_rotation = Actual_Container["Rotation Speed"]
-                try:
-                    player_Rotation_speed_in_degrees_per_second = 0.1 * (1/player_Rotation_speed_in_hours_per_rotation)
-                except ZeroDivisionError:
-                    player_Rotation_speed_in_degrees_per_second = 0
-                    continue
                 
-                
-                #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
-                player_Rotation_state_in_degrees = ((player_Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Actual_Container["Rotation Adjust"]) % 360
-
-                #get the new player unrotated coordinates
-                New_player_local_unrotated_coordinates = {}
-                for i in ['X', 'Y', 'Z']:
-                    New_player_local_unrotated_coordinates[i] = New_Player_Global_coordinates[i] - Actual_Container[i]
-
-                #get the new player rotated coordinates
-                New_player_local_rotated_coordinates = rotate_point_2D(New_player_local_unrotated_coordinates, radians(-1*player_Rotation_state_in_degrees))
+                New_player_local_rotated_coordinates = get_local_rotated_coordinates(Time_passed_since_reference_in_seconds, New_Player_Global_coordinates["X"], New_Player_Global_coordinates["Y"], New_Player_Global_coordinates["Z"], Actual_Container)
 
 
-
-
-                #---------------------------------------------------New player local coordinates----------------------------------------------------
-
+                #---------------------------------------------------New target local coordinates----------------------------------------------------
                 #Grab the rotation speed of the container in the Database and convert it in degrees/s
                 target_Rotation_speed_in_hours_per_rotation = Database["Containers"][Target["Container"]]["Rotation Speed"]
                 try:
                     target_Rotation_speed_in_degrees_per_second = 0.1 * (1/target_Rotation_speed_in_hours_per_rotation)
                 except ZeroDivisionError:
                     target_Rotation_speed_in_degrees_per_second = 0
-                    continue
-                
                 
                 #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
                 target_Rotation_state_in_degrees = ((target_Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjust"]) % 360
@@ -660,69 +928,10 @@ while True:
                 #-------------------------------------------------player local Long Lat Height--------------------------------------------------
                 
                 if Actual_Container['Name'] != "None":
-                    
-                    #Cartesian Coordinates
-                    x = New_player_local_rotated_coordinates["X"]
-                    y = New_player_local_rotated_coordinates["Y"]
-                    z = New_player_local_rotated_coordinates["Z"]
-
-                    #Radius of the container
-                    player_Radius = Actual_Container["Body Radius"]
-
-                    #Radial_Distance
-                    player_Radial_Distance = sqrt(x**2 + y**2 + z**2)
-
-                    #Height
-                    player_Height = player_Radial_Distance - player_Radius
-                    
-                    #Longitude
-                    try :
-                        player_Longitude = -1*degrees(atan2(x, y))
-                    except Exception as err:
-                        print(f'Error in Longitude : {err} \nx = {x}, y = {y} \nPlease report this to Valalol#1790 for me to try to solve this issue')
-                        sys.stdout.flush()
-                        player_Longitude = 0
-
-                    #Latitude
-                    try :
-                        player_Latitude = degrees(asin(z/player_Radial_Distance))
-                    except Exception as err:
-                        print(f'Error in Latitude : {err} \nz = {z}, radius = {player_Radial_Distance} \nPlease report this at Valalol#1790 for me to try to solve this issue')
-                        sys.stdout.flush()
-                        player_Latitude = 0
-
-                
+                    player_Latitude, player_Longitude, player_Height = get_lat_long_height(New_player_local_rotated_coordinates["X"], New_player_local_rotated_coordinates["Y"], New_player_local_rotated_coordinates["Z"], Actual_Container)
                 
                 #-------------------------------------------------target local Long Lat Height--------------------------------------------------
-
-                #Cartesian Coordinates
-                x = Target["X"]
-                y = Target["Y"]
-                z = Target["Z"]
-
-                #Radius of the container
-                target_Radius = Database["Containers"][Target["Container"]]["Body Radius"]
-
-                #Radial_Distance
-                target_Radial_Distance = sqrt(x**2 + y**2 + z**2)
-
-                #Height
-                target_Height = target_Radial_Distance - target_Radius
-                
-                #Longitude
-                try :
-                    target_Longitude = -1*degrees(atan2(x, y))
-                except Exception as err:
-                    target_Longitude = 0
-                
-
-                #Latitude
-                try :
-                    target_Latitude = degrees(asin(z/target_Radial_Distance))
-                except Exception as err:
-                    target_Latitude = 0
-
-
+                target_Latitude, target_Longitude, target_Height = get_lat_long_height(Target["X"], Target["Y"], Target["Z"], Database["Containers"][Target["Container"]])
 
 
 
@@ -785,20 +994,8 @@ while True:
 
 
                 #----------------------------------------------------Closest Quantumable POI--------------------------------------------------------
-                Target_to_POIs_Distances = []
                 if Target["QTMarker"] == "FALSE":
-                    for POI in Database["Containers"][Target["Container"]]["POI"]:
-                        if Database["Containers"][Target["Container"]]["POI"][POI]["QTMarker"] == "TRUE":
-
-                            Vector_POI_Target = {}
-                            for i in ["X", "Y", "Z"]:
-                                Vector_POI_Target[i] = abs(Target[i] - Database["Containers"][Target["Container"]]["POI"][POI][i])
-
-                            Distance_POI_Target = vector_norm(Vector_POI_Target)
-
-                            Target_to_POIs_Distances.append({"Name" : POI, "Distance" : Distance_POI_Target})
-
-                    Target_to_POIs_Distances_Sorted = sorted(Target_to_POIs_Distances, key=lambda k: k['Distance'])
+                    Target_to_POIs_Distances_Sorted = get_closest_POI(Target["X"], Target["Y"], Target["Z"], Database["Containers"][Target["Container"]], True)
                 
                 else :
                     Target_to_POIs_Distances_Sorted = [{
@@ -807,61 +1004,17 @@ while True:
                     }]
 
 
-
-
                 #----------------------------------------------------Player Closest POI--------------------------------------------------------
-                Player_to_POIs_Distances = []
-                for POI in Actual_Container["POI"]:
-                
-                    Vector_POI_Player = {}
-                    for i in ["X", "Y", "Z"]:
-                        Vector_POI_Player[i] = abs(New_player_local_rotated_coordinates[i] - Actual_Container["POI"][POI][i])
-
-                    Distance_POI_Player = vector_norm(Vector_POI_Player)
-
-                    Player_to_POIs_Distances.append({"Name" : POI, "Distance" : Distance_POI_Player})
-
-                Player_to_POIs_Distances_Sorted = sorted(Player_to_POIs_Distances, key=lambda k: k['Distance'])
-
-
-
+                Player_to_POIs_Distances_Sorted = get_closest_POI(New_player_local_rotated_coordinates["X"], New_player_local_rotated_coordinates["Y"], New_player_local_rotated_coordinates["Z"], Actual_Container, False)
 
 
                 #-------------------------------------------------------3 Closest OMs to player---------------------------------------------------------------
-                player_Closest_OM = {}
-                
-                if New_player_local_rotated_coordinates["X"] >= 0:
-                    player_Closest_OM["X"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-5"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-5"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-5"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-5"]["Z"]})}
-                else:
-                    player_Closest_OM["X"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-6"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-6"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-6"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-6"]["Z"]})}
-                if New_player_local_rotated_coordinates["Y"] >= 0:
-                    player_Closest_OM["Y"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-3"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-3"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-3"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-3"]["Z"]})}
-                else:
-                    player_Closest_OM["Y"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-4"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-4"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-4"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-4"]["Z"]})}
-                if New_player_local_rotated_coordinates["Z"] >= 0:
-                    player_Closest_OM["Z"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-1"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-1"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-1"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-1"]["Z"]})}
-                else:
-                    player_Closest_OM["Z"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-2"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-2"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-2"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-2"]["Z"]})}
-
+                player_Closest_OM = get_closest_oms(New_player_local_rotated_coordinates["X"], New_player_local_rotated_coordinates["Y"], New_player_local_rotated_coordinates["Z"], Actual_Container)
 
 
 
                 #-------------------------------------------------------3 Closest OMs to target---------------------------------------------------------------
-                target_Closest_OM = {}
-                
-                if Target["X"] >= 0:
-                    target_Closest_OM["X"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-5"], "Distance" : vector_norm({"X" : Target["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-5"]["X"], "Y" : Target["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-5"]["Y"], "Z" : Target["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-5"]["Z"]})}
-                else:
-                    target_Closest_OM["X"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-6"], "Distance" : vector_norm({"X" : Target["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-6"]["X"], "Y" : Target["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-6"]["Y"], "Z" : Target["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-6"]["Z"]})}
-                if Target["Y"] >= 0:
-                    target_Closest_OM["Y"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-3"], "Distance" : vector_norm({"X" : Target["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-3"]["X"], "Y" : Target["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-3"]["Y"], "Z" : Target["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-3"]["Z"]})}
-                else:
-                    target_Closest_OM["Y"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-4"], "Distance" : vector_norm({"X" : Target["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-4"]["X"], "Y" : Target["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-4"]["Y"], "Z" : Target["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-4"]["Z"]})}
-                if Target["Z"] >= 0:
-                    target_Closest_OM["Z"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-1"], "Distance" : vector_norm({"X" : Target["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-1"]["X"], "Y" : Target["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-1"]["Y"], "Z" : Target["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-1"]["Z"]})}
-                else:
-                    target_Closest_OM["Z"] = {"OM" : Database["Containers"][Target["Container"]]["POI"]["OM-2"], "Distance" : vector_norm({"X" : Target["X"] - Database["Containers"][Target["Container"]]["POI"]["OM-2"]["X"], "Y" : Target["Y"] - Database["Containers"][Target["Container"]]["POI"]["OM-2"]["Y"], "Z" : Target["Z"] - Database["Containers"][Target["Container"]]["POI"]["OM-2"]["Z"]})}
-
+                target_Closest_OM = get_closest_oms(Target["X"], Target["Y"], Target["Z"], Database["Containers"][Target["Container"]])
 
 
 
@@ -954,268 +1107,27 @@ while True:
 
 
                 #-------------------------------------------------Sunrise Sunset Calculation----------------------------------------------------
-                
-                # Stanton X Y Z coordinates in refrence of the center of the system
-                sx, sy, sz = Database["Containers"]["Stanton"]["X"], Database["Containers"]["Stanton"]["Y"], Database["Containers"]["Stanton"]["Z"]
-                
-                
-                # Container X Y Z coordinates in refrence of the center of the system
-                player_bx, player_by, player_bz = Actual_Container["X"], Actual_Container["Y"], Actual_Container["Z"]
-                target_bx, target_by, target_bz = Database["Containers"][Target["Container"]]["X"], Database["Containers"][Target["Container"]]["Y"], Database["Containers"][Target["Container"]]["Z"]
-                
-                
-                # Container qw/qx/qy/qz quaternion rotation 
-                player_qw, player_qx, player_qy, player_qz = Actual_Container["qw"], Actual_Container["qx"], Actual_Container["qy"], Actual_Container["qz"]
-                target_qw, target_qx, target_qy, target_qz = Database["Containers"][Target["Container"]]["qw"], Database["Containers"][Target["Container"]]["qx"], Database["Containers"][Target["Container"]]["qy"], Actual_Container["qz"]
-                
-                
-                # Stanton X Y Z coordinates in refrence of the center of the container
-                player_bsx = ((1-(2*player_qy**2)-(2*player_qz**2))*(sx-player_bx))+(((2*player_qx*player_qy)-(2*player_qz*player_qw))*(sy-player_by))+(((2*player_qx*player_qz)+(2*player_qy*player_qw))*(sz-player_bz))
-                player_bsy = (((2*player_qx*player_qy)+(2*player_qz*player_qw))*(sx-player_bx))+((1-(2*player_qx**2)-(2*player_qz**2))*(sy-player_by))+(((2*player_qy*player_qz)-(2*player_qx*player_qw))*(sz-player_bz))
-                player_bsz = (((2*player_qx*player_qz)-(2*player_qy*player_qw))*(sx-player_bx))+(((2*player_qy*player_qz)+(2*player_qx*player_qw))*(sy-player_by))+((1-(2*player_qx**2)-(2*player_qy**2))*(sz-player_bz))
-                
-                target_bsx = ((1-(2*target_qy**2)-(2*target_qz**2))*(sx-target_bx))+(((2*target_qx*target_qy)-(2*target_qz*target_qw))*(sy-target_by))+(((2*target_qx*target_qz)+(2*target_qy*target_qw))*(sz-target_bz)) # OK
-                target_bsy = (((2*target_qx*target_qy)+(2*target_qz*target_qw))*(sx-target_bx))+((1-(2*target_qx**2)-(2*target_qz**2))*(sy-target_by))+(((2*target_qy*target_qz)-(2*target_qx*target_qw))*(sz-target_bz)) # OK
-                target_bsz = (((2*target_qx*target_qz)-(2*target_qy*target_qw))*(sx-target_bx))+(((2*target_qy*target_qz)+(2*target_qx*target_qw))*(sy-target_by))+((1-(2*target_qx**2)-(2*target_qy**2))*(sz-target_bz)) # OK
-                
-                
-                # Solar Declination of Stanton
-                player_Solar_declination = degrees(acos((((sqrt(player_bsx**2+player_bsy**2+player_bsz**2))**2)+((sqrt(player_bsx**2+player_bsy**2))**2)-(player_bsz**2))/(2*(sqrt(player_bsx**2+player_bsy**2+player_bsz**2))*(sqrt(player_bsx**2+player_bsy**2)))))*copysign(1,player_bsz)
-                target_Solar_declination = degrees(acos((((sqrt(target_bsx**2+target_bsy**2+target_bsz**2))**2)+((sqrt(target_bsx**2+target_bsy**2))**2)-(target_bsz**2))/(2*(sqrt(target_bsx**2+target_bsy**2+target_bsz**2))*(sqrt(target_bsx**2+target_bsy**2)))))*copysign(1,target_bsz) # OK
-                
-                
-                # Radius of Stanton
-                StarRadius = Database["Containers"]["Stanton"]["Body Radius"] # OK
-                
-                
-                # Apparent Radius of Stanton
-                player_Apparent_Radius = degrees(asin(StarRadius/(sqrt((player_bsx)**2+(player_bsy)**2+(player_bsz)**2))))
-                target_Apparent_Radius = degrees(asin(StarRadius/(sqrt((target_bsx)**2+(target_bsy)**2+(target_bsz)**2)))) # OK
-                
-                
-                # Length of day is the planet rotation rate expressed as a fraction of a 24 hr day.
-                player_LengthOfDay = 3600*player_Rotation_speed_in_hours_per_rotation/86400
-                target_LengthOfDay = 3600*target_Rotation_speed_in_hours_per_rotation/86400 # OK
-                
-                
-                # A Julian Date is simply the number of days and fraction of a day since a specific event. (01/01/2020 00:00:00)
-                JulianDate = Time_passed_since_reference_in_seconds/(24*60*60) # OK
-                
-                
-                # Determine the current day/night cycle of the planet.
-                # The current cycle is expressed as the number of day/night cycles and fraction of the cycle that have occurred
-                # on that planet since Jan 1, 2020 given the length of day. While the number of sunrises that have occurred on the 
-                # planet since Jan 1, 2020 is interesting, we are really only interested in the fractional part.
-                player_CurrentCycle =JulianDate/player_LengthOfDay
-                target_CurrentCycle =JulianDate/target_LengthOfDay # OK
-                
-                
-                # The rotation correction is a value that accounts for the rotation of the planet on Jan 1, 2020 as we don’t know
-                # exactly when the rotation of the planet started.  This value is measured and corrected during a rotation
-                # alignment that is performed periodically in-game and is retrieved from the navigation database.
-                player_RotationCorrection = Actual_Container["Rotation Adjust"]
-                target_RotationCorrection = Database["Containers"][Target["Container"]]["Rotation Adjust"] # OK
-                
-                
-                # CurrentRotation is how far the planet has rotated in this current day/night cycle expressed in the number of
-                # degrees remaining before the planet completes another day/night cycle.
-                player_CurrentRotation = (360-(player_CurrentCycle%1)*360-player_RotationCorrection)%360
-                target_CurrentRotation = (360-(target_CurrentCycle%1)*360-target_RotationCorrection)%360 # OK
-                
-                
-                # Meridian determine where the star would be if the planet did not rotate.
-                # Between the planet and Stanton there is a plane that contains the north pole and south pole
-                # of the planet and the center of Stanton. Locations on the surface of the planet on this plane
-                # experience the phenomenon we call noon.
-                player_Meridian = degrees( (atan2(player_bsy,player_bsx)-(pi/2)) % (2*pi) )
-                target_Meridian = degrees( (atan2(target_bsy,target_bsx)-(pi/2)) % (2*pi) ) # OK
-                
-                
-                # Because the planet rotates, the location of noon is constantly moving. This equation
-                # computes the current longitude where noon is occurring on the planet.
-                player_SolarLongitude = player_CurrentRotation-(0-player_Meridian)%360
-                if player_SolarLongitude>180:
-                    player_SolarLongitude = player_SolarLongitude-360
-                elif player_SolarLongitude<-180:
-                    player_SolarLongitude = player_SolarLongitude+360
-                
-                target_SolarLongitude = target_CurrentRotation-(0-target_Meridian)%360 # OK
-                if target_SolarLongitude>180:
-                    target_SolarLongitude = target_SolarLongitude-360
-                elif target_SolarLongitude<-180:
-                    target_SolarLongitude = target_SolarLongitude+360
-                
-                
-                # The difference between Longitude and Longitude360 is that for Longitude, Positive values
-                # indicate locations in the Eastern Hemisphere, Negative values indicate locations in the Western
-                # Hemisphere.
-                # For Longitude360, locations in longitude 0-180 are in the Eastern Hemisphere, locations in
-                # longitude 180-359 are in the Western Hemisphere.
-                player_360Longitude = player_Longitude%360 # OK
-                target_360Longitude = target_Longitude%360 # OK
-                
-                
-                # Determine correction for location height
-                player_ElevationCorrection = degrees(acos(Actual_Container["Body Radius"]/(Actual_Container["Body Radius"]))) if player_Height<0 else degrees(acos(Actual_Container["Body Radius"]/(Actual_Container["Body Radius"]+player_Height)))
-                target_ElevationCorrection = degrees(acos(target_Radius/(target_Radius))) if target_Height<0 else degrees(acos(target_Radius/(target_Radius+target_Height))) # OK
-                
-                
-                # Determine Rise/Set Hour Angle
-                # The star rises at + (positive value) rise/set hour angle and sets at - (negative value) rise/set hour angle
-                # Solar Declination and Apparent Radius come from the first set of equations when we determined where the star is.
-                player_RiseSetHourAngle = degrees(acos(-tan(radians(player_Latitude))*tan(radians(player_Solar_declination))))+player_Apparent_Radius+player_ElevationCorrection
-                target_RiseSetHourAngle = degrees(acos(-tan(radians(target_Latitude))*tan(radians(target_Solar_declination))))+target_Apparent_Radius+target_ElevationCorrection # OK
-                
-                
-                # Determine the current Hour Angle of the star
-                
-                # Hour Angles between 180 and the +Rise Hour Angle are before sunrise.
-                # Between +Rise Hour angle and 0 are after sunrise before noon. 0 noon,
-                # between 0 and -Set Hour Angle is afternoon,
-                # between -Set Hour Angle and -180 is after sunset.
-                
-                # Once the current Hour Angle is determined, we now know the actual angle (in degrees)
-                # between the position of the star and the +rise hour angle and the -set hour angle.
-                player_HourAngle = (player_CurrentRotation-(player_360Longitude-player_Meridian)%360)%360
-                if player_HourAngle > 180:
-                    player_HourAngle = player_HourAngle - 360
-                
-                target_HourAngle = (target_CurrentRotation-(target_360Longitude-target_Meridian)%360)%360 # OK
-                if target_HourAngle > 180:
-                    target_HourAngle = target_HourAngle - 360
-                
-                
-                # Determine the planet Angular Rotation Rate.
-                # Angular Rotation Rate is simply the Planet Rotation Rate converted from Hours into degrees per minute.
-                # The Planet Rotation Rate is datamined from the game files.
-                player_AngularRotationRate = 6/player_Rotation_speed_in_hours_per_rotation # OK
-                target_AngularRotationRate = 6/target_Rotation_speed_in_hours_per_rotation # OK
-                
-                
-                
-                
-                player_midnight = (player_HourAngle + 180) / player_AngularRotationRate
-                
-                player_morning = (player_HourAngle - (player_RiseSetHourAngle+12)) / player_AngularRotationRate
-                if player_HourAngle <= player_RiseSetHourAngle+12:
-                    player_morning = player_morning + player_LengthOfDay*24*60
-                
-                player_sunrise = (player_HourAngle - player_RiseSetHourAngle) / player_AngularRotationRate
-                if player_HourAngle <= player_RiseSetHourAngle:
-                    player_sunrise = player_sunrise + player_LengthOfDay*24*60
-                
-                player_noon = (player_HourAngle - 0) / player_AngularRotationRate
-                if player_HourAngle <= 0:
-                    player_noon = player_noon + player_LengthOfDay*24*60
-                
-                player_sunset = (player_HourAngle - -1*player_RiseSetHourAngle) / player_AngularRotationRate
-                if player_HourAngle <= -1*player_RiseSetHourAngle:
-                    player_sunset = player_sunset + player_LengthOfDay*24*60
-                
-                player_evening = (player_HourAngle - (-1*player_RiseSetHourAngle-12)) / player_AngularRotationRate
-                if player_HourAngle <= -1*(player_RiseSetHourAngle-12):
-                    player_evening = player_evening + player_LengthOfDay*24*60
-                
-                
-                
-                
-                target_midnight = (target_HourAngle + 180) / target_AngularRotationRate
-                
-                target_morning = (target_HourAngle - (target_RiseSetHourAngle+12)) / target_AngularRotationRate
-                if target_HourAngle <= target_RiseSetHourAngle+12:
-                    target_morning = target_morning + target_LengthOfDay*24*60
-                
-                target_sunrise = (target_HourAngle - target_RiseSetHourAngle) / target_AngularRotationRate
-                if target_HourAngle <= target_RiseSetHourAngle:
-                    target_sunrise = target_sunrise + target_LengthOfDay*24*60
-                
-                target_noon = (target_HourAngle - 0) / target_AngularRotationRate
-                if target_HourAngle <= 0:
-                    target_noon = target_noon + target_LengthOfDay*24*60
-                
-                target_sunset = (target_HourAngle - -1*target_RiseSetHourAngle) / target_AngularRotationRate
-                if target_HourAngle <= -1*target_RiseSetHourAngle:
-                    target_sunset = target_sunset + target_LengthOfDay*24*60
-                
-                target_evening = (target_HourAngle - (-1*target_RiseSetHourAngle-12)) / target_AngularRotationRate
-                if target_HourAngle <= -1*(target_RiseSetHourAngle-12):
-                    target_evening = target_evening + target_LengthOfDay*24*60
-                
-                
-                
-                
-                
-                
-                if 180 >= player_HourAngle > player_RiseSetHourAngle+12:
-                    player_state_of_the_day = "After midnight"
-                    player_next_event = "Sunrise"
-                    player_next_event_time = player_sunrise
-                elif player_RiseSetHourAngle+12 >= player_HourAngle > player_RiseSetHourAngle:
-                    player_state_of_the_day = "Morning Twilight"
-                    player_next_event = "Sunrise"
-                    player_next_event_time = player_sunrise
-                elif player_RiseSetHourAngle >= player_HourAngle > 0:
-                    player_state_of_the_day = "Morning"
-                    player_next_event = "Sunset"
-                    player_next_event_time = player_sunset
-                elif 0 >= player_HourAngle > -1*player_RiseSetHourAngle:
-                    player_state_of_the_day = "Afternoon"
-                    player_next_event = "Sunset"
-                    player_next_event_time = player_sunset
-                elif -1*player_RiseSetHourAngle >= player_HourAngle > -1*player_RiseSetHourAngle-12:
-                    player_state_of_the_day = "Evening Twilight"
-                    player_next_event = "Sunrise"
-                    player_next_event_time = player_sunrise
-                elif -1*player_RiseSetHourAngle-12 >= player_HourAngle >= -180:
-                    player_state_of_the_day = "Before midnight"
-                    player_next_event = "Sunrise"
-                    player_next_event_time = player_sunrise
-                
-                
-                
-                if 180 >= target_HourAngle > target_RiseSetHourAngle+12:
-                    target_state_of_the_day = "After midnight"
-                    target_next_event = "Sunrise"
-                    target_next_event_time = target_sunrise
-                elif target_RiseSetHourAngle+12 >= target_HourAngle > target_RiseSetHourAngle:
-                    target_state_of_the_day = "Morning Twilight"
-                    target_next_event = "Sunrise"
-                    target_next_event_time = target_sunrise
-                elif target_RiseSetHourAngle >= target_HourAngle > 0:
-                    target_state_of_the_day = "Morning"
-                    target_next_event = "Sunset"
-                    target_next_event_time = target_sunset
-                elif 0 >= target_HourAngle > -1*target_RiseSetHourAngle:
-                    target_state_of_the_day = "Afternoon"
-                    target_next_event = "Sunset"
-                    target_next_event_time = target_sunset
-                elif -1*target_RiseSetHourAngle >= target_HourAngle > -1*target_RiseSetHourAngle-12:
-                    target_state_of_the_day = "Evening Twilight"
-                    target_next_event = "Sunrise"
-                    target_next_event_time = target_sunrise
-                elif -1*target_RiseSetHourAngle-12 >= target_HourAngle >= -180:
-                    target_state_of_the_day = "Before midnight"
-                    target_next_event = "Sunrise"
-                    target_next_event_time = target_sunrise
-                
-                
-                
-                
-                print(f"Player : \n - State of Day: {player_state_of_the_day}\n - Next Event: {player_next_event}\n - Next Event Time: {time.strftime('%H:%M:%S', time.localtime(New_time + player_next_event_time*60))}")
-                print(f"Target : \n - State of Day: {target_state_of_the_day}\n - Next Event: {target_next_event}\n - Next Event Time: {time.strftime('%H:%M:%S', time.localtime(New_time + target_next_event_time*60))}")
-                
-                
-                
-                
-                # print(f"target_midnight : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_midnight * 60))}")
-                # print(f"target_morning : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_morning * 60))}")
-                # print(f"target_sunrise : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_sunrise * 60))}")
-                # print(f"target_noon : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_noon * 60))}")
-                # print(f"target_sunset : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_sunset * 60))}")
-                # print(f"target_evening : {time.strftime('%H:%M:%S', time.localtime(time.time() + target_evening * 60))}")
-                
-                # Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
-
+                player_state_of_the_day, player_next_event, player_next_event_time = get_sunset_sunrise_predictions(
+                    New_player_local_rotated_coordinates["X"], 
+                    New_player_local_rotated_coordinates["Y"], 
+                    New_player_local_rotated_coordinates["Z"], 
+                    player_Latitude, 
+                    player_Longitude, 
+                    player_Height, 
+                    Actual_Container, 
+                    Database["Containers"]["Stanton"]
+                )
+                
+                target_state_of_the_day, target_next_event, target_next_event_time = get_sunset_sunrise_predictions(
+                    Target["X"], 
+                    Target["Y"], 
+                    Target["Z"], 
+                    target_Latitude, 
+                    target_Longitude, 
+                    target_Height, 
+                    Database["Containers"][Target["Container"]], 
+                    Database["Containers"]["Stanton"]
+                )
 
 
                 #------------------------------------------------------------Backend to Frontend------------------------------------------------------------
@@ -1234,6 +1146,9 @@ while True:
                     "player_OM2" : f"{player_Closest_OM['Y']['OM']['Name']} : {round(player_Closest_OM['Y']['Distance'], 3)} km",
                     "player_OM3" : f"{player_Closest_OM['X']['OM']['Name']} : {round(player_Closest_OM['X']['Distance'], 3)} km",
                     "player_closest_poi" : f"{Player_to_POIs_Distances_Sorted[0]['Name']} : {round(Player_to_POIs_Distances_Sorted[0]['Distance'], 3)} km",
+                    "player_state_of_the_day" : f"{player_state_of_the_day}", 
+                    "player_next_event" : f"{player_next_event}", 
+                    "player_next_event_time" : f"{time.strftime('%H:%M:%S', time.localtime(New_time + player_next_event_time*60))}",
                     "target_x" : Target["X"],
                     "target_y" : Target["Y"],
                     "target_z" : Target["Z"],
@@ -1244,6 +1159,9 @@ while True:
                     "target_OM2" : f"{target_Closest_OM['Y']['OM']['Name']} : {round(target_Closest_OM['Y']['Distance'], 3)} km",
                     "target_OM3" : f"{target_Closest_OM['X']['OM']['Name']} : {round(target_Closest_OM['X']['Distance'], 3)} km",
                     "target_closest_QT_beacon" : f"{Target_to_POIs_Distances_Sorted[0]['Name']} : {round(Target_to_POIs_Distances_Sorted[0]['Distance'], 3)} km",
+                    "target_state_of_the_day" : f"{target_state_of_the_day}", 
+                    "target_next_event" : f"{target_next_event}", 
+                    "target_next_event_time" : f"{time.strftime('%H:%M:%S', time.localtime(New_time + target_next_event_time*60))}",
                     "distance_to_poi" : f"{round(New_Distance_to_POI_Total, 3)} km",
                     "distance_to_poi_color" : New_Distance_to_POI_Total_color,
                     "delta_distance_to_poi" : f"{round(abs(Delta_Distance_to_POI_Total), 3)} km",
@@ -1257,8 +1175,6 @@ while True:
                 }
                 print("New data :", json.dumps(new_data))
                 sys.stdout.flush()
-                
-
 
 
                 #------------------------------------------------------------Logs update------------------------------------------------------------
@@ -1446,23 +1362,7 @@ while True:
                 
                 # Actual container
                 # Search in the Database to see if the player is in a Container
-                Actual_Container = {
-                    "Name": "None",
-                    "X": 0,
-                    "Y": 0,
-                    "Z": 0,
-                    "Rotation Speed": 0,
-                    "Rotation Adjust": 0,
-                    "OM Radius": 0,
-                    "Body Radius": 0,
-                    "POI": {}
-                }
-                for i in Database["Containers"] :
-                    Player_Container_vector = {"X" : Database["Containers"][i]["X"] - New_Player_Global_coordinates["X"], "Y" : Database["Containers"][i]["Y"] - New_Player_Global_coordinates["Y"], "Z" : Database["Containers"][i]["Z"] - New_Player_Global_coordinates["Z"]}
-                    if vector_norm(Player_Container_vector) <= 2 * Database["Containers"][i]["OM Radius"]:
-                        Actual_Container = Database["Containers"][i]
-                
-                
+                Actual_Container = get_current_container(New_Player_Global_coordinates["X"], New_Player_Global_coordinates["Y"], New_Player_Global_coordinates["Z"])
                 
                 
                 # If around a container :
