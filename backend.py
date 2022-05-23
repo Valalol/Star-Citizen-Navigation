@@ -21,7 +21,7 @@ with open("settings.json", "r") as f:
     settings = json.load(f)
 
 if settings["Update_checker"] == "TRUE":
-    Local_version =  "2.0.3"
+    Local_version =  "2.0.4"
 
     release_request_url = "https://api.github.com/repos/Valalol/Star-Citizen-Navigation/releases"
 
