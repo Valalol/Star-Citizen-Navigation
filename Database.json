@@ -2318,6 +2318,78 @@
                     "qy": -0.20332202,
                     "qz": 0.8521471,
                     "QTMarker": "TRUE"
+                },
+                "August Dunlow Spaceport": {
+                    "Name": "August Dunlow Spaceport",
+                    "Container": "Crusader",
+                    "X": 5295.536,
+                    "Y": -871.476,
+                    "Z": 5281.923,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Fleet Week 2022 Event Halls": {
+                    "Name": "Fleet Week 2022 Event Halls",
+                    "Container": "Crusader",
+                    "X": 5333.063,
+                    "Y": -778.502,
+                    "Z": 5253.85,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Habitation clusters": {
+                    "Name": "Habitation clusters",
+                    "Container": "Crusader",
+                    "X": 5329.333,
+                    "Y": -794.336,
+                    "Z": 5254.738,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Shipyard clusters": {
+                    "Name": "Shipyard clusters",
+                    "Container": "Crusader",
+                    "X": 5322.096,
+                    "Y": -819.404,
+                    "Z": 5257.88,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Orison - Solanki Platform": {
+                    "Name": "Orison - Solanki Platform",
+                    "Container": "Crusader",
+                    "X": 5332.839,
+                    "Y": -778.582,
+                    "Z": 5254.069,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Orison - Brushwood Platform": {
+                    "Name": "Orison - Brushwood Platform",
+                    "Container": "Crusader",
+                    "X": 5339.470,
+                    "Y": -764.057,
+                    "Z": 5252.584,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
