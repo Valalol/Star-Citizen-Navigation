@@ -36,7 +36,7 @@ This program relies almost entirely on the in-game `/showlocation` command. This
 
 ## Installation
 
-**First of all, make sure you downloaded a release version and not the source code. Release is page is on [this page](https://github.com/Valalol/Star-Citizen-Navigation/releases).**
+**First of all, make sure you downloaded a release version and not the source code. Release page is on [this link](https://github.com/Valalol/Star-Citizen-Navigation/releases).**
 
 1) Copy and extract the star-citizen-navigation-tool-win32-x64 folder wherever you want.
 
