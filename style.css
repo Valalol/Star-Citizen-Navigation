@@ -2,6 +2,8 @@
   margin: 0;
 }
 
+/* -webkit-app-region: no-drag; <----- Disable drag on whatever I want !! */
+
 .mode_div {
   background-color: rgba(0, 0, 0, 0.70);
   border-radius: 18px;
