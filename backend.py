@@ -1,7 +1,3 @@
-#Made by Valalol#1790
-#First release 16/04/2021
-
-#Imports
 from math import sqrt, degrees, radians, cos, acos, sin, asin, tan ,atan2, copysign, pi
 import pyperclip
 import time
@@ -14,14 +10,19 @@ import csv
 import sys
 import requests
 import webbrowser
+import argparse
+
 
 os.system("")
 
 with open("settings.json", "r") as f:
     settings = json.load(f)
 
-if settings["Update_checker"] == "TRUE":
-    Local_version =  "2.0.4"
+
+
+
+if settings["update_checker"] == True:
+    Local_version =  "2.1.1"
 
     release_request_url = "https://api.github.com/repos/Valalol/Star-Citizen-Navigation/releases"
 
@@ -72,10 +73,6 @@ if settings["Update_checker"] == "TRUE":
 
 
 
-
-
-Program_mode_list = ["Planetary Navigation", "Space Navigation", "Companion"] #, "Racing Tool"
-
 with open('Database.json') as f:
     Database = json.load(f)
 
@@ -96,379 +93,102 @@ for container_name in Database["Containers"]:
 
 
 
-Target = ""
-Mode = ""
 
-
-
-#-------------------------------------------------------------GUI-----------------------------------------------------------------------
-#------------------------------------------------------------Start----------------------------------------------------------------------
-
-def Program_mode_selected(event):
-
-    if Program_mode_selection_Combobox.get() == "Planetary Navigation" :
-        Planetary_Navigation_Frame.grid(column='1', row='0')
-        Space_Navigation_Frame.grid_forget()
-        Companion_Tool_Frame.grid_forget()
-        Racing_Tool_Frame.grid_forget()
-
-
-
-    elif Program_mode_selection_Combobox.get() == "Space Navigation" :
-        Planetary_Navigation_Frame.grid_forget()
-        Space_Navigation_Frame.grid(column='1', row='0')
-        Companion_Tool_Frame.grid_forget()
-        Racing_Tool_Frame.grid_forget()
-
-
-
-    elif Program_mode_selection_Combobox.get() == "Companion" :
-        Planetary_Navigation_Frame.grid_forget()
-        Space_Navigation_Frame.grid_forget()
-        Companion_Tool_Frame.grid(column='1', row='0')
-        Racing_Tool_Frame.grid_forget()
-
-
-
-    elif Program_mode_selection_Combobox.get() == "Racing Tool" :
-        Planetary_Navigation_Frame.grid_forget()
-        Space_Navigation_Frame.grid_forget()
-        Companion_Tool_Frame.grid_forget()
-        Racing_Tool_Frame.grid(column='1', row='0')
-
-
-
-
-def Container_Selected(event):
-    Planetary_POI_Selection_Combobox["values"] = Planetary_POI_list[Container_Selection_Combobox.get()]
-
-
-
-def Planetary_Known_or_custom_selected(event):
-    if Planetary_Known_or_custom_POI_Combobox.get() == "Known POI" :
-        Planetary_Known_POI_Frame.grid(column='2', row='0')
-        Planetary_Custom_POI_Frame.grid_forget()
-
-
-    elif Planetary_Known_or_custom_POI_Combobox.get() == "Custom POI" :
-        Planetary_Known_POI_Frame.grid_forget()
-        Planetary_Custom_POI_Frame.grid(column='2', row='0')
-
-
-
-def Planetary_Known_Target_Selected(event):
-    Planetary_Known_POI_Frame_Start_Navigation_Button.grid(column='1', padx='8', pady='8', row='0')
-
-
-
-def Start_Planetary_Navigation_Known_POI():
-    global Target, Mode
-    Mode = Program_mode_selection_Combobox.get()
-    Target = Database["Containers"][Container_Selection_Combobox.get()]["POI"][f'{Planetary_POI_Selection_Combobox.get()}']
-
-    root.destroy()
-
-
-
-def Start_Planetary_Navigation_Custom_POI():
-    global Target, Mode
-    Mode = Program_mode_selection_Combobox.get()
-    Target = {'Name': 'Custom POI', 'Container': f'{Container_Selection_Combobox.get()}', 'X': float(Planetary_X_Custom_POI_Entry.get()), 'Y': float(Planetary_Y_Custom_POI_Entry.get()), 'Z': float(Planetary_Z_Custom_POI_Entry.get()), "QTMarker": "FALSE"}
-
-    root.destroy()
-
-
-def Space_Known_or_custom_selected(event):
-    if Space_Known_or_custom_POI_Combobox.get() == "Known POI" :
-        Space_Known_POI_Frame.grid(column='2', row='0')
-        Space_Custom_POI_Frame.grid_forget()
-
-
-    elif Space_Known_or_custom_POI_Combobox.get() == "Custom POI" :
-        Space_Known_POI_Frame.grid_forget()
-        Space_Custom_POI_Frame.grid(column='2', row='0')
-
-
-def Space_Known_Target_Selected(event):
-    Space_Known_POI_Frame_Start_Navigation_Button.grid(column='1', padx='8', pady='8', row='0')
-
-
-def Start_Space_Navigation_Known_POI():
-    global Target, Mode
-    Mode = Program_mode_selection_Combobox.get()
-    Target = Database["Space_POI"][f'{Space_POI_Selection_Combobox.get()}']
-
-    root.destroy()
-
-
-def Start_Space_Navigation_Custom_POI():
-    global Target, Mode
-    Mode = Program_mode_selection_Combobox.get()
-    Target = {'Name': 'Custom POI', 'Container': 0, 'X': float(Space_X_Custom_POI_Entry.get()), 'Y': float(Space_Y_Custom_POI_Entry.get()), 'Z': float(Space_Z_Custom_POI_Entry.get()), 'QTMarker': "FALSE"}
-
-    root.destroy()
-
-
-def Start_Companion():
-    global Mode
-    Mode = Program_mode_selection_Combobox.get()
-
-    root.destroy()
-
-
-
-
-#root
-root = tk.Tk()
-
-root.title("Navigation Tool")
-root.iconbitmap(r'Images/Icon.ico')
-
-
-#Main Frame
-MainWindow = ttk.Frame(root)
-MainWindow.configure(borderwidth='0', height='200', relief='flat', width='200')
-MainWindow.pack(expand='true', fill='both', side='left')
-
-#Program mode selection combobox always here
-Program_mode_selection_Combobox = ttk.Combobox(MainWindow, state='readonly', values = Program_mode_list)
-Program_mode_selection_Combobox.bind("<<ComboboxSelected>>", Program_mode_selected)
-Program_mode_selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
-
-
-
-#Planetary Navigation Frame
-Planetary_Navigation_Frame = ttk.Frame(MainWindow)
-Planetary_Navigation_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-
-Container_Selection_Combobox = ttk.Combobox(Planetary_Navigation_Frame, state='readonly', values = Container_list)
-Container_Selection_Combobox.bind("<<ComboboxSelected>>", Container_Selected)
-Container_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
-
-
-Planetary_Known_or_custom_POI_Combobox = ttk.Combobox(Planetary_Navigation_Frame, state='readonly', values = ["Known POI", "Custom POI"])
-Planetary_Known_or_custom_POI_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_or_custom_selected)
-Planetary_Known_or_custom_POI_Combobox.grid(column='1', padx='8', pady='8', row='0')
-
-
-
-#Known Poi Selection
-Planetary_Known_POI_Frame = ttk.Frame(Planetary_Navigation_Frame)
-Planetary_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-
-Planetary_POI_Selection_Combobox = ttk.Combobox(Planetary_Known_POI_Frame, state='readonly', values = "", width=45)
-Planetary_POI_Selection_Combobox.bind("<<ComboboxSelected>>", Planetary_Known_Target_Selected)
-Planetary_POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
-
-
-Planetary_Known_POI_Frame_Start_Navigation_Button = tk.Button(Planetary_Known_POI_Frame, text="Start Navigation", command=Start_Planetary_Navigation_Known_POI)
-
-
-
-#Custom Poi Selection
-Planetary_Custom_POI_Frame = ttk.Frame(Planetary_Navigation_Frame)
-Planetary_Custom_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-
-Planetary_X_Custom_POI_Small_X = tk.Label(Planetary_Custom_POI_Frame, text="X =")
-Planetary_X_Custom_POI_Small_Y = tk.Label(Planetary_Custom_POI_Frame, text="Y =")
-Planetary_X_Custom_POI_Small_Z = tk.Label(Planetary_Custom_POI_Frame, text="Z =")
-
-Planetary_X_Custom_POI_Small_X.grid(column='0', padx='1', pady='3', row='0')
-Planetary_X_Custom_POI_Small_Y.grid(column='0', padx='1', pady='3', row='1')
-Planetary_X_Custom_POI_Small_Z.grid(column='0', padx='1', pady='3', row='2')
-
-
-Planetary_X_Custom_POI_Entry = tk.Entry(Planetary_Custom_POI_Frame)
-Planetary_Y_Custom_POI_Entry = tk.Entry(Planetary_Custom_POI_Frame)
-Planetary_Z_Custom_POI_Entry = tk.Entry(Planetary_Custom_POI_Frame)
-
-Planetary_X_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='0')
-Planetary_Y_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='1')
-Planetary_Z_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='2')
-
-
-Planetary_Custom_POI_Frame_Start_Navigation_Button = tk.Button(Planetary_Custom_POI_Frame, text="Start Navigation", command=Start_Planetary_Navigation_Custom_POI)
-Planetary_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pady='2', row='1')
-
-
-
-
-
-#Space Navigation frame
-Space_Navigation_Frame = ttk.Frame(MainWindow)
-Space_Navigation_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-
-Space_Known_or_custom_POI_Combobox = ttk.Combobox(Space_Navigation_Frame, state='readonly', values = ["Known POI", "Custom POI"])
-Space_Known_or_custom_POI_Combobox.bind("<<ComboboxSelected>>", Space_Known_or_custom_selected)
-Space_Known_or_custom_POI_Combobox.grid(column='1', padx='8', pady='8', row='0')
-
-
-
-#Known Poi Selection
-Space_Known_POI_Frame = ttk.Frame(Space_Navigation_Frame)
-Space_Known_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-
-Space_POI_Selection_Combobox = ttk.Combobox(Space_Known_POI_Frame, state='readonly', values = Space_POI_list)
-Space_POI_Selection_Combobox.bind("<<ComboboxSelected>>", Space_Known_Target_Selected)
-Space_POI_Selection_Combobox.grid(column='0', padx='8', pady='8', row='0')
-
-
-Space_Known_POI_Frame_Start_Navigation_Button = tk.Button(Space_Known_POI_Frame, text="Start Navigation", command=Start_Space_Navigation_Known_POI)
-
-
-
-#Custom Poi Selection
-Space_Custom_POI_Frame = ttk.Frame(Space_Navigation_Frame)
-Space_Custom_POI_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-
-Space_X_Custom_POI_Small_X = tk.Label(Space_Custom_POI_Frame, text="X =")
-Space_X_Custom_POI_Small_Y = tk.Label(Space_Custom_POI_Frame, text="Y =")
-Space_X_Custom_POI_Small_Z = tk.Label(Space_Custom_POI_Frame, text="Z =")
-
-Space_X_Custom_POI_Small_X.grid(column='0', padx='1', pady='3', row='0')
-Space_X_Custom_POI_Small_Y.grid(column='0', padx='1', pady='3', row='1')
-Space_X_Custom_POI_Small_Z.grid(column='0', padx='1', pady='3', row='2')
-
-
-Space_X_Custom_POI_Entry = tk.Entry(Space_Custom_POI_Frame)
-Space_Y_Custom_POI_Entry = tk.Entry(Space_Custom_POI_Frame)
-Space_Z_Custom_POI_Entry = tk.Entry(Space_Custom_POI_Frame)
-
-Space_X_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='0')
-Space_Y_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='1')
-Space_Z_Custom_POI_Entry.grid(column='1', padx='1', pady='3', row='2')
-
-
-Space_Custom_POI_Frame_Start_Navigation_Button = tk.Button(Space_Custom_POI_Frame, text="Start Navigation", command=Start_Space_Navigation_Custom_POI)
-Space_Custom_POI_Frame_Start_Navigation_Button.grid(column='2', padx='8', pady='2', row='1')
-
-
-
-
-
-#Companion Tool Frame
-Companion_Tool_Frame = ttk.Frame(MainWindow)
-Companion_Tool_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-Start_Companion_Button = tk.Button(Companion_Tool_Frame, text="Start Companion", command=Start_Companion)
-Start_Companion_Button.grid(column='0', padx='8', pady='8', row='0')
-
-
-
-#Racing Tool Frame
-Racing_Tool_Frame = ttk.Frame(MainWindow)
-Racing_Tool_Frame.configure(borderwidth='0', height='200', relief='flat', width='200')
-
-Racing_Tool_WIP_Label = tk.Label(Racing_Tool_Frame, text="Work in progress")
-Racing_Tool_WIP_Label.grid(column='0', padx='8', pady='8', row='0')
-
-
-root.mainloop()
-
-Log_Mode = True
-
-#-------------------------------------------------------------GUI-----------------------------------------------------------------------
-#-------------------------------------------------------------END-----------------------------------------------------------------------
-
-
-if Mode == '':
+parser = argparse.ArgumentParser()
+
+parser.add_argument("mode", choices=["planetary_nav", "space_nav", "companion"])
+parser.add_argument("--container", type=str)
+parser.add_argument("--known", type=str)
+parser.add_argument("--target", type=str)
+parser.add_argument("--entry_type", type=str, choices=["xyz", "oms", "longlatheight"])
+parser.add_argument("--x", type=float)
+parser.add_argument("--y", type=float)
+parser.add_argument("--z", type=float)
+parser.add_argument("--OM1_name", type=str)
+parser.add_argument("--OM1_value", type=float)
+parser.add_argument("--OM2_name", type=str)
+parser.add_argument("--OM2_value", type=float)
+parser.add_argument("--OM3_name", type=str)
+parser.add_argument("--OM3_value", type=float)
+parser.add_argument("--height", type=float)
+parser.add_argument("--lat", type=float)
+parser.add_argument("--long", type=float)
+
+args = parser.parse_args()
+
+# print(args)
+
+Mode = args.mode
+
+if Mode == "planetary_nav":
+    arg_container = args.container
+    arg_known = args.known
+    if arg_known == "true":
+        arg_target = args.target
+        Target = Database["Containers"][arg_container]["POI"][arg_target]
+    
+    else : 
+        arg_entry_type = args.entry_type
+        if arg_entry_type == "xyz":
+            arg_x = args.x
+            arg_y = args.y
+            arg_z = args.z
+            Target = {
+                'Name': 'Custom POI', 
+                'Container': arg_container,
+                'X': arg_x, 
+                'Y': arg_y, 
+                'Z': arg_z, 
+                "QTMarker": "FALSE"
+            }
+
+        elif arg_entry_type == "oms":
+            arg_OM1_name = args.OM1_name
+            arg_OM1_value = args.OM1_value
+            arg_OM2_name = args.OM2_name
+            arg_OM2_value = args.OM2_value
+            arg_OM3_name = args.OM3_name
+            arg_OM3_value = args.OM3_value
+            #
+            # add some things here
+            #
+        
+        else:
+            arg_lat = args.lat
+            arg_long = args.long
+            arg_height = args.height
+            #
+            # add some things here
+            #
+
+elif Mode == "space_nav":
+    arg_known = args.known
+    if arg_known == "true":
+        arg_target = args.target
+        Target = Database["Space_POI"][arg_target]
+    else:
+        arg_x = args.x
+        arg_y = args.y
+        arg_z = args.z
+        Target = {
+            'Name': 'Custom POI',
+            'X': arg_x,
+            'Y': arg_y,
+            'Z': arg_z,
+            "QTMarker": "FALSE"
+        }
+
+elif Mode == "companion":
+    pass
+
+else:
     raise SystemExit("Program mode not selected")
 
-if Mode == "Planetary Navigation" : 
-    setup = {
-        "updated" : f"Updated : {time.strftime('%H:%M:%S', time.localtime(time.time()))}",
-        "target" : Target['Name'],
-        "player_actual_container" : "None",
-        "target_container" : Target['Container'],
-        "player_x" : "0.0",
-        "player_y" : "0.0",
-        "player_z" : "0.0",
-        "player_long" : "0.0°",
-        "player_lat" : "0.0°",
-        "player_height" : "0 km",
-        "player_OM1" : "OM-1 : 0.000 km",
-        "player_OM2" : "OM-3 : 0.000 km",
-        "player_OM3" : "OM-5 : 0.000 km",
-        "player_closest_poi" : "None : 0.000 km",
-        "player_state_of_the_day" : f"Morning", 
-        "player_next_event" : f"Sunset", 
-        "player_next_event_time" : f"00:00:00",
-        "target_x" : "0.0",
-        "target_y" : "0.0",
-        "target_z" : "0.0",
-        "target_long" : "0.0°",
-        "target_lat" : "0.0°",
-        "target_height" : "0 km",
-        "target_OM1" : "OM-1 : 0.000 km",
-        "target_OM2" : "OM-3 : 0.000 km",
-        "target_OM3" : "OM-5 : 0.000 km",
-        "target_closest_QT_beacon" : "None : 0.000 km",
-        "target_state_of_the_day" : f"Evening Twilight", 
-        "target_next_event" : f"Sunrise", 
-        "target_next_event_time" : f"00:00:00",
-        "distance_to_poi" : "0.000 km",
-        "distance_to_poi_color" : "#00ff00",
-        "delta_distance_to_poi" : "0.000 km",
-        "delta_distance_to_poi_color" : "#00ff00",
-        "total_deviation" : "0°",
-        "total_deviation_color" : "#00ff00",
-        "horizontal_deviation" : "0°",
-        "horizontal_deviation_color" : "#00ff00",
-        "heading" : "0°",
-        "ETA" : "00:00:00"
-    }
 
-elif Mode == "Space Navigation":
-    setup = {
-        "updated" : f"Updated : {time.strftime('%H:%M:%S', time.localtime(time.time()))}",
-        "target" : Target['Name'],
-        "player_x" : "0.0",
-        "player_y" : "0.0",
-        "player_z" : "0.0",
-        "target_x" : "0.0",
-        "target_y" : "0.0",
-        "target_z" : "0.0",
-        "distance_to_poi" : "0.000 km",
-        "distance_to_poi_color" : "#00ff00",
-        "delta_distance_to_poi" : "0.000 km",
-        "delta_distance_to_poi_color" : "#00ff00",
-        "total_deviation" : "0°",
-        "total_deviation_color" : "#00ff00",
-        "ETA" : "00:00:00"
-    }
+logs_enabled = settings["logs_enabled"]
 
-elif Mode == "Companion":
-    setup = {
-        "updated" : f"Updated : {time.strftime('%H:%M:%S', time.localtime(time.time()))}",
-        "player_global_x" : "Global X : 0.0",
-        "player_global_y" : "Global Y : 0.0",
-        "player_global_z" : "Global Z : 0.0",
-        "distance_change" : "Distance since last update : 0.000 km",
-        "actual_container" : "Actual Container : None",
-        "player_local_x" : "Local X : 0.0",
-        "player_local_y" : "Local Y : 0.0",
-        "player_local_z" : "Local Z : 0.0",
-        "player_long" : "Longitude : 0.0°",
-        "player_lat" : "Latitude : 0.0°",
-        "player_height" : "Height : 0 m",
-        "player_OM1" : "OM-1 : 0.000 km",
-        "player_OM2" : "OM-3 : 0.000 km",
-        "player_OM3" : "OM-5 : 0.000 km",
-        "closest_poi" : f"Closest POI : \nNone (0.000 km) \nNone (0.000 km)",
-    }
-
-
-print(f"Mode : {Mode}")
-sys.stdout.flush()
-time.sleep(0.2)
-print("New data :", json.dumps(setup))
-sys.stdout.flush()
+print("Python script ready to start !")
+print("Mode: " + Mode)
 
 
 
@@ -800,7 +520,7 @@ Epoch = datetime.datetime(1970, 1, 1)
 Reference_time = (Reference_time_UTC - Epoch).total_seconds()
 
 
-if Log_Mode == True:
+if logs_enabled == True:
     if not os.path.isdir('Logs'):
         os.mkdir('Logs')
 
@@ -889,9 +609,9 @@ while True:
 
 
 
-            #-----------------------------------------------------Planetary Navigation--------------------------------------------------------------
+            #-----------------------------------------------------planetary_nav--------------------------------------------------------------
             # If the target is within the attraction of a planet
-            if Mode == "Planetary Navigation":
+            if Mode == "planetary_nav":
 
 
 
@@ -1178,7 +898,7 @@ while True:
 
 
                 #------------------------------------------------------------Logs update------------------------------------------------------------
-                if Log_Mode == True:
+                if logs_enabled == True:
                     if Actual_Container['Name'] != "None":
                         fields = [
                             'None',
@@ -1244,9 +964,9 @@ while True:
 
 
 
-            #-----------------------------------------------------Space Navigation------------------------------------------------------------------
+            #-----------------------------------------------------space_nav------------------------------------------------------------------
             #If the target is within the attraction of a planet
-            if Mode == "Space Navigation":
+            if Mode == "space_nav":
 
                 #-----------------------------------------------------Distance to POI---------------------------------------------------------------
                 New_Distance_to_POI = {}
@@ -1358,7 +1078,7 @@ while True:
 
             #---------------------------------------------------------------------------------------------------------------------------------------
             
-            if Mode == "Companion":
+            if Mode == "companion":
                 
                 # Actual container
                 # Search in the Database to see if the player is in a Container
@@ -1569,3 +1289,4 @@ while True:
 # Hurston : Coordinates: x:12850457093 y:0 z:0
 # Microtech : Coordinates: x:22462016306.0103 y:37185625645.8346 z:0
 # Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
+

@@ -129,8 +129,8 @@
                     "qz": 0.33683783,
                     "QTMarker": "TRUE"
                 },
-                "HDMO Dobbs (NA) [F]": {
-                    "Name": "HDMO Dobbs (NA) [F]",
+                "HDES Dobbs (NA) [F]": {
+                    "Name": "HDES Dobbs (NA) [F]",
                     "Container": "Aberdeen",
                     "X": 270.579,
                     "Y": 47.399,
@@ -321,8 +321,8 @@
                     "qz": 0.37461737,
                     "QTMarker": "FALSE"
                 },
-                "Norgaard Racetrack 1": {
-                    "Name": "Norgaard Racetrack 1",
+                "Norgaard Racetrack": {
+                    "Name": "Norgaard Racetrack",
                     "Container": "Aberdeen",
                     "X": -106.085,
                     "Y": 188.879,
@@ -333,8 +333,8 @@
                     "qz": 2e-08,
                     "QTMarker": "FALSE"
                 },
-                "Anderson Racetrack 2": {
-                    "Name": "Anderson Racetrack 2",
+                "Anderson Racetrack": {
+                    "Name": "Anderson Racetrack",
                     "Container": "Aberdeen",
                     "X": -65.273,
                     "Y": 167.277,
@@ -776,6 +776,18 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
+                "Riker Memorial Spaceport": {
+                    "Name": "Riker Memorial Spaceport",
+                    "Container": "ArcCorp",
+                    "X": -748.361,
+                    "Y": -103.663,
+                    "Z": -263.811,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
                 "Area 18 Ring Building 1": {
                     "Name": "Area 18 Ring Building 1",
                     "Container": "ArcCorp",
@@ -991,8 +1003,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Bezdek Racetrack 1": {
-                    "Name": "Bezdek Racetrack 1",
+                "Bezdek Racetrack": {
+                    "Name": "Bezdek Racetrack",
                     "Container": "Arial",
                     "X": 26.455,
                     "Y": -242.616,
@@ -1003,8 +1015,8 @@
                     "qz": 1e-08,
                     "QTMarker": "FALSE"
                 },
-                "Lathan Racetrack 2": {
-                    "Name": "Lathan Racetrack 2",
+                "Lathan Racetrack": {
+                    "Name": "Lathan Racetrack",
                     "Container": "Arial",
                     "X": 340.664,
                     "Y": 20.664,
@@ -1212,7 +1224,7 @@
             "Arrival Radius": 402.35,
             "Time Lines": 25.0,
             "Rotation Speed": 4.59000015,
-            "Rotation Adjust": 212.4145472,
+            "Rotation Adjust": 212.4774149,
             "Orbital Radius": 65823.064,
             "Orbital Speed": 0.0,
             "Orbital Angle": 194.774,
@@ -1536,6 +1548,18 @@
                     "X": 199.393,
                     "Y": -126.188,
                     "Z": 45.985,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "Calliope",
+                    "X": -281.286,
+                    "Y": -200.211,
+                    "Z": 75.512,
                     "qw": 0.0,
                     "qx": 0.0,
                     "qy": 0.0,
@@ -1901,8 +1925,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Hickes Racetrack 1": {
-                    "Name": "Hickes Racetrack 1",
+                "Hickes Racetrack": {
+                    "Name": "Hickes Racetrack",
                     "Container": "Cellin",
                     "X": -11.498,
                     "Y": 14.263,
@@ -1913,8 +1937,8 @@
                     "qz": -5e-08,
                     "QTMarker": "FALSE"
                 },
-                "Terra Mills Racetrack 2": {
-                    "Name": "Terra Mills Racetrack 2",
+                "Terra Mills Racetrack": {
+                    "Name": "Terra Mills Racetrack",
                     "Container": "Cellin",
                     "X": 32.091,
                     "Y": 66.701,
@@ -1923,6 +1947,18 @@
                     "qx": -0.12922777,
                     "qy": 0.06217438,
                     "qz": 1e-08,
+                    "QTMarker": "FALSE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "Cellin",
+                    "X": 205.624,
+                    "Y": -349.446,
+                    "Z": 52.604,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 }
             }
@@ -1941,8 +1977,8 @@
             "Body Radius": 337.17,
             "Arrival Radius": 504.025,
             "Time Lines": 18.0,
-            "Rotation Speed": 0,
-            "Rotation Adjust": 0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjust": 359.9997019,
             "Orbital Radius": 95742.64,
             "Orbital Speed": 0.0,
             "Orbital Angle": 278.839,
@@ -2187,6 +2223,30 @@
                     "qy": 0.39327413,
                     "qz": 0.90927768,
                     "QTMarker": "FALSE"
+                },
+                "Snake Pit": {
+                    "Name": "Snake Pit",
+                    "Container": "Clio",
+                    "X": -327.835,
+                    "Y": -78.887,
+                    "Z": -13.657,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "Clio",
+                    "X": -142.43,
+                    "Y": 447.386,
+                    "Z": 76.016,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -2205,7 +2265,7 @@
             "Arrival Radius": 7972.5,
             "Time Lines": 7.0,
             "Rotation Speed": 5.0999999,
-            "Rotation Adjust": 300.5056215,
+            "Rotation Adjust": 300.5161454,
             "Orbital Radius": 19148527.616,
             "Orbital Speed": 0.0,
             "Orbital Angle": 188.0,
@@ -2331,6 +2391,66 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
+                "Main Hall": {
+                    "Name": "Main Hall",
+                    "Container": "Crusader",
+                    "X": 5333.899,
+                    "Y": -781.652,
+                    "Z": 5252.534,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Crusader-Tumbril-Krueger": {
+                    "Name": "Crusader-Tumbril-Krueger",
+                    "Container": "Crusader",
+                    "X": 5207.253,
+                    "Y": -921.274,
+                    "Z": 5278.643,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Anvil": {
+                    "Name": "Anvil",
+                    "Container": "Crusader",
+                    "X": 5214.345,
+                    "Y": -767.269,
+                    "Z": 5296.022,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "Aegis": {
+                    "Name": "Aegis",
+                    "Container": "Crusader",
+                    "X": 5216.197,
+                    "Y": -818.481,
+                    "Z": 5294.565,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "RSI": {
+                    "Name": "RSI",
+                    "Container": "Crusader",
+                    "X": 5209.644,
+                    "Y": -869.355,
+                    "Z": 5284.502,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
                 "Fleet Week 2022 Event Halls": {
                     "Name": "Fleet Week 2022 Event Halls",
                     "Container": "Crusader",
@@ -2366,30 +2486,6 @@
                     "qy": 0.0,
                     "qz": 0.0,
                     "QTMarker": "FALSE"
-                },
-                "Orison - Solanki Platform": {
-                    "Name": "Orison - Solanki Platform",
-                    "Container": "Crusader",
-                    "X": 5332.839,
-                    "Y": -778.582,
-                    "Z": 5254.069,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
-                },
-                "Orison - Brushwood Platform": {
-                    "Name": "Orison - Brushwood Platform",
-                    "Container": "Crusader",
-                    "X": 5339.470,
-                    "Y": -764.057,
-                    "Z": 5252.584,
-                    "qw": 0.0,
-                    "qx": 0.0,
-                    "qy": 0.0,
-                    "qz": 0.0,
-                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -2408,7 +2504,7 @@
             "Arrival Radius": 459.75,
             "Time Lines": 35.0,
             "Rotation Speed": 2.48000002,
-            "Rotation Adjust": 30.2954426,
+            "Rotation Adjust": 30.5679523,
             "Orbital Radius": 63279.908,
             "Orbital Speed": 0.0,
             "Orbital Angle": 60.0,
@@ -2858,8 +2954,8 @@
                     "qz": 0.22976425,
                     "QTMarker": "FALSE"
                 },
-                "Shubin Racetrack 1": {
-                    "Name": "Shubin Racetrack 1",
+                "Shubin Racetrack": {
+                    "Name": "Shubin Racetrack",
                     "Container": "Daymar",
                     "X": 133.661,
                     "Y": -147.06,
@@ -2870,8 +2966,8 @@
                     "qz": 0.00290284,
                     "QTMarker": "FALSE"
                 },
-                "ArcCorp Racetrack 2": {
-                    "Name": "ArcCorp Racetrack 2",
+                "ArcCorp Racetrack": {
+                    "Name": "ArcCorp Racetrack",
                     "Container": "Daymar",
                     "X": -21.248,
                     "Y": 174.903,
@@ -2880,6 +2976,18 @@
                     "qx": 0.94244403,
                     "qy": 0.11449246,
                     "qz": -5e-08,
+                    "QTMarker": "FALSE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "Daymar",
+                    "X": -83.332,
+                    "Y": 289.069,
+                    "Z": 341.706,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 }
             }
@@ -2921,7 +3029,7 @@
             "Arrival Radius": 373.475,
             "Time Lines": 25.0,
             "Rotation Speed": 4.28000021,
-            "Rotation Adjust": 269.161587,
+            "Rotation Adjust": 269.2381553,
             "Orbital Radius": 107710.472,
             "Orbital Speed": 0.0,
             "Orbital Angle": 284.02,
@@ -3454,8 +3562,8 @@
                     "qz": 0.63083965,
                     "QTMarker": "TRUE"
                 },
-                "HDMO Calthrope (NA) [F]": {
-                    "Name": "HDMO Calthrope (NA) [F]",
+                "HDES Calthrope (NA) [F]": {
+                    "Name": "HDES Calthrope (NA) [F]",
                     "Container": "Hurston",
                     "X": -203.376,
                     "Y": -806.58,
@@ -4030,8 +4138,8 @@
                     "qz": 0.76725554,
                     "QTMarker": "FALSE"
                 },
-                "Racetrack 1": {
-                    "Name": "Racetrack 1",
+                "Hendricks Racetrack": {
+                    "Name": "Hendricks Racetrack",
                     "Container": "Hurston",
                     "X": -319.505,
                     "Y": -928.411,
@@ -4042,8 +4150,8 @@
                     "qz": 1e-08,
                     "QTMarker": "FALSE"
                 },
-                "Oparei Racetrack 2": {
-                    "Name": "Oparei Racetrack 2",
+                "Oparei Racetrack": {
+                    "Name": "Oparei Racetrack",
                     "Container": "Hurston",
                     "X": -550.283,
                     "Y": -65.56,
@@ -4054,8 +4162,8 @@
                     "qz": 0.0126189,
                     "QTMarker": "FALSE"
                 },
-                "Thedus Racetrack 3": {
-                    "Name": "Thedus Racetrack 3",
+                "Thedus Racetrack": {
+                    "Name": "Thedus Racetrack",
                     "Container": "Hurston",
                     "X": 451.495,
                     "Y": 887.98,
@@ -4066,8 +4174,8 @@
                     "qz": -7e-08,
                     "QTMarker": "FALSE"
                 },
-                "Hadley Racetrack 4": {
-                    "Name": "Hadley Racetrack 4",
+                "Hadley Racetrack": {
+                    "Name": "Hadley Racetrack",
                     "Container": "Hurston",
                     "X": 619.836,
                     "Y": -583.934,
@@ -4078,8 +4186,8 @@
                     "qz": -5e-08,
                     "QTMarker": "FALSE"
                 },
-                "Stanhope Racetrack 5": {
-                    "Name": "Stanhope Racetrack 5",
+                "Stanhope Racetrack": {
+                    "Name": "Stanhope Racetrack",
                     "Container": "Hurston",
                     "X": -641.356,
                     "Y": 202.083,
@@ -4090,8 +4198,8 @@
                     "qz": 0.20191029,
                     "QTMarker": "FALSE"
                 },
-                "Pinewood Racetrack 6": {
-                    "Name": "Pinewood Racetrack 6",
+                "Pinewood Racetrack": {
+                    "Name": "Pinewood Racetrack",
                     "Container": "Hurston",
                     "X": 985.379,
                     "Y": 82.298,
@@ -4293,8 +4401,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Ryder Racetrack 1": {
-                    "Name": "Ryder Racetrack 1",
+                "Ryder Racetrack": {
+                    "Name": "Ryder Racetrack",
                     "Container": "Ita",
                     "X": -182.796,
                     "Y": -260.992,
@@ -4305,8 +4413,8 @@
                     "qz": 1e-08,
                     "QTMarker": "FALSE"
                 },
-                "Woodruff Racetrack 2": {
-                    "Name": "Woodruff Racetrack 2",
+                "Woodruff Racetrack": {
+                    "Name": "Woodruff Racetrack",
                     "Container": "Ita",
                     "X": -72.134,
                     "Y": 308.245,
@@ -4903,6 +5011,18 @@
                     "qy": 0.0,
                     "qz": 0.0,
                     "QTMarker": "FALSE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "Lyria",
+                    "X": -304.98,
+                    "Y": -183.893,
+                    "Z": 68.439,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -5095,8 +5215,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Hahn Racetrack 1": {
-                    "Name": "Hahn Racetrack 1",
+                "Hahn Racetrack": {
+                    "Name": "Hahn Racetrack",
                     "Container": "Magda",
                     "X": -151.471,
                     "Y": -289.241,
@@ -5107,8 +5227,8 @@
                     "qz": -7e-08,
                     "QTMarker": "FALSE"
                 },
-                "Perlman Racetrack 2": {
-                    "Name": "Perlman Racetrack 2",
+                "Perlman Racetrack": {
+                    "Name": "Perlman Racetrack",
                     "Container": "Magda",
                     "X": -142.988,
                     "Y": 282.655,
@@ -5327,8 +5447,8 @@
         },
         "microTech": {
             "Name": "microTech",
-            "X": 22462016.306,
-            "Y": 37185625.646,
+            "X": 22462085.252,
+            "Y": 37185744.965,
             "Z": 0.0,
             "qw": 1.0,
             "qx": 0.0,
@@ -5340,7 +5460,7 @@
             "Arrival Radius": 1800.0,
             "Time Lines": 51.0,
             "Rotation Speed": 4.11999989,
-            "Rotation Adjust": 217.2829681,
+            "Rotation Adjust": 217.3176777,
             "Orbital Radius": 43443216.384,
             "Orbital Speed": 0.0,
             "Orbital Angle": 58.866,
@@ -5718,6 +5838,66 @@
                     "qz": 0.05688097,
                     "QTMarker": "TRUE"
                 },
+                "Lake Outpost": {
+                    "Name": "Lake Outpost",
+                    "Container": "microTech",
+                    "X": 808.992,
+                    "Y": 416.701,
+                    "Z": 415.719,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "West Babbage Outpost": {
+                    "Name": "West Babbage Outpost",
+                    "Container": "microTech",
+                    "X": 559.23,
+                    "Y": 386.6,
+                    "Z": 733.438,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "East Babbage Outpost": {
+                    "Name": "East Babbage Outpost",
+                    "Container": "microTech",
+                    "X": 488.767,
+                    "Y": 440.986,
+                    "Z": 754.061,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "KH3 Outpost": {
+                    "Name": "KH3 Outpost",
+                    "Container": "microTech",
+                    "X": -458.538,
+                    "Y": 807.321,
+                    "Z": -372.023,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
+                "SM0-13 Outpost": {
+                    "Name": "SM0-13 Outpost",
+                    "Container": "microTech",
+                    "X": -154.476,
+                    "Y": -984.298,
+                    "Z": 94.002,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
                 "microTech Cave N39 [F]": {
                     "Name": "microTech Cave N39 [F]",
                     "Container": "microTech",
@@ -5766,20 +5946,8 @@
                     "qz": -0.39744779,
                     "QTMarker": "FALSE"
                 },
-                "microTech Cave N47 [FV] 3.16.1": {
-                    "Name": "microTech Cave N47 [FV] 3.16.1",
-                    "Container": "microTech",
-                    "X": 515.708,
-                    "Y": 444.099,
-                    "Z": 736.475,
-                    "qw": 0.87785107,
-                    "qx": -0.31630239,
-                    "qy": 0.18093422,
-                    "qz": -0.31079426,
-                    "QTMarker": "FALSE"
-                },
-                "microTech Cave N48 [FV] 3.17.0": {
-                    "Name": "microTech Cave N48 [FV] 3.17.0",
+                "microTech Cave N48 [FV]": {
+                    "Name": "microTech Cave N48 [FV]",
                     "Container": "microTech",
                     "X": 495.285,
                     "Y": 446.713,
@@ -5992,6 +6160,18 @@
                     "qx": -0.10771791,
                     "qy": -0.11440933,
                     "qz": 1e-08,
+                    "QTMarker": "FALSE"
+                },
+                "Ghost Hollow": {
+                    "Name": "Ghost Hollow",
+                    "Container": "microTech",
+                    "X": -127.194,
+                    "Y": 982.004,
+                    "Z": 149.145,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
                 "Test Facility Octagon": {
@@ -6386,6 +6566,18 @@
                     "qy": 0.0,
                     "qz": 0.0,
                     "QTMarker": "FALSE"
+                },
+                "Reclaimer Hijack Mission Spawn": {
+                    "Name": "Reclaimer Hijack Mission Spawn",
+                    "Container": "Wala",
+                    "X": -420.255,
+                    "Y": 89.003,
+                    "Z": -27.504,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 }
             }
         },
@@ -6404,7 +6596,7 @@
             "Arrival Radius": 478.65,
             "Time Lines": 29.0,
             "Rotation Speed": 1.8200005,
-            "Rotation Adjust": 218.8119445,
+            "Rotation Adjust": 219.0293123,
             "Orbital Radius": 79286.88,
             "Orbital Speed": 0.0,
             "Orbital Angle": 140.0,
@@ -6698,8 +6890,8 @@
                     "qz": 0.0,
                     "QTMarker": "FALSE"
                 },
-                "Racetrack 1 20": {
-                    "Name": "Racetrack 1 20",
+                "Deakins Racetrack": {
+                    "Name": "Deakins Racetrack",
                     "Container": "Yela",
                     "X": 232.047,
                     "Y": -209.568,
@@ -6710,8 +6902,8 @@
                     "qz": 5e-08,
                     "QTMarker": "FALSE"
                 },
-                "Racetrack 2 12": {
-                    "Name": "Racetrack 2 12",
+                "AC157 Racetrack": {
+                    "Name": "AC157 Racetrack",
                     "Container": "Yela",
                     "X": -5.361,
                     "Y": 238.463,
@@ -6805,6 +6997,18 @@
                     "qy": 0.0,
                     "qz": 0.0,
                     "QTMarker": "TRUE"
+                },
+                "Reclaimer Hijack Mission Spawn": {
+                    "Name": "Reclaimer Hijack Mission Spawn",
+                    "Container": "Yela",
+                    "X": 727.18,
+                    "Y": -162.5,
+                    "Z": 1.402,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
                 },
                 "Starting Line (ArcCorp 157)": {
                     "Name": "Starting Line (ArcCorp 157)",
@@ -7360,9 +7564,9 @@
                 "R&R ARC-L1 Wide Forest Station": {
                     "Name": "R&R ARC-L1 Wide Forest Station",
                     "Container": "ARC-L1",
-                    "X": 0.226,
-                    "Y": -2.108,
-                    "Z": 4.369,
+                    "X": 85.394,
+                    "Y": -5041.26,
+                    "Z": 2231.69,
                     "qw": 0.99197942,
                     "qx": -0.04662409,
                     "qy": -0.0810352,
@@ -7500,6 +7704,30 @@
             "Orbital Angle": 0.0,
             "Grid Radius": 0.0,
             "POI": {
+                "R&R ARC-L2 Lively Pathway Station": {
+                    "Name": "R&R ARC-L2 Lively Pathway Station",
+                    "Container": "ARC-L2",
+                    "X": 4287.404,
+                    "Y": -602.53,
+                    "Z": -301.922,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "ARC-L2",
+                    "X": -397.004,
+                    "Y": -633.34,
+                    "Z": 414.04,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                },
                 "Mining Claim #29N-704": {
                     "Name": "Mining Claim #29N-704",
                     "Container": "ARC-L2",
@@ -7631,6 +7859,18 @@
             "Orbital Angle": 0.0,
             "Grid Radius": 0.0,
             "POI": {
+                "R&R ARC-L3 Modern Express Station": {
+                    "Name": "R&R ARC-L3 Modern Express Station",
+                    "Container": "ARC-L3",
+                    "X": -2078.603,
+                    "Y": 4413.445,
+                    "Z": -1900.839,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                },
                 "ChildCloud S3L3": {
                     "Name": "ChildCloud S3L3",
                     "Container": "ARC-L3",
@@ -7666,6 +7906,18 @@
             "Orbital Angle": 0.0,
             "Grid Radius": 0.0,
             "POI": {
+                "R&R ARC-L4 Faint Glen Station": {
+                    "Name": "R&R ARC-L4 Faint Glen Station",
+                    "Container": "ARC-L4",
+                    "X": -2214.759,
+                    "Y": -2598.304,
+                    "Z": 951.655,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                },
                 "ChildCloud S3L4": {
                     "Name": "ChildCloud S3L4",
                     "Container": "ARC-L4",
@@ -7701,6 +7953,18 @@
             "Orbital Angle": 0.0,
             "Grid Radius": 0.0,
             "POI": {
+                "R&R ARC-L5 Yellow Core Station": {
+                    "Name": "R&R ARC-L5 Yellow Core Station",
+                    "Container": "ARC-L5",
+                    "X": -5329.061,
+                    "Y": -1424.447,
+                    "Z": 874.389,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                },
                 "ChildCloud S3L5": {
                     "Name": "ChildCloud S3L5",
                     "Container": "ARC-L5",
@@ -7739,9 +8003,9 @@
                 "R&R CRU-L1 Ambitious Dream Station": {
                     "Name": "R&R CRU-L1 Ambitious Dream Station",
                     "Container": "CRU-L1",
-                    "X": -0.185,
-                    "Y": -4.061,
-                    "Z": -2.786,
+                    "X": -2796.346,
+                    "Y": -1018.271,
+                    "Z": -20.043,
                     "qw": 0.8754915,
                     "qx": 0.04627188,
                     "qy": -0.0891458,
@@ -7858,10 +8122,32 @@
                 }
             }
         },
+        "CRU-L2": {
+            "Name": "CRU-L2",
+            "X": -20858376.485,
+            "Y": -2931474.402,
+            "Z": 0.0,
+            "qw": 0.0,
+            "qx": 0.0,
+            "qy": 0.0,
+            "qz": 0.0,
+            "QTMarker": "TRUE",
+            "OM Radius": 0.0,
+            "Body Radius": 0.0,
+            "Arrival Radius": 0.0,
+            "Time Lines": 0.0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjust": 0.0,
+            "Orbital Radius": 0.0,
+            "Orbital Speed": 0.0,
+            "Orbital Angle": 0.0,
+            "Grid Radius": 0.0,
+            "POI": {}
+        },
         "CRU-L3": {
             "Name": "CRU-L3",
-            "X": 18962176.0,
-            "Y": 2664960.0,
+            "X": 18962164.826,
+            "Y": 2664965.041,
             "Z": 0.0,
             "qw": 0.96363044,
             "qx": 0.0,
@@ -8013,9 +8299,9 @@
                 "R&R CRU-L4 Shallow Fields Station": {
                     "Name": "R&R CRU-L4 Shallow Fields Station",
                     "Container": "CRU-L4",
-                    "X": 6.68,
-                    "Y": 0.298,
-                    "Z": 3.411,
+                    "X": -599.664,
+                    "Y": 4147.667,
+                    "Z": -2174.785,
                     "qw": 0.85258651,
                     "qx": -0.35633656,
                     "qy": -0.18156257,
@@ -8060,9 +8346,9 @@
                 "R&R CRU-L5 Beautiful Glen Station": {
                     "Name": "R&R CRU-L5 Beautiful Glen Station",
                     "Container": "CRU-L5",
-                    "X": 11.116,
-                    "Y": 7.066,
-                    "Z": 1.895,
+                    "X": 3996.778,
+                    "Y": 1989.652,
+                    "Z": -2796.44,
                     "qw": 0.98901582,
                     "qx": 3e-07,
                     "qy": 0.14780968,
@@ -8203,9 +8489,9 @@
                 "R&R HUR-L1 Green Glade Station": {
                     "Name": "R&R HUR-L1 Green Glade Station",
                     "Container": "HUR-L1",
-                    "X": -0.815,
-                    "Y": 18.073,
-                    "Z": -2.487,
+                    "X": -3998.772,
+                    "Y": -262.923,
+                    "Z": -484.614,
                     "qw": 0.99197942,
                     "qx": -0.04662409,
                     "qy": -0.0810352,
@@ -8346,9 +8632,9 @@
                 "R&R HUR-L2 Faithful Dream Station": {
                     "Name": "R&R HUR-L2 Faithful Dream Station",
                     "Container": "HUR-L2",
-                    "X": -5.437,
-                    "Y": 3.573,
-                    "Z": 1.397,
+                    "X": 4132.733,
+                    "Y": -1967.281,
+                    "Z": -527.795,
                     "qw": 0.93648839,
                     "qx": -0.28099328,
                     "qy": -0.0064252,
@@ -8489,9 +8775,9 @@
                 "R&R HUR-L3 Thundering Express Station": {
                     "Name": "R&R HUR-L3 Thundering Express Station",
                     "Container": "HUR-L3",
-                    "X": 5.737,
-                    "Y": -3.042,
-                    "Z": -0.16,
+                    "X": 5714.048,
+                    "Y": -1553.268,
+                    "Z": 1335.042,
                     "qw": 0.94471502,
                     "qx": 0.02765493,
                     "qy": 0.08265186,
@@ -8632,9 +8918,9 @@
                 "R&R HUR-L4 Melodic Fields Station": {
                     "Name": "R&R HUR-L4 Melodic Fields Station",
                     "Container": "HUR-L4",
-                    "X": -1.905,
-                    "Y": 1.696,
-                    "Z": 0.731,
+                    "X": 2399.286,
+                    "Y": -4056.978,
+                    "Z": 666.284,
                     "qw": -0.07356051,
                     "qx": 0.15171354,
                     "qy": -0.34075406,
@@ -8775,9 +9061,9 @@
                 "R&R HUR-L5 High Course Station": {
                     "Name": "R&R HUR-L5 High Course Station",
                     "Container": "HUR-L5",
-                    "X": 11.258,
-                    "Y": -8.121,
-                    "Z": 1.144,
+                    "X": 495.238,
+                    "Y": 461.677,
+                    "Z": -842.035,
                     "qw": 0.93780184,
                     "qx": -0.21421684,
                     "qy": 0.15040553,
@@ -8918,9 +9204,9 @@
                 "R&R MIC-L1 Shallow Frontier Station": {
                     "Name": "R&R MIC-L1 Shallow Frontier Station",
                     "Container": "MIC-L1",
-                    "X": 3.031,
-                    "Y": 4.51,
-                    "Z": -0.943,
+                    "X": -19816.939,
+                    "Y": 3896.088,
+                    "Z": 10707.48,
                     "qw": 1.0,
                     "qx": 0.0,
                     "qy": 0.0,
@@ -9086,13 +9372,165 @@
                 "INS-Jericho": {
                     "Name": "INS-Jericho",
                     "Container": "MIC-L1",
-                    "X": 27928.79,
-                    "Y": 1329.819,
-                    "Z": -17086.316,
+                    "X": 8108.803,
+                    "Y": 5221.406,
+                    "Z": -6377.92,
                     "qw": 0.86601287,
                     "qx": -0.42238659,
                     "qy": 0.15711255,
                     "qz": 0.21662617,
+                    "QTMarker": "TRUE"
+                },
+                "Reclaimer Hijack Spawn Point": {
+                    "Name": "Reclaimer Hijack Spawn Point",
+                    "Container": "MIC-L1",
+                    "X": 8695.686,
+                    "Y": 5071.069,
+                    "Z": -6251.026,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "FALSE"
+                }
+            }
+        },
+        "MIC-L2": {
+            "Name": "MIC-L2",
+            "X": 24708827.153,
+            "Y": 40905202.459,
+            "Z": 0.0,
+            "qw": 0.0,
+            "qx": 0.0,
+            "qy": 0.0,
+            "qz": 0.0,
+            "QTMarker": "TRUE",
+            "OM Radius": 0.0,
+            "Body Radius": 0.0,
+            "Arrival Radius": 0.0,
+            "Time Lines": 0.0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjust": 0.0,
+            "Orbital Radius": 0.0,
+            "Orbital Speed": 0.0,
+            "Orbital Angle": 0.0,
+            "Grid Radius": 0.0,
+            "POI": {
+                "R&R MIC-L2 Long Forest Station": {
+                    "Name": "R&R MIC-L2 Long Forest Station",
+                    "Container": "MIC-L2",
+                    "X": 4947.744,
+                    "Y": 7731.985,
+                    "Z": -10634.827,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                }
+            }
+        },
+        "MIC-L3": {
+            "Name": "MIC-L3",
+            "X": -22457170.266,
+            "Y": -37187612.396,
+            "Z": 0.0,
+            "qw": 0.0,
+            "qx": 0.0,
+            "qy": 0.0,
+            "qz": 0.0,
+            "QTMarker": "TRUE",
+            "OM Radius": 0.0,
+            "Body Radius": 0.0,
+            "Arrival Radius": 0.0,
+            "Time Lines": 0.0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjust": 0.0,
+            "Orbital Radius": 0.0,
+            "Orbital Speed": 0.0,
+            "Orbital Angle": 0.0,
+            "Grid Radius": 0.0,
+            "POI": {
+                "R&R MIC-L3 Endless Odyssey Station": {
+                    "Name": "R&R MIC-L3 Endless Odyssey Station",
+                    "Container": "MIC-L3",
+                    "X": 4952.014,
+                    "Y": 7689.373,
+                    "Z": -10590.411,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                }
+            }
+        },
+        "MIC-L4": {
+            "Name": "MIC-L4",
+            "X": -20971933.23,
+            "Y": 38045504.032,
+            "Z": 0.0,
+            "qw": 0.0,
+            "qx": 0.0,
+            "qy": 0.0,
+            "qz": 0.0,
+            "QTMarker": "TRUE",
+            "OM Radius": 0.0,
+            "Body Radius": 0.0,
+            "Arrival Radius": 0.0,
+            "Time Lines": 0.0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjust": 0.0,
+            "Orbital Radius": 0.0,
+            "Orbital Speed": 0.0,
+            "Orbital Angle": 0.0,
+            "Grid Radius": 0.0,
+            "POI": {
+                "R&R MIC-L4 Red Crossroads Station": {
+                    "Name": "R&R MIC-L4 Red Crossroads Station",
+                    "Container": "MIC-L4",
+                    "X": 3212.567,
+                    "Y": 10554.325,
+                    "Z": -11799.275,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
+                    "QTMarker": "TRUE"
+                }
+            }
+        },
+        "MIC-L5": {
+            "Name": "MIC-L5",
+            "X": 43435204.288,
+            "Y": -851406.956,
+            "Z": 0.0,
+            "qw": 0.0,
+            "qx": 0.0,
+            "qy": 0.0,
+            "qz": 0.0,
+            "QTMarker": "TRUE",
+            "OM Radius": 0.0,
+            "Body Radius": 0.0,
+            "Arrival Radius": 0.0,
+            "Time Lines": 0.0,
+            "Rotation Speed": 0.0,
+            "Rotation Adjust": 0.0,
+            "Orbital Radius": 0.0,
+            "Orbital Speed": 0.0,
+            "Orbital Angle": 0.0,
+            "Grid Radius": 0.0,
+            "POI": {
+                "R&R MIC-L5 Modern Icarus Station": {
+                    "Name": "R&R MIC-L5 Modern Icarus Station",
+                    "Container": "MIC-L5",
+                    "X": 13355.569,
+                    "Y": -6301.076,
+                    "Z": -7824.374,
+                    "qw": 0.0,
+                    "qx": 0.0,
+                    "qy": 0.0,
+                    "qz": 0.0,
                     "QTMarker": "TRUE"
                 }
             }

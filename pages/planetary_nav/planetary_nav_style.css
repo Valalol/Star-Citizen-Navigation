@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+}
+
+/* -webkit-app-region: no-drag; <----- Disable drag on whatever I want !! */
+
+.mode_div {
+    background-color: rgba(0, 0, 0, 0.70);
+    border-radius: 18px;
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    -webkit-app-region: drag;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(167, 237, 255);
+}
+
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 160%;
+    padding-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 105%;
+}
+
+label {
+    font-size: 90%;
+    display: block;
+}
+
+.block_info {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#planetary_target_selected_start {
+    text-align: center;
+    font-size: 110%;
+    font-weight: bold;
+}
+
+#planetary_target_selected {
+    text-align: center;
+    font-size: 100%;
+    padding-top: 2px;
+    padding-bottom: 10px;
+}
+
+.player_target_div {
+    width: 100%;
+    display: flex;
+}
+
+.player_div,
+.target_div {
+    float: left;
+    width: 50%;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.bottom_div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.bottom_things {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.real_botton_div {
+    padding-left: 7px;
+    padding-top: 7px;
+    font-size: 90%;
+}
+
+.real_real_bottom_div {
+    display: inline-block;
+    padding-left: 7px;
+    padding-top: 10px;
+    font-size: 75%;
+}
+
+span {
+    color: rgb(0, 196, 255);
+}
+
+#planetary_distance_to_poi_value {
+    color: #00ff00;
+}
+
+#planetary_distance_to_poi_value_delta {
+    color: #00ff00;
+}
+
+
+#planetary_course_deviation_value {
+    color: #00ff00;
+}
+
+#planetary_flat_angle_value {
+    color: #00ff00;
+}
+
+
+.status_icon {
+    width: 16px;
+    float: right;
+}
+
+.status_message {
+    padding-top: 15px;
+    color: #ff0000;
+}
+
+.error_message {
+    font-size: 110%;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+
+#home_img {
+    -webkit-app-region: no-drag;
+    width: 22px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+#home_img:hover {
+    transform: scale(1.2);
+}

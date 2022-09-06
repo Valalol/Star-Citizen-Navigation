@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Navitool</title>
+    <meta charset="UTF-8">
+    <link href="menu_style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="./menu_renderer.js"></script>
+</head>
+
+
+<body>
+    <div id="total_page">
+        <img src="../../Images/settings.png" alt="settings" id="settings_img">
+        <img src="../../Images/home.png" alt="home" id="home_img">
+        <h1>Main Menu</h1>
+
+        <select name="mode_select" id="mode_select">
+            <option value="" disabled selected>----------------------</option>
+            <option value="planetary_nav">Planetary Navigation</option>
+            <option value="space_nav">Space Navigation</option>
+            <option value="companion">Companion</option>
+        </select>
+
+        <div id="planetary_nav_div" class="mode_div">
+
+            <select name="planetary_container_select" id="planetary_container_select">
+                <option value="" disabled selected>----------------------</option>
+            </select>
+
+            <select name="planetary_known_or_custom_POI_select" id="planetary_known_or_custom_POI_select">
+                <option value="" disabled selected>----------------------</option>
+                <option value="known_POI">Known POI</option>
+                <option value="custom_POI">Custom POI</option>
+            </select>
+
+            <div id="planetary_known_poi_div" class="known_or_custom_div">
+                <select name="planetary_target_select" id="planetary_target_select">
+                    <option value="" disabled selected>----------------------</option>
+                </select>
+
+                <button id="planetary_known_poi_button" disabled>Start navigation</button>
+            </div>
+
+            <div id="planetary_custom_poi_div" class="known_or_custom_div">
+                <select name="custom_entry_type_select" id="custom_entry_type_select">
+                    <option value="" disabled selected>----------------------</option>
+                    <option value="xyz">X/Y/Z</option>
+                    <option value="oms" disabled>OMs</option>
+                    <option value="longlatheight" disabled>Long/Lat/Height</option>
+                </select>
+
+                <div id="planetary_custom_poi_xyz_div" class="custom_entries_div">
+                    <div class="input_div">
+                        <input type="text" id="planetary_custom_poi_entry_x" placeholder="X">
+                        <input type="text" id="planetary_custom_poi_entry_y" placeholder="Y">
+                        <input type="text" id="planetary_custom_poi_entry_z" placeholder="Z">
+                    </div>
+                    <button id="planetary_custom_poi_xyz_button">Start navigation</button>
+                </div>
+
+                <div id="planetary_custom_poi_oms_div" class="custom_entries_div">
+                    <div id="om_selectors_and_entries_div">
+                        <div id="om_selectors_div">
+                            <select name="om_select_1" id="om_select_1" class="om_select">
+                                <option value="" disabled selected>OM-?</option>
+                                <option value="om1">OM-1</option>
+                                <option value="om2">OM-2</option>
+                            </select>
+                            <select name="om_select_2" id="om_select_2" class="om_select">
+                                <option value="" disabled selected>OM-?</option>
+                                <option value="om3">OM-3</option>
+                                <option value="om4">OM-4</option>
+                            </select>
+                            <select name="om_select_3" id="om_select_3" class="om_select">
+                                <option value="" disabled selected>OM-?</option>
+                                <option value="om5">OM-5</option>
+                                <option value="om6">OM-6</option>
+                            </select>
+                        </div>
+                        <div class="input_div">
+                            <input type="text" id="planetary_custom_poi_entry_OM1" placeholder="First OM">
+                            <input type="text" id="planetary_custom_poi_entry_OM2" placeholder="Second OM">
+                            <input type="text" id="planetary_custom_poi_entry_OM3" placeholder="Third OM">
+                            <input type="text" id="planetary_custom_poi_entry_omheight" placeholder="Height">
+                        </div>
+                    </div>
+                    <button id="planetary_custom_poi_oms_button">Start navigation</button>
+                </div>
+
+                <div id="planetary_custom_poi_longlatheight_div" class="custom_entries_div">
+                    <div class="input_div">
+                        <input type="text" id="planetary_custom_poi_entry_lat" placeholder="Latitude">
+                        <input type="text" id="planetary_custom_poi_entry_long" placeholder="Longitude">
+                        <input type="text" id="planetary_custom_poi_entry_llheight" placeholder="Height">
+                    </div>
+                    <button id="planetary_custom_poi_longlatheight_button">Start navigation</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="space_nav_div" class="mode_div">
+            <select name="space_known_or_custom_POI_select" id="space_known_or_custom_POI_select">
+                <option value="" disabled selected>----------------------</option>
+                <option value="known_POI">Known POI</option>
+                <option value="custom_POI">Custom POI</option>
+            </select>
+
+            <div id="space_known_poi_div" class="known_or_custom_div">
+                <select name="space_target_select" id="space_target_select">
+                    <option value="" disabled selected>----------------------</option>
+                </select>
+                <button id="space_known_poi_button" disabled>Start navigation</button>
+            </div>
+
+
+
+            <div id="space_custom_poi_div" class="known_or_custom_div custom_entries_div">
+                <div class="input_div">
+                    <input type="text" id="space_custom_poi_entry_x" placeholder="X">
+                    <input type="text" id="space_custom_poi_entry_y" placeholder="Y">
+                    <input type="text" id="space_custom_poi_entry_z" placeholder="Z">
+                </div>
+                <button id="space_custom_poi_xyz_button">Start navigation</button>
+            </div>
+
+        </div>
+
+        <div id="companion_div" class="mode_div">
+            <button id="companion_button">Start companion</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -5,10 +5,8 @@ const BrowserWindow = electron.BrowserWindow
 
 function createWindow() {
   window = new BrowserWindow({
-      width: 350,
-      height: 119,
-      // UseContentSize: true,
-      // enablePreferredSizeMode : true,
+      width: 550,
+      height: 350,
       frame: false,
       transparent: true,
       resizable: false,
@@ -19,7 +17,7 @@ function createWindow() {
           enableRemoteModule: true
       }
   })
-  window.loadFile('index.html')
+  window.loadFile('pages/menu/menu.html')
 
   // window.webContents.openDevTools()
 

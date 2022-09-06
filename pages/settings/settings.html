@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Navitool</title>
+    <meta charset="UTF-8">
+    <link href="settings_style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="./settings_renderer.js"></script>
+</head>
+
+
+<body>
+    <div id="total_page">
+        <img src="../../Images/home.png" alt="home" id="home_img">
+        <h1>Settings</h1>
+
+        <div class="settings_switches">
+            <div class="setting_switch_and_name">
+                <label class="switch">
+                    <input type="checkbox" id="update_checker_checkbox">
+                    <span class="slider"></span>
+                </label>
+                <p>Enable update check</p>
+            </div>
+            <div class="setting_switch_and_name">
+                <label class="switch">
+                    <input type="checkbox" id="logs_checkbox">
+                    <span class="slider"></span>
+                </label>
+                <p>Logs (required for external apps)</p>
+            </div>
+            <div class="setting_switch_and_name">
+                <label class="switch">
+                    <input type="checkbox" id="save_screenshots_checkbox">
+                    <span class="slider"></span>
+                </label>
+                <p>Autocreate screenshots</p>
+            </div>
+
+            <div class="setting_switch_and_name">
+                <label class="switch">
+                    <input type="checkbox" id="remember_choices_checkbox">
+                    <span class="slider"></span>
+                </label>
+                <p>Remember my last selections</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

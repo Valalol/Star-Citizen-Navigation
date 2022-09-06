@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Navitool</title>
+    <meta charset="UTF-8">
+    <link href="companion_style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="./companion_renderer.js"></script>
+</head>
+
+
+<body>
+    <div id="companion" class="mode_div">
+        <img src="../../Images/home.png" alt="home" id="home_img">
+        <h1>Companion</h1>
+
+        <div class="block_info" id="companion_player_global_cartesian_coordinates">
+            <label id="companion_player_X_global_coordinate">X : -157.23</label>
+            <label id="companion_player_Y_global_coordinate">Y : 261.005</label>
+            <label id="companion_player_Z_global_coordinate">Z : 0</label>
+        </div>
+
+        <label class="block_info" id="companion_player_container">Actual container : Daymar</label>
+
+        <div id="companion_coordinates">
+            <div class="block_info" id="companion_player_local_cartesian_coordinates">
+                <label id="companion_player_X_local_coordinate">X : -157.23</label>
+                <label id="companion_player_Y_local_coordinate">Y : 261.005</label>
+                <label id="companion_player_Z_local_coordinate">Z : 0</label>
+            </div>
+
+            <div class="block_info" id="companion_player_local_geographic_coordinates">
+                <label id="companion_player_longitude">Longitude : 56.3°</label>
+                <label id="companion_player_latitude">Latitude : -126.4°</label>
+                <label id="companion_player_height">Height : 350 m</label>
+            </div>
+        </div>
+
+        <div class="block_info" id="companion_player_closest_OM">
+            <label id="companion_OM1">OM-2 : 267.908 km</label>
+            <label id="companion_OM2">OM-3 : 341.818 k</label>
+            <label id="companion_OM3">OM-6 : 506.297 km</label>
+        </div>
+
+        <div class="bottom_div">
+            <label class="bottom_things" id="distance_changed">Distance since last update : 0.000 km</label>
+            <label class="bottom_things" id="companion_closest_poi">Something (22.3 km), Something else (12.6 km)</label>
+        </div>
+        <div class="real_botton_div">
+            <label id="companion_updated">Updated : 11:42:56</label>
+        </div>
+        <div class="real_real_bottom_div">
+            <label id="created_by">Created by Valalol#1790 with ❤ and ☕</label>
+        </div>
+
+        <img id="companion_status_icon" class="status_icon" src="../../Images/green_dot.png">
+        <label id="companion_status_message" class="status_message"></label>
+        <code id="companion_error_message" class="error_message"></code>
+    </div>
+</body>
+
+</html>

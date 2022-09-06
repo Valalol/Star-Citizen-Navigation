@@ -1,8 +1,8 @@
 {
-  "name": "star-citizen-navigation-tool",
-  "productName": "star-citizen-navigation-tool",
-  "version": "1.0.0",
-  "description": "A tool to help navigate within Star citizen Universe",
+  "name": "navitool",
+  "productName": "Navitool",
+  "version": "2.1.1",
+  "description": "A tool to help navigate within Star Citizen universe",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -20,7 +20,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./Icon.ico",
+        "icon": "Images/Icon.ico",
         "files": [
           "!.git/",
           "!Logs/",
