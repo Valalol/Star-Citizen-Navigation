@@ -105,11 +105,20 @@ parser.add_argument("--x", type=float)
 parser.add_argument("--y", type=float)
 parser.add_argument("--z", type=float)
 parser.add_argument("--OM1_name", type=str)
-parser.add_argument("--OM1_value", type=float)
+parser.add_argument("--OM1_posX", type=float)
+parser.add_argument("--OM1_posY", type=float)
+parser.add_argument("--OM1_posZ", type=float)
+parser.add_argument("--OM1_dist", type=float)
 parser.add_argument("--OM2_name", type=str)
-parser.add_argument("--OM2_value", type=float)
+parser.add_argument("--OM2_posX", type=float)
+parser.add_argument("--OM2_posY", type=float)
+parser.add_argument("--OM2_posZ", type=float)
+parser.add_argument("--OM2_dist", type=float)
 parser.add_argument("--OM3_name", type=str)
-parser.add_argument("--OM3_value", type=float)
+parser.add_argument("--OM3_posX", type=float)
+parser.add_argument("--OM3_posY", type=float)
+parser.add_argument("--OM3_posZ", type=float)
+parser.add_argument("--OM3_dist", type=float)
 parser.add_argument("--height", type=float)
 parser.add_argument("--lat", type=float)
 parser.add_argument("--long", type=float)
@@ -143,15 +152,53 @@ if Mode == "planetary_nav":
             }
 
         elif arg_entry_type == "oms":
+            # Get OMs values from passed arguments
             arg_OM1_name = args.OM1_name
-            arg_OM1_value = args.OM1_value
+            x1 = args.OM1_posX
+            y1 = args.OM1_posY
+            z1 = args.OM1_posZ
+            d1 = args.OM1_dist
             arg_OM2_name = args.OM2_name
-            arg_OM2_value = args.OM2_value
+            x2 = args.OM2_posX
+            y2 = args.OM2_posY
+            z2 = args.OM2_posZ
+            d2 = args.OM2_dist
             arg_OM3_name = args.OM3_name
-            arg_OM3_value = args.OM3_value
-            #
-            # add some things here
-            #
+            x3 = args.OM3_posX
+            y3 = args.OM3_posY
+            z3 = args.OM3_posZ
+            d3 = args.OM3_dist
+            
+            # Calculate the distance from the center of the planet to the location
+            dp = altitude + radius
+
+            # Solve the system of equations using the distance formula for each satellite and the distance from the center of the planet
+            a = x1**2 + y1**2 + z1**2 - d1**2 - dp**2
+            b = x2**2 + y2**2 + z2**2 - d2**2 - dp**2
+            c = x3**2 + y3**2 + z3**2 - d3**2 - dp**2
+            d = 2*(x2 - x1)
+            e = 2*(y2 - y1)
+            f = 2*(z2 - z1)
+            g = 2*(x3 - x1)
+            h = 2*(y3 - y1)
+            i = 2*(z3 - z1)
+            j = 2*(x3 - x2)
+            k = 2*(y3 - y2)
+            l = 2*(z3 - z2)
+
+            # Solve for x, y, and z using Cramers Rule
+            x = (e*l*b - f*k*b - e*i*c + f*h*c + d*k*c - d*l*a) / (d*k*i - d*l*h - e*j*i + e*l*g + f*j*h - f*k*g)
+            y = (d*l*b - f*j*b - d*i*c + f*g*c + d*j*a - e*l*a) / (d*k*i - d*l*h - e*j*i + e*l*g + f*j*h - f*k*g)
+            z = (d*k*b - e*j*b - d*h*c + e*g*c + d*j*a - f*k*a) / (d*k*i - d*l*h - e*j*i + e*l*g + f*j*h - f*k*g)
+
+            Target = {
+                'Name': 'Custom POI',
+                'Container': arg_container,
+                'X': x,
+                'Y': y, 
+                'Z': z, 
+                "QTMarker": "FALSE"
+            }
         
         else:
             arg_lat = args.lat
