@@ -149,21 +149,24 @@ if Mode == "planetary_nav":
             x1 = om1['X']
             y1 = om1['Y']
             z1 = om1['Z']
-            d1 = args.OM1_dist
+            d1 = args.OM1_value
 
             arg_OM2_name = args.OM2_name
             om2 = Database["Containers"][arg_container]["POI"][arg_OM2_name]
             x2 = om2['X']
             y2 = om2['Y']
             z2 = om2['Z']
-            d2 = args.OM2_dist
+            d2 = args.OM2_value
 
             arg_OM3_name = args.OM3_name
             om3 = Database["Containers"][arg_container]["POI"][arg_OM2_name]
             x3 = om3['X']
             y3 = om3['Y']
             z3 = om3['Z']
-            d3 = args.OM3_dist
+            d3 = args.OM3_value
+
+            altitude = args.height
+            radius = Database["Containers"][arg_container]["Body Radius"]
 
             # Calculate the distance from the center of the planet to the location
             dp = altitude + radius
