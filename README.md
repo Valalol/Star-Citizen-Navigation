@@ -54,12 +54,12 @@ to do this open the Global chat using `F12`. Hit `enter`, and a command line wil
 ![Screenshot of the Add to PATH box](Images/Screenshot_3.png)
 
 ## Help:
-If you need some help about the installation and the use of the tool, do not hesitate to create an issue on github, pm me on discord (Valalol#1790), or join the [Meridian Discord Server](https://discord.gg/WMh5YCeQVS) for anything related to the navigation in Star Citizen.
+If you need some help with the installation and the use of the tool, do not hesitate to create an issue on github, pm me on discord (Valalol#1790), or join the [Meridian Discord Server](https://discord.gg/WMh5YCeQVS) for anything related to the navigation in Star Citizen.
 
 ## Contribute:
 ### How to contribute :
 
-Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation), fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
+Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation), fork the project, do your changes and submit a pull request for me to review it and maybe merge it with the main branch. 
 
 
 ## License
