@@ -49,7 +49,7 @@ This program relies almost entirely on the in-game `/showlocation` command. This
 5) After inputting your search selections into the cascading selection  boxes, you will manually need to do a `/showlocation` command from within Starcitizen in order for the map to update.
 to do this open the Global chat using `F12`. Hit `enter`, and a command line will open for you. Then simply type in `/showlocation` then `enter`, and the tool will update.
 
-6) If you want the tool to draw your lacation on a map, run the `Map.exe` and make sure you've done a few commands in-game. The map depends on the main tool to work.
+6) If you want the tool to draw your location on a map, run the `Map.exe` and make sure you've done a few commands in-game. The map depends on the main tool to work.
 
 ![Screenshot of the Add to PATH box](Images/Screenshot_3.png)
 
