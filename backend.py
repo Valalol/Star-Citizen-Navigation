@@ -126,33 +126,79 @@ if Mode == "planetary_nav":
     if arg_known == "true":
         arg_target = args.target
         Target = Database["Containers"][arg_container]["POI"][arg_target]
-    
-    else : 
+
+    else :
         arg_entry_type = args.entry_type
         if arg_entry_type == "xyz":
             arg_x = args.x
             arg_y = args.y
             arg_z = args.z
             Target = {
-                'Name': 'Custom POI', 
+                'Name': 'Custom POI',
                 'Container': arg_container,
-                'X': arg_x, 
-                'Y': arg_y, 
-                'Z': arg_z, 
+                'X': arg_x,
+                'Y': arg_y,
+                'Z': arg_z,
                 "QTMarker": "FALSE"
             }
 
         elif arg_entry_type == "oms":
+            # Get OMs values from passed arguments
             arg_OM1_name = args.OM1_name
-            arg_OM1_value = args.OM1_value
+            om1 = Database["Containers"][arg_container]["POI"][arg_OM1_name]
+            x1 = om1['X']
+            y1 = om1['Y']
+            z1 = om1['Z']
+            d1 = args.OM1_value
+
             arg_OM2_name = args.OM2_name
-            arg_OM2_value = args.OM2_value
+            om2 = Database["Containers"][arg_container]["POI"][arg_OM2_name]
+            x2 = om2['X']
+            y2 = om2['Y']
+            z2 = om2['Z']
+            d2 = args.OM2_value
+
             arg_OM3_name = args.OM3_name
-            arg_OM3_value = args.OM3_value
-            #
-            # add some things here
-            #
-        
+            om3 = Database["Containers"][arg_container]["POI"][arg_OM2_name]
+            x3 = om3['X']
+            y3 = om3['Y']
+            z3 = om3['Z']
+            d3 = args.OM3_value
+
+            altitude = args.height
+            radius = Database["Containers"][arg_container]["Body Radius"]
+
+            # Calculate the distance from the center of the planet to the location
+            dp = altitude + radius
+
+            # Solve the system of equations using the distance formula for each satellite and the distance from the center of the planet
+            a = x1**2 + y1**2 + z1**2 - d1**2 - dp**2
+            b = x2**2 + y2**2 + z2**2 - d2**2 - dp**2
+            c = x3**2 + y3**2 + z3**2 - d3**2 - dp**2
+            d = 2*(x2 - x1)
+            e = 2*(y2 - y1)
+            f = 2*(z2 - z1)
+            g = 2*(x3 - x1)
+            h = 2*(y3 - y1)
+            i = 2*(z3 - z1)
+            j = 2*(x3 - x2)
+            k = 2*(y3 - y2)
+            l = 2*(z3 - z2)
+
+            # Solve for x, y, and z using Cramers Rule
+            x = (e*l*b - f*k*b - e*i*c + f*h*c + d*k*c - d*l*a) / (d*k*i - d*l*h - e*j*i + e*l*g + f*j*h - f*k*g)
+            y = (d*l*b - f*j*b - d*i*c + f*g*c + d*j*a - e*l*a) / (d*k*i - d*l*h - e*j*i + e*l*g + f*j*h - f*k*g)
+            z = (d*k*b - e*j*b - d*h*c + e*g*c + d*j*a - f*k*a) / (d*k*i - d*l*h - e*j*i + e*l*g + f*j*h - f*k*g)
+
+            Target = {
+                'Name': 'Custom POI',
+                'Container': arg_container,
+                'X': x,
+                'Y': y,
+                'Z': z,
+                "QTMarker": "FALSE"
+            }
+
         else:
             arg_lat = args.lat
             arg_long = args.long
@@ -197,7 +243,7 @@ try :
     c = ntplib.NTPClient()
     response = c.request('europe.pool.ntp.org', version=3)
     server_time = response.tx_time
-    
+
     time_offset = response.offset
 except:
     print("Error: Could not get time from NTP server")
@@ -253,30 +299,30 @@ def get_current_container(X : float, Y : float, Z : float):
 
 
 def get_local_rotated_coordinates(Time_passed : float, X : float, Y : float, Z : float, Actual_Container : dict):
-    
+
     try:
         Rotation_speed_in_degrees_per_second = 0.1 * (1/Actual_Container["Rotation Speed"])
     except ZeroDivisionError:
         Rotation_speed_in_degrees_per_second = 0
-    
+
     Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed) + Actual_Container["Rotation Adjust"]) % 360
-    
+
     local_unrotated_coordinates = {
         "X": X - Actual_Container["X"],
         "Y": Y - Actual_Container["Y"],
         "Z": Z - Actual_Container["Z"]
     }
-    
+
     local_rotated_coordinates = rotate_point_2D(local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
-    
+
     return local_rotated_coordinates
 
 
 def get_lat_long_height(X : float, Y : float, Z : float, Container : dict):
     Radius = Container["Body Radius"]
-    
+
     Radial_Distance = sqrt(X**2 + Y**2 + Z**2)
-    
+
     Height = Radial_Distance - Radius
 
     #Latitude
@@ -284,19 +330,19 @@ def get_lat_long_height(X : float, Y : float, Z : float, Container : dict):
         Latitude = degrees(asin(Z/Radial_Distance))
     except :
         Latitude = 0
-    
+
     try :
         Longitude = -1*degrees(atan2(X, Y))
     except :
         Longitude = 0
-    
+
     return [Latitude, Longitude, Height]
 
 
 def get_closest_POI(X : float, Y : float, Z : float, Container : dict, Quantum_marker : bool = False):
-    
+
     Distances_to_POIs = []
-    
+
     for POI in Container["POI"]:
         Vector_POI = {
             "X": abs(X - Container["POI"][POI]["X"]),
@@ -316,7 +362,7 @@ def get_closest_POI(X : float, Y : float, Z : float, Container : dict, Quantum_m
 
 def get_closest_oms(X : float, Y : float, Z : float, Container : dict):
     Closest_OM = {}
-    
+
     if X >= 0:
         Closest_OM["X"] = {"OM" : Container["POI"]["OM-5"], "Distance" : vector_norm({"X" : X - Container["POI"]["OM-5"]["X"], "Y" : Y - Container["POI"]["OM-5"]["Y"], "Z" : Z - Container["POI"]["OM-5"]["Z"]})}
     else:
@@ -338,64 +384,64 @@ def get_sunset_sunrise_predictions(X : float, Y : float, Z : float, Latitude : f
     try :
         # Stanton X Y Z coordinates in refrence of the center of the system
         sx, sy, sz = Star["X"], Star["Y"], Star["Z"]
-        
+
         # Container X Y Z coordinates in refrence of the center of the system
         bx, by, bz = Container["X"], Container["Y"], Container["Z"]
-        
+
         # Rotation speed of the container
         rotation_speed = Container["Rotation Speed"]
-        
-        # Container qw/qx/qy/qz quaternion rotation 
+
+        # Container qw/qx/qy/qz quaternion rotation
         qw, qx, qy, qz = Container["qw"], Container["qx"], Container["qy"], Container["qz"]
-        
+
         # Stanton X Y Z coordinates in refrence of the center of the container
         bsx = ((1-(2*qy**2)-(2*qz**2))*(sx-bx))+(((2*qx*qy)-(2*qz*qw))*(sy-by))+(((2*qx*qz)+(2*qy*qw))*(sz-bz))
         bsy = (((2*qx*qy)+(2*qz*qw))*(sx-bx))+((1-(2*qx**2)-(2*qz**2))*(sy-by))+(((2*qy*qz)-(2*qx*qw))*(sz-bz))
         bsz = (((2*qx*qz)-(2*qy*qw))*(sx-bx))+(((2*qy*qz)+(2*qx*qw))*(sy-by))+((1-(2*qx**2)-(2*qy**2))*(sz-bz))
-        
+
         # Solar Declination of Stanton
         Solar_declination = degrees(acos((((sqrt(bsx**2+bsy**2+bsz**2))**2)+((sqrt(bsx**2+bsy**2))**2)-(bsz**2))/(2*(sqrt(bsx**2+bsy**2+bsz**2))*(sqrt(bsx**2+bsy**2)))))*copysign(1,bsz)
-        
+
         # Radius of Stanton
         StarRadius = Star["Body Radius"] # OK
-        
+
         # Apparent Radius of Stanton
         Apparent_Radius = degrees(asin(StarRadius/(sqrt((bsx)**2+(bsy)**2+(bsz)**2))))
-        
+
         # Length of day is the planet rotation rate expressed as a fraction of a 24 hr day.
         LengthOfDay = 3600*rotation_speed/86400
-        
-        
-        
+
+
+
         # A Julian Date is simply the number of days and fraction of a day since a specific event. (01/01/2020 00:00:00)
         JulianDate = Time_passed_since_reference_in_seconds/(24*60*60) # OK
-        
+
         # Determine the current day/night cycle of the planet.
         # The current cycle is expressed as the number of day/night cycles and fraction of the cycle that have occurred
-        # on that planet since Jan 1, 2020 given the length of day. While the number of sunrises that have occurred on the 
+        # on that planet since Jan 1, 2020 given the length of day. While the number of sunrises that have occurred on the
         # planet since Jan 1, 2020 is interesting, we are really only interested in the fractional part.
         try :
             CurrentCycle = JulianDate/LengthOfDay
         except ZeroDivisionError :
             CurrentCycle = 1
-        
-        
+
+
         # The rotation correction is a value that accounts for the rotation of the planet on Jan 1, 2020 as we don’t know
         # exactly when the rotation of the planet started.  This value is measured and corrected during a rotation
         # alignment that is performed periodically in-game and is retrieved from the navigation database.
         RotationCorrection = Container["Rotation Adjust"]
-        
+
         # CurrentRotation is how far the planet has rotated in this current day/night cycle expressed in the number of
         # degrees remaining before the planet completes another day/night cycle.
         CurrentRotation = (360-(CurrentCycle%1)*360-RotationCorrection)%360
-        
-        
+
+
         # Meridian determine where the star would be if the planet did not rotate.
         # Between the planet and Stanton there is a plane that contains the north pole and south pole
         # of the planet and the center of Stanton. Locations on the surface of the planet on this plane
         # experience the phenomenon we call noon.
         Meridian = degrees( (atan2(bsy,bsx)-(pi/2)) % (2*pi) )
-        
+
         # Because the planet rotates, the location of noon is constantly moving. This equation
         # computes the current longitude where noon is occurring on the planet.
         SolarLongitude = CurrentRotation-(0-Meridian)%360
@@ -403,38 +449,38 @@ def get_sunset_sunrise_predictions(X : float, Y : float, Z : float, Latitude : f
             SolarLongitude = SolarLongitude-360
         elif SolarLongitude<-180:
             SolarLongitude = SolarLongitude+360
-        
-        
-        
+
+
+
         # The difference between Longitude and Longitude360 is that for Longitude, Positive values
         # indicate locations in the Eastern Hemisphere, Negative values indicate locations in the Western
         # Hemisphere.
         # For Longitude360, locations in longitude 0-180 are in the Eastern Hemisphere, locations in
         # longitude 180-359 are in the Western Hemisphere.
         Longitude360 = Longitude%360 # OK
-        
+
         # Determine correction for location height
         ElevationCorrection = degrees(acos(Container["Body Radius"]/(Container["Body Radius"]))) if Height<0 else degrees(acos(Container["Body Radius"]/(Container["Body Radius"]+Height)))
-        
+
         # Determine Rise/Set Hour Angle
         # The star rises at + (positive value) rise/set hour angle and sets at - (negative value) rise/set hour angle
         # Solar Declination and Apparent Radius come from the first set of equations when we determined where the star is.
         RiseSetHourAngle = degrees(acos(-tan(radians(Latitude))*tan(radians(Solar_declination))))+Apparent_Radius+ElevationCorrection
-        
+
         # Determine the current Hour Angle of the star
-        
+
         # Hour Angles between 180 and the +Rise Hour Angle are before sunrise.
         # Between +Rise Hour angle and 0 are after sunrise before noon. 0 noon,
         # between 0 and -Set Hour Angle is afternoon,
         # between -Set Hour Angle and -180 is after sunset.
-        
+
         # Once the current Hour Angle is determined, we now know the actual angle (in degrees)
         # between the position of the star and the +rise hour angle and the -set hour angle.
         HourAngle = (CurrentRotation-(Longitude360-Meridian)%360)%360
         if HourAngle > 180:
             HourAngle = HourAngle - 360
-        
-        
+
+
         # Determine the planet Angular Rotation Rate.
         # Angular Rotation Rate is simply the Planet Rotation Rate converted from Hours into degrees per minute.
         # The Planet Rotation Rate is datamined from the game files.
@@ -442,27 +488,27 @@ def get_sunset_sunrise_predictions(X : float, Y : float, Z : float, Latitude : f
             AngularRotationRate = 6/rotation_speed # OK
         except ZeroDivisionError :
             AngularRotationRate = 0
-        
-        
+
+
         if AngularRotationRate != 0 :
             midnight = (HourAngle + 180) / AngularRotationRate
-            
+
             morning = (HourAngle - (RiseSetHourAngle+12)) / AngularRotationRate
             if HourAngle <= RiseSetHourAngle+12:
                 morning = morning + LengthOfDay*24*60
-            
+
             sunrise = (HourAngle - RiseSetHourAngle) / AngularRotationRate
             if HourAngle <= RiseSetHourAngle:
                 sunrise = sunrise + LengthOfDay*24*60
-            
+
             noon = (HourAngle - 0) / AngularRotationRate
             if HourAngle <= 0:
                 noon = noon + LengthOfDay*24*60
-            
+
             sunset = (HourAngle - -1*RiseSetHourAngle) / AngularRotationRate
             if HourAngle <= -1*RiseSetHourAngle:
                 sunset = sunset + LengthOfDay*24*60
-            
+
             evening = (HourAngle - (-1*RiseSetHourAngle-12)) / AngularRotationRate
             if HourAngle <= -1*(RiseSetHourAngle-12):
                 evening = evening + LengthOfDay*24*60
@@ -473,10 +519,10 @@ def get_sunset_sunrise_predictions(X : float, Y : float, Z : float, Latitude : f
             noon = 0
             sunset = 0
             evening = 0
-        
-        
-        
-        
+
+
+
+
         if 180 >= HourAngle > RiseSetHourAngle+12:
             state_of_the_day = "After midnight"
             next_event = "Sunrise"
@@ -501,12 +547,12 @@ def get_sunset_sunrise_predictions(X : float, Y : float, Z : float, Latitude : f
             state_of_the_day = "Before midnight"
             next_event = "Sunrise"
             next_event_time = sunrise
-        
+
         if AngularRotationRate == 0 :
             next_event = "N/A"
-        
+
         return [state_of_the_day, next_event, next_event_time]
-    
+
     except Exception as e:
         print(f"Error in sunrise/sunset calculations: \n{e}\nValues were:\n-X : {X}\n-Y : {Y}\n-Z : {Z}\n-Latitude : {Latitude}\n-Longitude : {Longitude}\n-Height : {Height}\n-Container : {Container['Name']}\n-Star : {Star['Name']}")
         sys.stdout.flush()
@@ -529,7 +575,7 @@ if logs_enabled == True:
         with open("Logs/Logs.csv","w+", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(field)
-    
+
     New_run_field = ['New_Run']
     with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
         writer = csv.writer(csv_file)
@@ -624,7 +670,7 @@ while True:
                 #---------------------------------------------------New player local coordinates----------------------------------------------------
                 #Time passed since the start of game simulation
                 Time_passed_since_reference_in_seconds = New_time - Reference_time
-                
+
                 New_player_local_rotated_coordinates = get_local_rotated_coordinates(Time_passed_since_reference_in_seconds, New_Player_Global_coordinates["X"], New_Player_Global_coordinates["Y"], New_Player_Global_coordinates["Z"], Actual_Container)
 
 
@@ -635,7 +681,7 @@ while True:
                     target_Rotation_speed_in_degrees_per_second = 0.1 * (1/target_Rotation_speed_in_hours_per_rotation)
                 except ZeroDivisionError:
                     target_Rotation_speed_in_degrees_per_second = 0
-                
+
                 #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
                 target_Rotation_state_in_degrees = ((target_Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Database["Containers"][Target["Container"]]["Rotation Adjust"]) % 360
 
@@ -646,10 +692,10 @@ while True:
 
 
                 #-------------------------------------------------player local Long Lat Height--------------------------------------------------
-                
+
                 if Actual_Container['Name'] != "None":
                     player_Latitude, player_Longitude, player_Height = get_lat_long_height(New_player_local_rotated_coordinates["X"], New_player_local_rotated_coordinates["Y"], New_player_local_rotated_coordinates["Z"], Actual_Container)
-                
+
                 #-------------------------------------------------target local Long Lat Height--------------------------------------------------
                 target_Latitude, target_Longitude, target_Height = get_lat_long_height(Target["X"], Target["Y"], Target["Z"], Database["Containers"][Target["Container"]])
 
@@ -657,12 +703,12 @@ while True:
 
                 #---------------------------------------------------Distance to POI-----------------------------------------------------------------
                 New_Distance_to_POI = {}
-                
+
                 if Actual_Container == Target["Container"]:
                     for i in ["X", "Y", "Z"]:
                         New_Distance_to_POI[i] = abs(Target[i] - New_player_local_rotated_coordinates[i])
-                
-                
+
+
                 else:
                     for i in ["X", "Y", "Z"]:
                         New_Distance_to_POI[i] = abs((target_rotated_coordinates[i] + Database["Containers"][Target["Container"]][i]) - New_Player_Global_coordinates[i])
@@ -716,7 +762,7 @@ while True:
                 #----------------------------------------------------Closest Quantumable POI--------------------------------------------------------
                 if Target["QTMarker"] == "FALSE":
                     Target_to_POIs_Distances_Sorted = get_closest_POI(Target["X"], Target["Y"], Target["Z"], Database["Containers"][Target["Container"]], True)
-                
+
                 else :
                     Target_to_POIs_Distances_Sorted = [{
                         "Name" : "POI itself",
@@ -817,7 +863,7 @@ while True:
 
 
                 #----------------------------------------------------------Heading--------------------------------------------------------------
-                
+
                 bearingX = cos(radians(target_Latitude)) * sin(radians(target_Longitude) - radians(player_Longitude))
                 bearingY = cos(radians(player_Latitude)) * sin(radians(target_Latitude)) - sin(radians(player_Latitude)) * cos(radians(target_Latitude)) * cos(radians(target_Longitude) - radians(player_Longitude))
 
@@ -828,24 +874,24 @@ while True:
 
                 #-------------------------------------------------Sunrise Sunset Calculation----------------------------------------------------
                 player_state_of_the_day, player_next_event, player_next_event_time = get_sunset_sunrise_predictions(
-                    New_player_local_rotated_coordinates["X"], 
-                    New_player_local_rotated_coordinates["Y"], 
-                    New_player_local_rotated_coordinates["Z"], 
-                    player_Latitude, 
-                    player_Longitude, 
-                    player_Height, 
-                    Actual_Container, 
+                    New_player_local_rotated_coordinates["X"],
+                    New_player_local_rotated_coordinates["Y"],
+                    New_player_local_rotated_coordinates["Z"],
+                    player_Latitude,
+                    player_Longitude,
+                    player_Height,
+                    Actual_Container,
                     Database["Containers"]["Stanton"]
                 )
-                
+
                 target_state_of_the_day, target_next_event, target_next_event_time = get_sunset_sunrise_predictions(
-                    Target["X"], 
-                    Target["Y"], 
-                    Target["Z"], 
-                    target_Latitude, 
-                    target_Longitude, 
-                    target_Height, 
-                    Database["Containers"][Target["Container"]], 
+                    Target["X"],
+                    Target["Y"],
+                    Target["Z"],
+                    target_Latitude,
+                    target_Longitude,
+                    target_Height,
+                    Database["Containers"][Target["Container"]],
                     Database["Containers"]["Stanton"]
                 )
 
@@ -866,8 +912,8 @@ while True:
                     "player_OM2" : f"{player_Closest_OM['Y']['OM']['Name']} : {round(player_Closest_OM['Y']['Distance'], 3)} km",
                     "player_OM3" : f"{player_Closest_OM['X']['OM']['Name']} : {round(player_Closest_OM['X']['Distance'], 3)} km",
                     "player_closest_poi" : f"{Player_to_POIs_Distances_Sorted[0]['Name']} : {round(Player_to_POIs_Distances_Sorted[0]['Distance'], 3)} km",
-                    "player_state_of_the_day" : f"{player_state_of_the_day}", 
-                    "player_next_event" : f"{player_next_event}", 
+                    "player_state_of_the_day" : f"{player_state_of_the_day}",
+                    "player_next_event" : f"{player_next_event}",
                     "player_next_event_time" : f"{time.strftime('%H:%M:%S', time.localtime(New_time + player_next_event_time*60))}",
                     "target_x" : Target["X"],
                     "target_y" : Target["Y"],
@@ -879,8 +925,8 @@ while True:
                     "target_OM2" : f"{target_Closest_OM['Y']['OM']['Name']} : {round(target_Closest_OM['Y']['Distance'], 3)} km",
                     "target_OM3" : f"{target_Closest_OM['X']['OM']['Name']} : {round(target_Closest_OM['X']['Distance'], 3)} km",
                     "target_closest_QT_beacon" : f"{Target_to_POIs_Distances_Sorted[0]['Name']} : {round(Target_to_POIs_Distances_Sorted[0]['Distance'], 3)} km",
-                    "target_state_of_the_day" : f"{target_state_of_the_day}", 
-                    "target_next_event" : f"{target_next_event}", 
+                    "target_state_of_the_day" : f"{target_state_of_the_day}",
+                    "target_next_event" : f"{target_next_event}",
                     "target_next_event_time" : f"{time.strftime('%H:%M:%S', time.localtime(New_time + target_next_event_time*60))}",
                     "distance_to_poi" : f"{round(New_Distance_to_POI_Total, 3)} km",
                     "distance_to_poi_color" : New_Distance_to_POI_Total_color,
@@ -919,24 +965,24 @@ while True:
                             ""
                         ]
                         # field = [
-                        #     'Key', 
-                        #     'System', 
-                        #     'Global_X', 
-                        #     'Global_Y', 
-                        #     'Global_Z', 
-                        #     'Container', 
-                        #     'Local_X', 
-                        #     'Local_Y', 
-                        #     'Local_Z', 
-                        #     'Longitude', 
-                        #     'Latitude', 
-                        #     'Height', 
-                        #     'Time', 
-                        #     'Readable_Time',', 
-                        #     'Player', 
+                        #     'Key',
+                        #     'System',
+                        #     'Global_X',
+                        #     'Global_Y',
+                        #     'Global_Z',
+                        #     'Container',
+                        #     'Local_X',
+                        #     'Local_Y',
+                        #     'Local_Z',
+                        #     'Longitude',
+                        #     'Latitude',
+                        #     'Height',
+                        #     'Time',
+                        #     'Readable_Time',',
+                        #     'Player',
                         #     'Comment'
                         # ]
-                        
+
                         with open(r'Logs/Logs.csv', 'a', newline='') as csv_file:
                             writer = csv.writer(csv_file)
                             writer.writerow(fields)
@@ -1028,8 +1074,8 @@ while True:
 
                 #get the angle between the current-target_pos vector and the previous-current_pos vector
                 Course_Deviation = angle_between_vectors(Previous_current_pos_vector, Current_target_pos_vector)
-                
-                
+
+
                 if Course_Deviation <= 10:
                     Total_deviation_from_target_color = "#00ff00"
                 elif Course_Deviation <= 20:
@@ -1058,7 +1104,7 @@ while True:
                     "total_deviation_color" : Total_deviation_from_target_color,
                     "ETA" : f"{str(datetime.timedelta(seconds=round(Estimated_time_of_arrival, 0)))}"
                 }
-                
+
                 print("New data :", json.dumps(new_data))
                 sys.stdout.flush()
 
@@ -1068,7 +1114,7 @@ while True:
                 #-------------------------------------------Update coordinates for the next update--------------------------------------------------
                 for i in ["X", "Y", "Z"]:
                     Old_player_Global_coordinates[i] = New_Player_Global_coordinates[i]
-                
+
                 for i in ["X", "Y", "Z"]:
                     Old_Distance_to_POI[i] = New_Distance_to_POI[i]
 
@@ -1077,26 +1123,26 @@ while True:
 
 
             #---------------------------------------------------------------------------------------------------------------------------------------
-            
+
             if Mode == "companion":
-                
+
                 # Actual container
                 # Search in the Database to see if the player is in a Container
                 Actual_Container = get_current_container(New_Player_Global_coordinates["X"], New_Player_Global_coordinates["Y"], New_Player_Global_coordinates["Z"])
-                
-                
+
+
                 # If around a container :
                 if Actual_Container['Name'] == "None" :
-                    
+
                     Distance_since_last_update = {}
                     for i in ["X", "Y", "Z"]:
                         Distance_since_last_update[i] = abs(Old_player_Global_coordinates[i] - New_Player_Global_coordinates[i])
                     Distance_since_last_update_Total = vector_norm(Distance_since_last_update)
-                
+
                 else :
-                    
+
                     # Local coordinates
-                    
+
                     #Time passed since the start of game simulation
                     Time_passed_since_reference_in_seconds = New_time - Reference_time
                     #Grab the rotation speed of the container in the Database and convert it in degrees/s
@@ -1106,44 +1152,44 @@ while True:
                     except ZeroDivisionError:
                         Rotation_speed_in_degrees_per_second = 0
                         continue
-                    
+
                     #Get the actual rotation state in degrees using the rotation speed of the container, the actual time and a rotational adjustment value
                     Rotation_state_in_degrees = ((Rotation_speed_in_degrees_per_second * Time_passed_since_reference_in_seconds) + Actual_Container["Rotation Adjust"]) % 360
-                    
+
                     #get the new player unrotated coordinates
                     New_player_local_unrotated_coordinates = {}
                     for i in ['X', 'Y', 'Z']:
                         New_player_local_unrotated_coordinates[i] = New_Player_Global_coordinates[i] - Actual_Container[i]
-                    
+
                     #get the new player rotated coordinates
                     New_player_local_rotated_coordinates = rotate_point_2D(New_player_local_unrotated_coordinates, radians(-1*Rotation_state_in_degrees))
-                    
-                    
-                    
+
+
+
                     Distance_since_last_update = {}
                     if Actual_Container["Name"] == Old_container["Name"]:
                         for i in ["X", "Y", "Z"]:
                             Distance_since_last_update[i] = abs(Old_player_local_rotated_coordinates[i] - New_player_local_rotated_coordinates[i])
-                    
+
                     else :
                         for i in ["X", "Y", "Z"]:
                             Distance_since_last_update[i] = abs(Old_player_Global_coordinates[i] - New_Player_Global_coordinates[i])
                     Distance_since_last_update_Total = vector_norm(Distance_since_last_update)
-                    
-                    
-                    
-                    
+
+
+
+
                     # Lattitude, Longitude, Height
-                    
+
                     #Radius of the container
                     Radius = Actual_Container["Body Radius"]
-                    
+
                     #Radial_Distance
                     Radial_Distance = sqrt(New_player_local_rotated_coordinates["X"]**2 + New_player_local_rotated_coordinates["Y"]**2 + New_player_local_rotated_coordinates["Z"]**2)
-                    
+
                     #Height
                     Height = Radial_Distance - Radius
-                    
+
                     #Longitude
                     try :
                         Longitude = -1*degrees(atan2(New_player_local_rotated_coordinates["X"], New_player_local_rotated_coordinates["Y"]))
@@ -1151,7 +1197,7 @@ while True:
                         print(f'Error in Longitude : {err} \nx = {New_player_local_rotated_coordinates["X"]}, y = {New_player_local_rotated_coordinates["Y"]} \nPlease report this to Valalol#1790 for me to try to solve this issue')
                         sys.stdout.flush()
                         Longitude = 0
-                    
+
                     #Latitude
                     try :
                         Latitude = degrees(asin(New_player_local_rotated_coordinates["Z"]/Radial_Distance))
@@ -1159,18 +1205,18 @@ while True:
                         print(f'Error in Latitude : {err} \nz = {New_player_local_rotated_coordinates["Z"]}, radius = {Radial_Distance} \nPlease report this at Valalol#1790 for me to try to solve this issue')
                         sys.stdout.flush()
                         Latitude = 0
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
+
+
+
                     # 3 closest OMs
-                    
+
                     Closest_OM = {}
-                    
+
                     if New_player_local_rotated_coordinates["X"] >= 0:
                         Closest_OM["X"] = {"OM" : Actual_Container["POI"]["OM-5"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-5"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-5"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-5"]["Z"]})}
                     else:
@@ -1183,13 +1229,13 @@ while True:
                         Closest_OM["Z"] = {"OM" : Actual_Container["POI"]["OM-1"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-1"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-1"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-1"]["Z"]})}
                     else:
                         Closest_OM["Z"] = {"OM" : Actual_Container["POI"]["OM-2"], "Distance" : vector_norm({"X" : New_player_local_rotated_coordinates["X"] - Actual_Container["POI"]["OM-2"]["X"], "Y" : New_player_local_rotated_coordinates["Y"] - Actual_Container["POI"]["OM-2"]["Y"], "Z" : New_player_local_rotated_coordinates["Z"] - Actual_Container["POI"]["OM-2"]["Z"]})}
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
                     # 2 Closest POIs
                     Player_to_POIs_Distances = []
                     for POI in Database['Containers'][Actual_Container['Name']]["POI"]:
@@ -1198,15 +1244,15 @@ while True:
                             Vector_POI_Player[i] = abs(New_player_local_rotated_coordinates[i] - Database["Containers"][Actual_Container['Name']]["POI"][POI][i])
                         Distance_POI_Player = vector_norm(Vector_POI_Player)
                         Player_to_POIs_Distances.append({"Name" : POI, "Distance" : Distance_POI_Player})
-                
+
                 # for POI in Database['Space_POI']:
                 #     Vector_POI_Player = {}
                 #     for i in ["X", "Y", "Z"]:
                 #         Vector_POI_Player[i] = abs(New_Player_Global_coordinates[i] - Database["Space_POI"][POI][i])
                 #     Distance_POI_Player = vector_norm(Vector_POI_Player)
                 #     Player_to_POIs_Distances.append({"Name" : POI, "Distance" : Distance_POI_Player})
-                
-                
+
+
                     Player_to_POIs_Distances_Sorted = sorted(Player_to_POIs_Distances, key=lambda k: k['Distance'])
 
 
@@ -1253,7 +1299,7 @@ while True:
                         "player_OM3" : f"{Closest_OM['X']['OM']['Name']} : {round(Closest_OM['X']['Distance'], 3)} km",
                         "closest_poi" : f"Closest POI : \n{Player_to_POIs_Distances_Sorted[0]['Name']} ({round(Player_to_POIs_Distances_Sorted[0]['Distance'], 3)} km) \n{Player_to_POIs_Distances_Sorted[1]['Name']} ({round(Player_to_POIs_Distances_Sorted[1]['Distance'], 3)} km)",
                         }
-                
+
                 print("New data :", json.dumps(new_data))
                 sys.stdout.flush()
 
@@ -1266,11 +1312,11 @@ while True:
                 if Actual_Container["Name"] != "None":
                     for i in ["X", "Y", "Z"]:
                         Old_player_local_rotated_coordinates[i] = New_player_local_rotated_coordinates[i]
-                
+
                 Old_container = Actual_Container
-                
+
                 Old_time = New_time
-                
+
                 #-------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1289,4 +1335,3 @@ while True:
 # Hurston : Coordinates: x:12850457093 y:0 z:0
 # Microtech : Coordinates: x:22462016306.0103 y:37185625645.8346 z:0
 # Daymar : Coordinates: x:-18930439540 y:-2610058765 z:0
-
