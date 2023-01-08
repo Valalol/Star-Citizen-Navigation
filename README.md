@@ -49,17 +49,17 @@ This program relies almost entirely on the in-game `/showlocation` command. This
 5) After inputting your search selections into the cascading selection  boxes, you will manually need to do a `/showlocation` command from within Starcitizen in order for the map to update.
 to do this open the Global chat using `F12`. Hit `enter`, and a command line will open for you. Then simply type in `/showlocation` then `enter`, and the tool will update.
 
-6) If you want the tool to draw your lacation on a map, run the `Map.exe` and make sure you've done a few commands in-game. The map depends on the main tool to work.
+6) If you want the tool to draw your location on a map, run the `Map.exe` and make sure you've done a few commands in-game. The map depends on the main tool to work.
 
 ![Screenshot of the Add to PATH box](Images/Screenshot_3.png)
 
 ## Help:
-If you need some help about the installation and the use of the tool, do not hesitate to create an issue on github, pm me on discord (Valalol#1790), or join the [Meridian Discord Server](https://discord.gg/WMh5YCeQVS) for anything related to the navigation in Star Citizen.
+If you need some help with the installation and the use of the tool, do not hesitate to create an issue on github, pm me on discord (Valalol#1790), or join the [Meridian Discord Server](https://discord.gg/WMh5YCeQVS) for anything related to the navigation in Star Citizen.
 
 ## Contribute:
 ### How to contribute :
 
-Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation), fork the project, do your changements and submit a pull request for me to review it and maybe merge it with the main branch. 
+Either send me a pm at Valalol#1790 on Discord or go to the github repository (https://github.com/Valalol/Star-Citizen-Navigation), fork the project, do your changes and submit a pull request for me to review it and maybe merge it with the main branch. 
 
 
 ## License
