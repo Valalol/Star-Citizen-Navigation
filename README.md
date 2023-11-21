@@ -1,3 +1,5 @@
+<h1>THIS PROJECT IS PARTLY DEPRECATED, FOR A REPLACEMENT CHECK PROJECT JERICHO AT https://discord.gg/XDVzwZfMmb</h1>
+
 # Star Citizen Navigation
 
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white)
