@@ -92,6 +92,20 @@ for container_name in Database["Containers"]:
         Planetary_POI_list[container_name].append(poi)
 
 
+def get_local_xyz(lat : float, long : float, height : float, Container : dict):
+    lat_rad = radians(lat)
+    long_rad = radians(-1*long)
+
+    Radius = Container["Body Radius"]
+    Radial_Distance = Radius + height
+
+    local_coordinates = {
+        "X": Radial_Distance * cos(lat_rad) * sin(long_rad),
+        "Y": Radial_Distance * cos(lat_rad) * cos(long_rad),
+        "Z": Radial_Distance * sin(lat_rad),
+    }
+
+    return local_coordinates
 
 
 parser = argparse.ArgumentParser()
@@ -154,12 +168,15 @@ if Mode == "planetary_nav":
             #
         
         else:
-            arg_lat = args.lat
-            arg_long = args.long
-            arg_height = args.height
-            #
-            # add some things here
-            #
+            local_coordinates = get_local_xyz(args.lat, args.long, args.height, Database["Containers"][arg_container])
+            Target = {
+                'Name': 'Custom POI',
+                'Container': arg_container,
+                'X': local_coordinates['X'],
+                'Y': local_coordinates['Y'],
+                'Z': local_coordinates['Z'],
+                "QTMarker": "FALSE"
+            }
 
 elif Mode == "space_nav":
     arg_known = args.known
